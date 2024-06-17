@@ -1,4 +1,4 @@
-﻿namespace FlashCards;
+﻿namespace FlashCards.Views;
 
 public partial class MainPage : ContentPage
 {
