@@ -1,0 +1,43 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="LightPrimaryColor">SlateGrey</Color>
+    <Color x:Key="LightSecondaryColor">White</Color>
+    <Color x:Key="LightBackgroundColor">DarkGray</Color>
+
+    <Color x:Key="DarkPrimaryColor">DarkOrange</Color>
+    <Color x:Key="DarkSecondaryColor">White</Color>
+    <Color x:Key="DarkBackgroundColor">DimGray</Color>
+
+    <Color x:Key="BothThumbSliderColor">DarkOrange</Color>
+    <Color x:Key="BothMinTrackSliderColor">Pink</Color>
+    <Color x:Key="BothMaxTrackSliderColor">Firebrick</Color>
+
+    <Style
+        x:Key="ButtonStyle"
+        TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkSecondaryColor}}" />
+    </Style>
+
+    <Style
+        x:Key="TextStyle"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkSecondaryColor}}" />
+    </Style>
+
+    <Style
+        x:Key="BackgroundStyle"
+        TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+    </Style>
+
+    <Style
+        x:Key="SliderStyle"
+        TargetType="Slider">
+        <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource BothThumbSliderColor}, Dark={StaticResource BothThumbSliderColor}}" />
+        <Setter Property="MinimumTrackColor" Value="{AppThemeBinding Light={StaticResource BothMinTrackSliderColor}, Dark={StaticResource BothMinTrackSliderColor}}" />
+        <Setter Property="MaximumTrackColor" Value="{AppThemeBinding Light={StaticResource BothMaxTrackSliderColor}, Dark={StaticResource BothMaxTrackSliderColor}}" />
+    </Style>
+</ResourceDictionary>

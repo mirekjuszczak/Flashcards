@@ -57,26 +57,25 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+        <PackageReference Include="ReactiveUI" Version="20.1.1" />
+        <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Views\MainPage.xaml">
+      <MauiXaml Update="Views\StartPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Views\MainPage.xaml.cs">
+      <Compile Update="Views\StartPage.xaml.cs">
         <DependentUpon>MainPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ViewModels\" />
     </ItemGroup>
 
 </Project>

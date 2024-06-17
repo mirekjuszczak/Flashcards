@@ -3,14 +3,12 @@
     x:Class="FlashCards.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FlashCards"
     xmlns:views="clr-namespace:FlashCards.Views"
-    Title="FlashCards"
-    Shell.FlyoutBehavior="Disabled">
+    FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+        Title="FlashCards"
+        ContentTemplate="{DataTemplate views:StartPage}"
+        Route="StartPage" />
 
 </Shell>
