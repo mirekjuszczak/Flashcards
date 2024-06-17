@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <PropertyGroup>
+        <DotnetVersion>8.0.0</DotnetVersion>
+        <MauiVersion>8.0.3</MauiVersion>
+    </PropertyGroup>
+    
+    <ItemGroup Label="ExternalPackages">
+        <!--Maui packages-->
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="[8.2.2]" />
+        <PackageReference Update="CommunityToolkit.Maui" Version="[9.0.1]" />
+<!--        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>-->
+<!--        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>-->
+<!--        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.2.23479.6"/>-->
+        
+        <!--ReactiveUI-->
+        <PackageReference Include="ReactiveUI" Version="[20.1.1]" />
+        <PackageReference Include="ReactiveUI.Fody" Version="[19.5.41]" />
+    </ItemGroup>
+</Project>
