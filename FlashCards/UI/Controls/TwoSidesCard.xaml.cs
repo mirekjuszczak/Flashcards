@@ -28,7 +28,7 @@ public partial class TwoSidesCard: Grid
         await FrontCard.RotateYTo(90, 250, Easing.Linear);
         FrontCard.IsVisible = false;
         
-        BackCard.RotationY = 90;
+        BackCard.RotationY = -90;
         BackCard.IsVisible = true;
         
         await BackCard.RotateYTo(0, 250, Easing.Linear);
@@ -39,7 +39,7 @@ public partial class TwoSidesCard: Grid
         await BackCard.RotateYTo(90, 250, Easing.Linear);
         BackCard.IsVisible = false;
         
-        FrontCard.RotationY = 90;
+        FrontCard.RotationY = -90;
         FrontCard.IsVisible = true;
         
         await FrontCard.RotateYTo(0, 250, Easing.Linear);
