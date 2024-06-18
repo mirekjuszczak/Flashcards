@@ -78,4 +78,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Showroom\TwoSidesCardControlPage.xaml" />
+    </ItemGroup>
+
 </Project>

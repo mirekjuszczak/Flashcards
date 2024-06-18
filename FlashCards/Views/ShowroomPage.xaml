@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="FlashCards.Views.ShowroomPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <VerticalStackLayout
+        Padding="40,10"
+        HorizontalOptions="Start">
+        <Button
+            Margin="0,20"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Text="TwoSidesCard Control"
+            Command="{Binding OnGoToTwoSidesCardPage}" />
+
+    </VerticalStackLayout>
+</ContentPage>

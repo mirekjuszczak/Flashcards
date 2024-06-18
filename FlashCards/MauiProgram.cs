@@ -1,4 +1,7 @@
 ﻿using FlashCards.Services.Navigation;
+using FlashCards.Showroom;
+using FlashCards.ViewModels;
+using FlashCards.Views;
 using Microsoft.Extensions.Logging;
 
 namespace FlashCards;
@@ -28,9 +31,12 @@ public static class MauiProgram
 	
 	private static void RegisterViewModelsAndPages(MauiAppBuilder builder)
 	{
-		// builder.Services.AddSingleton<MainPage>();
-		// builder.Services.AddSingleton<MainPageViewModel>();
-		
+		builder.Services.AddSingleton<StartPage>();
+		builder.Services.AddSingleton<StartPageViewModel>();
+		builder.Services.AddSingleton<ShowroomPage>();
+		builder.Services.AddSingleton<ShowroomPageViewModel>();
+		builder.Services.AddSingleton<TwoSidesCardControlPage>();
+		builder.Services.AddSingleton<TwoSidesCardControlPageViewModel>();
 	}
 
 	private static void RegisterServices(MauiAppBuilder builder)

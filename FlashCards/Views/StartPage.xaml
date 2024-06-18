@@ -19,11 +19,13 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2" />
+            <Button
+                x:Name="StartButton"
+                Margin="0,0,0,20"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Start Showroom"
+                Command="{Binding OnGoToShowroomCommand}" />
 
         </VerticalStackLayout>
     </ScrollView>

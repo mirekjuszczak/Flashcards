@@ -1,9 +1,20 @@
-﻿namespace FlashCards;
+﻿using FlashCards.Showroom;
+using FlashCards.Views;
+
+namespace FlashCards;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
+		AddRegisteringRoute();
+	}
+	
+	private static void AddRegisteringRoute()
+	{
+		Routing.RegisterRoute(nameof(ShowroomPage), typeof(ShowroomPage));
+		Routing.RegisterRoute(nameof(StartPage), typeof(StartPage));
+		Routing.RegisterRoute(nameof(TwoSidesCardControlPage), typeof(TwoSidesCardControlPage));
 	}
 }
