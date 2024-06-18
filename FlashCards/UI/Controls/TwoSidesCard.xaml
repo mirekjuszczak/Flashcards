@@ -4,33 +4,38 @@
     x:Class="FlashCards.UI.Controls.TwoSidesCard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="RootCardView"
-    BackgroundColor="Pink">
+    x:Name="RootCardView">
 
     <Border
         x:Name="FrontCard"
-        BackgroundColor="Brown"
-        StrokeShape="RoundRectangle 32">
+        BackgroundColor="OrangeRed"
+        StrokeShape="RoundRectangle 32"
+        StrokeThickness="1"
+        Stroke="Beige">
         <Border.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnFrontCardTapped" />
         </Border.GestureRecognizers>
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            Text="Front" />
+            Text="Front"
+            FontSize="30" />
     </Border>
 
     <Border
         x:Name="BackCard"
         BackgroundColor="Blue"
-        StrokeShape="RoundRectangle 32">
+        StrokeShape="RoundRectangle 32"
+        StrokeThickness="1"
+        Stroke="Beige">
         <Border.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnBackCardTapped" />
         </Border.GestureRecognizers>
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            Text="Back" />
+            Text="Back"
+            FontSize="30" />
     </Border>
 
 </Grid>
