@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<VerticalStackLayout
+<Grid
     x:Class="FlashCards.UI.Controls.TwoSidesCard"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="RootCardView">
+    x:Name="RootCardView"
+    BackgroundColor="Pink">
 
     <Border
         x:Name="FrontCard"
-        WidthRequest="200"
-        HeightRequest="400"
-        StrokeShape="RoundRectangle 32"
-        IsVisible="True"
-        Background="Brown">
+        BackgroundColor="Brown"
+        StrokeShape="RoundRectangle 32">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnFrontCardTapped" />
+        </Border.GestureRecognizers>
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
@@ -21,15 +22,15 @@
 
     <Border
         x:Name="BackCard"
-        WidthRequest="200"
-        HeightRequest="400"
-        StrokeShape="RoundRectangle 32"
-        IsVisible="False"
-        Background="Blue">
+        BackgroundColor="Blue"
+        StrokeShape="RoundRectangle 32">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBackCardTapped" />
+        </Border.GestureRecognizers>
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
             Text="Back" />
     </Border>
 
-</VerticalStackLayout>
+</Grid>

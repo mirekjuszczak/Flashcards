@@ -1,35 +1,47 @@
-using Microsoft.Maui.Controls.Shapes;
+using Bindables.Maui;
 
 namespace FlashCards.UI.Controls;
 
-public partial class TwoSidesCard: VerticalStackLayout
+public partial class TwoSidesCard: Grid
 {
+    // private static readonly bool VisibleSideCardDefault = true;
+    //
+    // [BindableProperty(
+    //     typeof(bool),
+    //     DefaultValueField = nameof(VisibleSideCardDefault))]
+    // public static readonly BindableProperty VisibleSideCardProperty;
+    
     public TwoSidesCard()
     {
         InitializeComponent();
+        InitializeProperties();
     }
-    
-    protected override void OnPropertyChanged(string? propertyName = null)
+
+    private void InitializeProperties()
     {
-        base.OnPropertyChanged(propertyName);
-    
-        switch (propertyName)
-        {
-            case nameof(Width):
-            case nameof(Height):
-                UpdateClip();
-                break;
-        }
+        FrontCard.IsVisible = true;
+        BackCard.IsVisible = false;
     }
-    
-    private void UpdateClip()
+
+    private async void OnFrontCardTapped(object? sender, TappedEventArgs e)
     {
-        if (Width <= 0 || Height <= 0)
-        {
-            return;
-        }
-    
-        var radius = Height / 10;
-        Clip = new RoundRectangleGeometry(new CornerRadius(radius), new Rect(0, 0, Width, Height));
+        await FrontCard.RotateYTo(90, 250, Easing.Linear);
+        FrontCard.IsVisible = false;
+        
+        BackCard.RotationY = 90;
+        BackCard.IsVisible = true;
+        
+        await BackCard.RotateYTo(0, 250, Easing.Linear);
+    }
+
+    private async void OnBackCardTapped(object? sender, TappedEventArgs e)
+    {
+        await BackCard.RotateYTo(90, 250, Easing.Linear);
+        BackCard.IsVisible = false;
+        
+        FrontCard.RotationY = 90;
+        FrontCard.IsVisible = true;
+        
+        await FrontCard.RotateYTo(0, 250, Easing.Linear);
     }
 }

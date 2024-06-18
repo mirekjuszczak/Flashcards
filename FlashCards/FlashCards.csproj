@@ -57,6 +57,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Bindables.Maui" Version="1.4.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
