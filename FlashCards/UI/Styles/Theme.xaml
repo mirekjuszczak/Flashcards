@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--#region Light Theme Colors-->
+    <Color x:Key="Theme_01_Light_Color">#ff3b3c3d</Color>
+    <Color x:Key="Theme_02_Light_Color">#ff5b5a59</Color>
+    <Color x:Key="Theme_03_Light_Color">#ffb7b3ac</Color>
+    <Color x:Key="Theme_04_Light_Color">#ffd7d3cc</Color>
+    <Color x:Key="Theme_05_Light_Color">#ffe8e5e1</Color>
+    <Color x:Key="Theme_06_Light_Color">#fff7f6f4</Color>
+    <Color x:Key="Primary_01_Light_Color">#ff0c0c0c</Color>
+    <Color x:Key="Primary_02_Light_Color">#ff19191a</Color>
+    <Color x:Key="Primary_03_Light_Color">#ff3b3c3d</Color>
+    <Color x:Key="Primary_04_Light_Color">#ff6b6867</Color>
+    <Color x:Key="Primary_05_Light_Color">#ffcbc9c4</Color>
+    <Color x:Key="Secondary_01_Light_Color">#ff7e7b78</Color>
+    <Color x:Key="Secondary_02_Light_Color">#ffcbc9c4</Color>
+    <Color x:Key="Secondary_03_Light_Color">#ffe3dfdb</Color>
+    <Color x:Key="Secondary_04_Light_Color">#ffefedea</Color>
+    <Color x:Key="Secondary_05_Light_Color">#fff7f6f4</Color>
+    <Color x:Key="Accent_01_Light_Color">#ff410032</Color>
+    <Color x:Key="Accent_02_Light_Color">#ff630b47</Color>
+    <Color x:Key="Accent_03_Light_Color">#ffc6168d</Color>
+    <Color x:Key="Accent_04_Light_Color">#ffd75caf</Color>
+    <Color x:Key="Accent_05_Light_Color">#ffe8a2d1</Color>
+    <Color x:Key="Success_03_Light_Color">#ff1bb26e</Color>
+    <Color x:Key="Success_04_Light_Color">#ff76d1a8</Color>
+    <Color x:Key="Success_05_Light_Color">#ffe8f7f1</Color>
+    <Color x:Key="Warning_03_Light_Color">#ffef9000</Color>
+    <Color x:Key="Warning_05_Light_Color">#fffdf4e6</Color>
+    <Color x:Key="Error_03_Light_Color">#ffd0021b</Color>
+    <Color x:Key="Error_05_Light_Color">#fffae6e8</Color>
+    <Color x:Key="Neutral_03_Light_Color">#ff34495e</Color>
+    <Color x:Key="Neutral_05_Light_Color">#ffebedef</Color>
+    <Color x:Key="Streaming_03_Light_Color">#ff0d3547</Color>
+    <Color x:Key="Streaming_05_Light_Color">#ff56727e</Color>
+    <Color x:Key="Dimming_Mask_Light_Color">#7f3b3c3d</Color>
+    <Color x:Key="Video_Mask_Light_Color">#cc3b3c3d</Color>
+    <Color x:Key="Loader_01_Light_Color">#ffc6168d</Color>
+    <Color x:Key="Masker_01_Light_Color">#ff410032</Color>
+    <Color x:Key="Splash_BG_Light_Color">#ffe3dfdb</Color>
+    <Color x:Key="Widget_Primary_Enabled_Light_Color">#ffdb199c</Color>
+    <Color x:Key="Widget_Primary_Pressed_Light_Color">#ffc6168d</Color>
+    <Color x:Key="Brand_01_Light_Color">#ffc6168d</Color>
+    <Color x:Key="Charging_03_Light_Color">#ff630b47</Color>
+    <Color x:Key="Charging_05_Light_Color">#ffefedea</Color>
+
+    <Color x:Key="SocialMedia_Apple_Background_Light_Color">#000000</Color>
+    <Color x:Key="SocialMedia_Apple_Foreground_Light_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Facebook_Background_Light_Color">#1877f2</Color>
+    <Color x:Key="SocialMedia_Facebook_Foreground_Light_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Google_Background_Light_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Google_Foreground_Light_Color">#000000</Color>
+    <Color x:Key="SocialMedia_Google_Border_Light_Color">#d8d8d8</Color>
+
+    <Color x:Key="Primary_Button_Text_Light_Color">#fff7f6f4</Color>
+    <Color x:Key="RemoteAssistance_BackButton_Light_Color">#ffc9a566</Color>
+
+    <!--#endregion-->
+
+    <!--#region Dark Theme Color-->
+    <Color x:Key="Theme_01_Dark_Color">#ffe8e5e1</Color>
+    <Color x:Key="Theme_02_Dark_Color">#ffb7b3ac</Color>
+    <Color x:Key="Theme_03_Dark_Color">#ff898682</Color>
+    <Color x:Key="Theme_04_Dark_Color">#ff464748</Color>
+    <Color x:Key="Theme_05_Dark_Color">#ff19191a</Color>
+    <Color x:Key="Theme_06_Dark_Color">#ff303031</Color>
+    <Color x:Key="Primary_01_Dark_Color">#fff1e0c7</Color>
+    <Color x:Key="Primary_02_Dark_Color">#ffe8bf79</Color>
+    <Color x:Key="Primary_03_Dark_Color">#ffc9a566</Color>
+    <Color x:Key="Primary_04_Dark_Color">#ff927748</Color>
+    <Color x:Key="Primary_05_Dark_Color">#ff705b36</Color>
+    <Color x:Key="Secondary_01_Dark_Color">#ffadabaa</Color>
+    <Color x:Key="Secondary_02_Dark_Color">#ff93908f</Color>
+    <Color x:Key="Secondary_03_Dark_Color">#ff464748</Color>
+    <Color x:Key="Secondary_04_Dark_Color">#ff2f3132</Color>
+    <Color x:Key="Secondary_05_Dark_Color">#ff19191a</Color>
+    <Color x:Key="Accent_01_Dark_Color">#fff7f0e6</Color>
+    <Color x:Key="Accent_02_Dark_Color">#ffe8bf79</Color>
+    <Color x:Key="Accent_03_Dark_Color">#ffc9a566</Color>
+    <Color x:Key="Accent_04_Dark_Color">#ff705b36</Color>
+    <Color x:Key="Accent_05_Dark_Color">#ff3a2e1b</Color>
+    <Color x:Key="Success_03_Dark_Color">#ff33e28f</Color>
+    <Color x:Key="Success_04_Dark_Color">#ff1bb26e</Color>
+    <Color x:Key="Success_05_Dark_Color">#ff075230</Color>
+    <Color x:Key="Warning_03_Dark_Color">#fffeb76a</Color>
+    <Color x:Key="Warning_05_Dark_Color">#ff683b00</Color>
+    <Color x:Key="Error_03_Dark_Color">#ffff8874</Color>
+    <Color x:Key="Error_05_Dark_Color">#ff90010f</Color>
+    <Color x:Key="Neutral_03_Dark_Color">#ffb5a99d</Color>
+    <Color x:Key="Neutral_05_Dark_Color">#ff4b4640</Color>
+    <Color x:Key="Streaming_03_Dark_Color">#ff39b9ef</Color>
+    <Color x:Key="Streaming_05_Dark_Color">#ff2681a8</Color>
+    <Color x:Key="Dimming_Mask_Dark_Color">#7f19191a</Color>
+    <Color x:Key="Video_Mask_Dark_Color">#cc19191a</Color>
+    <Color x:Key="Loader_01_Dark_Color">#ff927748</Color>
+    <Color x:Key="Masker_01_Dark_Color">#ffcd9dd7</Color>
+    <Color x:Key="Splash_BG_Dark_Color">#ff19191a</Color>
+    <Color x:Key="Widget_Primary_Enabled_Dark_Color">#ffc9a566</Color>
+    <Color x:Key="Widget_Primary_Pressed_Dark_Color">#ff544427</Color>
+    <Color x:Key="Brand_01_Dark_Color">#ffc6168d</Color>
+    <Color x:Key="Charging_03_Dark_Color">#ff39b9ef</Color>
+    <Color x:Key="Charging_05_Dark_Color">#ff134d66</Color>
+
+    <Color x:Key="SocialMedia_Apple_Background_Dark_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Apple_Foreground_Dark_Color">#000000</Color>
+    <Color x:Key="SocialMedia_Facebook_Background_Dark_Color">#1877f2</Color>
+    <Color x:Key="SocialMedia_Facebook_Foreground_Dark_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Google_Background_Dark_Color">#ffffff</Color>
+    <Color x:Key="SocialMedia_Google_Foreground_Dark_Color">#000000</Color>
+    <Color x:Key="SocialMedia_Google_Border_Dark_Color">#d8d8d8</Color>
+
+    <Color x:Key="Primary_Button_Text_Dark_Color">#ff303031</Color>
+    <Color x:Key="RemoteAssistance_BackButton_Dark_Color">#ffc9a566</Color>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

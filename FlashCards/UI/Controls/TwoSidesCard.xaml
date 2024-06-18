@@ -8,10 +8,12 @@
 
     <Border
         x:Name="FrontCard"
-        BackgroundColor="OrangeRed"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                          Dark={StaticResource Theme_01_Dark_Color}}"
         StrokeShape="RoundRectangle 32"
         StrokeThickness="1"
-        Stroke="Beige">
+        Stroke="{AppThemeBinding Light={StaticResource Primary_02_Light_Color},
+                                 Dark={StaticResource Primary_02_Dark_Color}}">
         <Border.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnFrontCardTapped" />
         </Border.GestureRecognizers>
@@ -24,10 +26,12 @@
 
     <Border
         x:Name="BackCard"
-        BackgroundColor="Blue"
+        BackgroundColor="{AppThemeBinding Light={StaticResource Theme_03_Light_Color},
+                                          Dark={StaticResource Theme_03_Dark_Color}}"
         StrokeShape="RoundRectangle 32"
         StrokeThickness="1"
-        Stroke="Beige">
+        Stroke="{AppThemeBinding Light={StaticResource Primary_04_Light_Color},
+                                 Dark={StaticResource Primary_04_Dark_Color}}">
         <Border.GestureRecognizers>
             <TapGestureRecognizer Tapped="OnBackCardTapped" />
         </Border.GestureRecognizers>
