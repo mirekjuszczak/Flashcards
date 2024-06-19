@@ -6,7 +6,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     x:Name="RootCardCollectionView"
-    Margin="30,30"
     HorizontalOptions="Fill"
     VerticalOptions="Fill">
 

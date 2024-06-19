@@ -45,8 +45,7 @@ public partial class CardsCollectionControl : ContentView
     {
         if (bindable is CardsCollectionControl element && newvalue is List<SingleCard> newNumber && newvalue != oldvalue)
         {
-            var control = (CardsCollectionControl)bindable;
-            control.UpdateDisplayedCard();
+            element.UpdateDisplayedCard();
         }
     }
 }
