@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <Grid
-    x:Class="FlashCards.UI.Controls.TwoSidesCard"
+    x:Class="FlashCards.UI.Controls.TwoSidesCardControl"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="RootCardView">
+    x:Name="RootOneCardView">
 
     <Border
         x:Name="FrontCard"
@@ -20,7 +20,7 @@
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            Text="Front"
+            Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
             FontSize="30" />
     </Border>
 
@@ -38,7 +38,7 @@
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            Text="Back"
+            Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation}"
             FontSize="30" />
     </Border>
 

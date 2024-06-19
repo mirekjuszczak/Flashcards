@@ -1,4 +1,5 @@
-﻿using FlashCards.Services.Navigation;
+﻿using FlashCards.Services.DatabaseMock;
+using FlashCards.Services.Navigation;
 using FlashCards.Showroom;
 using FlashCards.ViewModels;
 using FlashCards.Views;
@@ -42,5 +43,6 @@ public static class MauiProgram
 	private static void RegisterServices(MauiAppBuilder builder)
 	{
 		builder.Services.AddSingleton<INavigationService, NavigationService>();
+		builder.Services.AddSingleton<IDatabaseServiceMock, DatabaseServiceMock>();
 	}
 }

@@ -1,17 +1,14 @@
 using Bindables.Maui;
+using FlashCards.Models;
 
 namespace FlashCards.UI.Controls;
 
-public partial class TwoSidesCard: Grid
+public partial class TwoSidesCardControl: Grid
 {
-    // private static readonly bool VisibleSideCardDefault = true;
-    //
-    // [BindableProperty(
-    //     typeof(bool),
-    //     DefaultValueField = nameof(VisibleSideCardDefault))]
-    // public static readonly BindableProperty VisibleSideCardProperty;
+    [BindableProperty(typeof(SingleCard))]
+    public static readonly BindableProperty CurrentCardProperty;
     
-    public TwoSidesCard()
+    public TwoSidesCardControl()
     {
         InitializeComponent();
         InitializeProperties();
