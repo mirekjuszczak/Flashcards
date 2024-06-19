@@ -38,6 +38,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<ShowroomPageViewModel>();
 		builder.Services.AddSingleton<TwoSidesCardControlPage>();
 		builder.Services.AddSingleton<TwoSidesCardControlPageViewModel>();
+		builder.Services.AddSingleton<CardsCollectionControlPage>();
+		builder.Services.AddSingleton<CardsCollectionControlPageViewModel>();
 	}
 
 	private static void RegisterServices(MauiAppBuilder builder)

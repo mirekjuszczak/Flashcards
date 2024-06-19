@@ -7,15 +7,10 @@ namespace FlashCards.Showroom;
 
 public class TwoSidesCardControlPageViewModel : BaseViewModel
 {
-    //Cards Collectio Test
-    [ObservableAsProperty] public Task<List<SingleCard>> CardsCollection { get; }
-    //Single Card Test
     [ObservableAsProperty] public SingleCard Card { get; }
 
-    public TwoSidesCardControlPageViewModel(IDatabaseServiceMock databaseServiceMock)
+    public TwoSidesCardControlPageViewModel()
     {
-        CardsCollection = databaseServiceMock.GetData();
-
         Card = CreateSingleCardForTesting();
         
         Title = "Two Sides Card Control Sample";

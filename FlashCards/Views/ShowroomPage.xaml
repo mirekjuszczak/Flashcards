@@ -8,14 +8,20 @@
                                       Dark={StaticResource Theme_02_Dark_Color}}">
 
     <VerticalStackLayout
-        Padding="40,10"
-        HorizontalOptions="Start">
+        Padding="50,10"
+        HorizontalOptions="Center">
+
         <Button
-            Margin="0,20"
-            HorizontalOptions="Center"
+            Margin="20,10"
             VerticalOptions="Start"
             Text="TwoSidesCard Control"
             Command="{Binding OnGoToTwoSidesCardPage}" />
+
+        <Button
+            Margin="20,10"
+            VerticalOptions="Start"
+            Text="CardsCollection Control"
+            Command="{Binding OnGoToCardsCollectionCardPage}" />
 
     </VerticalStackLayout>
 </ContentPage>
