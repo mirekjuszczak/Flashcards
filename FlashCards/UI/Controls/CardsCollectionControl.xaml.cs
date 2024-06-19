@@ -43,9 +43,10 @@ public partial class CardsCollectionControl : ContentView
     
     private static void OnCardsCollectionPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
     {
-        if (bindable is CardsCollectionControl element && newvalue is List<SingleCard> newNumber && newvalue != oldvalue)
+        if (bindable is CardsCollectionControl element && newvalue is List<SingleCard> newList && newvalue != oldvalue)
         {
-            element.UpdateDisplayedCard();
+            // element.UpdateDisplayedCard();
+            element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
         }
     }
 }
