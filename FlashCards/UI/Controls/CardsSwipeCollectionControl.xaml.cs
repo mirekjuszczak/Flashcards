@@ -3,14 +3,14 @@ using Bindables.Maui;
 
 namespace FlashCards.UI.Controls;
 
-public partial class CardsCollectionControl : ContentView
+public partial class CardsSwipeCollectionControl : ContentView
 {
     [BindableProperty(typeof(List<SingleCard>), OnPropertyChanged = nameof(OnCardsCollectionPropertyChanged))]
     public static readonly BindableProperty CardsCollectionProperty;
     
     private int _currentIndex = 0;
     
-    public CardsCollectionControl()
+    public CardsSwipeCollectionControl()
     {
         InitializeComponent();
     }
@@ -43,9 +43,8 @@ public partial class CardsCollectionControl : ContentView
     
     private static void OnCardsCollectionPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
     {
-        if (bindable is CardsCollectionControl element && newvalue is List<SingleCard> newList && newvalue != oldvalue)
+        if (bindable is CardsSwipeCollectionControl element && newvalue is List<SingleCard> newList && newvalue != oldvalue)
         {
-            // element.UpdateDisplayedCard();
             element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
         }
     }

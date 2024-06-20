@@ -10,5 +10,5 @@
                                       Dark={StaticResource Theme_02_Dark_Color}}"
     x:DataType="viewModels:CardsCollectionControlPageViewModel">
 
-    <controls:CardsCollectionControl CardsCollection="{Binding CardsCollection}" />
+    <controls:CardsSwipeCollectionControl CardsCollection="{Binding CardsCollection}" />
 </ContentPage>

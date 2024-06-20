@@ -20,8 +20,8 @@
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsCollection Control"
-            Command="{Binding OnGoToCardsCollectionCardPage}" />
+            Text="CardsSwipeCollection Control"
+            Command="{Binding OnGoToCardsSwipeCollectionCardPage}" />
 
     </VerticalStackLayout>
 </ContentPage>
