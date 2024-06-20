@@ -29,5 +29,11 @@
             Text="CardsPanCollection Control"
             Command="{Binding OnGoToCardsPanCollectionPage}" />
 
+        <Button
+            Margin="20,10"
+            VerticalOptions="Start"
+            Text="CardsCarouselCollection Control"
+            Command="{Binding OnGoToCardsCarouselCollectionPage}" />
+
     </VerticalStackLayout>
 </ContentPage>
