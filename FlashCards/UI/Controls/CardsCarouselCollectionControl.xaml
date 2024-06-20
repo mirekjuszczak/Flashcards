@@ -9,15 +9,18 @@
 
     <ContentView.Content>
         <CarouselView
+            x:Name="Carousel"
             Margin="20,20"
             HorizontalOptions="Fill"
             VerticalOptions="Fill"
             ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <controls:TwoSidesCardControl
-                        Padding="20,20"
-                        CurrentCard="{Binding .}" />
+                    <Border>
+                        <controls:TwoSidesCardControl
+                            Padding="20,20"
+                            CurrentCard="{Binding .}" />
+                    </Border>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
