@@ -70,7 +70,13 @@
       <MauiXaml Update="Views\StartPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Showroom\CardsCollectionControlPage.xaml">
+      <MauiXaml Update="Showroom\CardsSwipeCollectionControlPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="UI\Controls\CardsPanCollectionControl.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Showroom\CardsPanCollectionControlPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
@@ -80,8 +86,16 @@
         <DependentUpon>MainPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Showroom\CardsCollectionControlPage.xaml.cs">
+      <Compile Update="Showroom\CardsSwipeCollectionControlPage.xaml.cs">
         <DependentUpon>CardsCollectionControlPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="UI\Controls\CardsPanCollectionControl.xaml.cs">
+        <DependentUpon>CardsPanCollectionControl.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Showroom\CardsPanCollectionControlPage.xaml.cs">
+        <DependentUpon>CardsPanCollectionControlPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

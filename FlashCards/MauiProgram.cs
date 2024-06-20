@@ -34,11 +34,15 @@ public static class MauiProgram
 	{
 		builder.Services.AddSingleton<StartPage>();
 		builder.Services.AddSingleton<StartPageViewModel>();
+		
 		builder.Services.AddSingleton<ShowroomPage>();
 		builder.Services.AddSingleton<ShowroomPageViewModel>();
+		
 		builder.Services.AddSingleton<TwoSidesCardControlPage>();
 		builder.Services.AddSingleton<TwoSidesCardControlPageViewModel>();
-		builder.Services.AddSingleton<CardsCollectionControlPage>();
+		
+		builder.Services.AddSingleton<CardsSwipeCollectionControlPage>();
+		builder.Services.AddSingleton<CardsPanCollectionControlPage>();
 		builder.Services.AddSingleton<CardsCollectionControlPageViewModel>();
 	}
 

@@ -21,7 +21,13 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="CardsSwipeCollection Control"
-            Command="{Binding OnGoToCardsSwipeCollectionCardPage}" />
+            Command="{Binding OnGoToCardsSwipeCollectionPage}" />
+
+        <Button
+            Margin="20,10"
+            VerticalOptions="Start"
+            Text="CardsPanCollection Control"
+            Command="{Binding OnGoToCardsPanCollectionPage}" />
 
     </VerticalStackLayout>
 </ContentPage>
