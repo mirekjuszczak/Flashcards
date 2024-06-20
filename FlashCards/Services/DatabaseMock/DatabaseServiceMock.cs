@@ -11,6 +11,15 @@ public class DatabaseServiceMock : IDatabaseServiceMock
 {
     public Task<List<SingleCard>> GetData()
     {
+        var resultList = CreateListMocked();
+
+        return Task.FromResult(resultList);
+    }
+
+    public List<SingleCard> GetDataAsList() => CreateListMocked();
+
+    private static List<SingleCard> CreateListMocked()
+    {
         var resultList = new List<SingleCard>();
 
         resultList.Add(new SingleCard()
@@ -72,7 +81,6 @@ public class DatabaseServiceMock : IDatabaseServiceMock
             LearningProgress = LearningProgress.NotStarted,
             Favourite = true
         });
-        
-        return Task.FromResult(resultList);
+        return resultList;
     }
 }

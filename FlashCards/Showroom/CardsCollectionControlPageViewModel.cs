@@ -7,11 +7,22 @@ namespace FlashCards.Showroom;
 
 public class CardsCollectionControlPageViewModel : BaseViewModel
 {
-    [ObservableAsProperty] public Task<List<SingleCard>> CardsCollection { get; }
+    private readonly IDatabaseServiceMock _databaseServiceMock;
+    [ObservableAsProperty] public List<SingleCard> CardsCollection { get; } = new List<SingleCard>();
+
+    // public ObservableCollection<SingleCard> CardsCollection { get; } = new ObservableCollection<SingleCard>();
 
     public CardsCollectionControlPageViewModel(IDatabaseServiceMock databaseServiceMock)
     {
-        CardsCollection = databaseServiceMock.GetData();
+        _databaseServiceMock = databaseServiceMock;
+        _ = InitializeCardsCollection();
+        
         Title = "Two Sides Card Control Sample";
+    }
+
+    private async Task InitializeCardsCollection()
+    {
+        var collection = await _databaseServiceMock.GetData();
+        CardsCollection.AddRange(collection);
     }
 }
