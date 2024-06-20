@@ -14,12 +14,7 @@
             HorizontalOptions="Fill"
             VerticalOptions="Fill">
             <controls:TwoSidesCardControl.GestureRecognizers>
-                <SwipeGestureRecognizer
-                    Direction="Left"
-                    Swiped="OnSwipePrevious" />
-                <SwipeGestureRecognizer
-                    Direction="Right"
-                    Swiped="OnSwipeNext" />
+                <PanGestureRecognizer PanUpdated="OnPanUpdated" />
             </controls:TwoSidesCardControl.GestureRecognizers>
         </controls:TwoSidesCardControl>
     </ContentView.Content>
