@@ -103,16 +103,6 @@
                         <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
-                <!-- <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteClicked}"> -->
-                <!--     <VisualState.Setters> -->
-                <!--         <Setter TargetName="FavouriteIcon" Property="Source" Value="{StaticResource icon_heart_marked_SVG}" /> -->
-                <!--     </VisualState.Setters> -->
-                <!-- </VisualState> -->
-                <!-- <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteUnClicked}"> -->
-                <!--     <VisualState.Setters> -->
-                <!--         <Setter TargetName="FavouriteIcon" Property="Source" Value="{StaticResource icon_heart_unmarked_SVG}" /> -->
-                <!--     </VisualState.Setters> -->
-                <!-- </VisualState> -->
             </VisualStateGroup>
         </VisualStateGroupList>
     </VisualStateManager.VisualStateGroups>

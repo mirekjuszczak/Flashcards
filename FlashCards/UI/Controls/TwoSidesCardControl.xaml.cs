@@ -1,4 +1,5 @@
 using Bindables.Maui;
+using FlashCards.Lib;
 using FlashCards.Models;
 
 namespace FlashCards.UI.Controls;
@@ -54,8 +55,14 @@ public partial class TwoSidesCardControl: Border
     {
         if (CurrentCard != null)
         {
-            CurrentCard.Favourite = !CurrentCard.Favourite;
-            SetVisualState(CurrentCard.Favourite ? CardStates.FavouriteClicked : CardStates.FavouriteUnClicked);
+            var newFavourite = !CurrentCard.Favourite;
+            CurrentCard.Favourite = newFavourite;
+
+            var source = newFavourite
+                ? Application.Current.GetResource<string>("icon_heart_marked_SVG")
+                : Application.Current.GetResource<string>("icon_heart_unmarked_SVG");
+
+            FavouriteIcon.Source = source;
         }
     }
 
