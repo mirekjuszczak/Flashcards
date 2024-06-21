@@ -1,0 +1,17 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <x:String x:Key="icon_circle_yellow_marked_SVG">icon_circle_yellow_marked</x:String>
+    <x:String x:Key="icon_circle_red_marked_SVG">icon_circle_red_marked</x:String>
+    <x:String x:Key="icon_circle_green_marked_SVG">icon_circle_green_marked</x:String>
+    <x:String x:Key="icon_circle_yellow_unmarked_SVG">icon_circle_yellow_unmarked</x:String>
+    <x:String x:Key="icon_circle_red_unmarked_SVG">icon_circle_red_unmarked</x:String>
+    <x:String x:Key="icon_circle_green_unmarked_SVG">icon_circle_green_unmarked</x:String>
+    <x:String x:Key="icon_heart_minus_SVG">icon_heart_minus</x:String>
+    <x:String x:Key="icon_heart_plus_SVG">icon_heart_plus</x:String>
+    <x:String x:Key="icon_menu_SVG">icon_menu</x:String>
+    <x:String x:Key="icon_search_SVG">icon_search</x:String>
+    <x:String x:Key="icon_setings_SVG">icon_settings</x:String>
+
+</ResourceDictionary>

@@ -10,11 +10,12 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+
             <Image
-                Source="dotnet_bot.png"
-                Aspect="AspectFit"
-                HeightRequest="185"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+                Source="{StaticResource icon_circle_green_marked_SVG}"
+                HeightRequest="100"
+                Margin="0,100"
+                HorizontalOptions="Center" />
 
             <Label
                 Text="Flash Cards"
