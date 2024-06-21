@@ -15,9 +15,7 @@
             ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <controls:TwoSidesCardControl
-                        Padding="20,20"
-                        CurrentCard="{Binding .}" />
+                    <controls:TwoSidesCardControl CurrentCard="{Binding .}" />
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>

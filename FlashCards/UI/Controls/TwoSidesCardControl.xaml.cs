@@ -3,42 +3,42 @@ using FlashCards.Models;
 
 namespace FlashCards.UI.Controls;
 
-public partial class TwoSidesCardControl: Grid
+public partial class TwoSidesCardControl: Border
 {
     [BindableProperty(typeof(SingleCard))]
     public static readonly BindableProperty CurrentCardProperty;
+
+    private bool _frontCardVisible;
     
     public TwoSidesCardControl()
     {
         InitializeComponent();
-        InitializeProperties();
+        InitializeCurrentSideOfCard();
+        SetVisualState(CardStates.Front);
     }
 
-    private void InitializeProperties()
+    private void InitializeCurrentSideOfCard()
     {
-        FrontCard.IsVisible = true;
-        BackCard.IsVisible = false;
+        RootOneCardView.Content = FrontCard;
+        SetVisualState(CardStates.Front);
+        _frontCardVisible = true;
     }
 
-    private async void OnFrontCardTapped(object? sender, TappedEventArgs e)
+    private async void OnCardTapped(object? sender, TappedEventArgs e)
     {
-        await FrontCard.RotateYTo(90, 250, Easing.Linear);
-        FrontCard.IsVisible = false;
+        _frontCardVisible = !_frontCardVisible;
         
-        BackCard.RotationY = -90;
-        BackCard.IsVisible = true;
-        
-        await BackCard.RotateYTo(0, 250, Easing.Linear);
-    }
+        await RootOneCardView.RotateYTo(90, 250, Easing.Linear);
+        RootOneCardView.Content = _frontCardVisible ? BackCard : FrontCard;
+        SetVisualState(_frontCardVisible ? CardStates.Back : CardStates.Front);
 
-    private async void OnBackCardTapped(object? sender, TappedEventArgs e)
-    {
-        await BackCard.RotateYTo(90, 250, Easing.Linear);
-        BackCard.IsVisible = false;
-        
-        FrontCard.RotationY = -90;
-        FrontCard.IsVisible = true;
-        
-        await FrontCard.RotateYTo(0, 250, Easing.Linear);
+        RootOneCardView.RotationY = -90;
+        RootOneCardView.Content = _frontCardVisible ? FrontCard : BackCard;
+        SetVisualState(_frontCardVisible ? CardStates.Front : CardStates.Back);
+
+        await RootOneCardView.RotateYTo(0, 250, Easing.Linear);
     }
+    
+    private void SetVisualState(CardStates state)
+        => VisualStateManager.GoToState(this, state.ToString());
 }

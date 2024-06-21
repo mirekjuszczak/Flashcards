@@ -85,6 +85,9 @@
       <MauiXaml Update="Showroom\CardsCarouselCollectionPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="UI\Controls\TwoSidesCardControl.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -110,6 +113,10 @@
       </Compile>
       <Compile Update="Showroom\CardsCarouselCollectionPage.xaml.cs">
         <DependentUpon>CardsCarouselCollectionControl.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="UI\Controls\TwoSidesCardControl.xaml.cs">
+        <DependentUpon>TwoSidesCardControl_V2.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

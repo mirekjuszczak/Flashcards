@@ -1,64 +1,72 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<Grid
+<Border
     x:Class="FlashCards.UI.Controls.TwoSidesCardControl"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="RootOneCardView">
+    xmlns:controls="clr-namespace:FlashCards.UI.Controls"
+    x:Name="RootOneCardView"
+    StrokeShape="RoundRectangle 32"
+    StrokeThickness="1">
+    <Border.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnCardTapped" />
+    </Border.GestureRecognizers>
 
-    <Border
-        x:Name="FrontCard"
-        BackgroundColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                          Dark={StaticResource Theme_01_Dark_Color}}"
-        StrokeShape="RoundRectangle 32"
-        StrokeThickness="1"
-        Stroke="{AppThemeBinding Light={StaticResource Primary_02_Light_Color},
-                                 Dark={StaticResource Primary_02_Dark_Color}}">
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnFrontCardTapped" />
-        </Border.GestureRecognizers>
-        <Label
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand"
-            Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
-            FontSize="30" />
-    </Border>
-
-    <Border
-        x:Name="BackCard"
-        BackgroundColor="{AppThemeBinding Light={StaticResource Theme_03_Light_Color},
-                                          Dark={StaticResource Theme_03_Dark_Color}}"
-        StrokeShape="RoundRectangle 32"
-        StrokeThickness="1"
-        Stroke="{AppThemeBinding Light={StaticResource Primary_04_Light_Color},
-                                 Dark={StaticResource Primary_04_Dark_Color}}">
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnBackCardTapped" />
-        </Border.GestureRecognizers>
-
-        <VerticalStackLayout>
+    <Grid>
+        <VerticalStackLayout
+            x:Name="FrontCard"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                              Dark={StaticResource Theme_01_Dark_Color}}">
             <Label
-                Margin="20,10"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category, StringFormat='Category: {0}'}"
-                FontSize="20" />
-
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation, StringFormat='Translation: {0}'}"
-                FontSize="20" />
-
-            <Label
-                Margin="20,10"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
-                FontSize="20" />
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
+                FontSize="30" />
         </VerticalStackLayout>
 
-    </Border>
+        <VerticalStackLayout
+            x:Name="BackCard"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Theme_03_Light_Color},
+                                              Dark={StaticResource Theme_03_Dark_Color}}">
+            <VerticalStackLayout>
+                <Label
+                    Margin="20,10"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category, StringFormat='Category: {0}'}"
+                    FontSize="20" />
 
-</Grid>
+                <Label
+                    Margin="20,20"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation, StringFormat='Translation: {0}'}"
+                    FontSize="20" />
+
+                <Label
+                    Margin="20,10"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
+                    FontSize="20" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
+                <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
+                    <VisualState.Setters>
+                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Light_Color}, Dark={StaticResource Primary_02_Dark_Color}}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
+                    <VisualState.Setters>
+                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+</Border>

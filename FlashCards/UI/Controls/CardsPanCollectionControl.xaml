@@ -8,14 +8,14 @@
     x:Name="RootCardCollectionView">
 
     <ContentView.Content>
-        <controls:TwoSidesCardControl
+        <controls:TwoSidesCardControl_Old
             x:Name="TwoSidesCard"
             Margin="30,30"
             HorizontalOptions="Fill"
             VerticalOptions="Fill">
-            <controls:TwoSidesCardControl.GestureRecognizers>
+            <controls:TwoSidesCardControl_Old.GestureRecognizers>
                 <PanGestureRecognizer PanUpdated="OnPanUpdated" />
-            </controls:TwoSidesCardControl.GestureRecognizers>
-        </controls:TwoSidesCardControl>
+            </controls:TwoSidesCardControl_Old.GestureRecognizers>
+        </controls:TwoSidesCardControl_Old>
     </ContentView.Content>
 </ContentView>
