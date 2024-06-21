@@ -12,11 +12,43 @@
         <TapGestureRecognizer Tapped="OnCardTapped" />
     </Border.GestureRecognizers>
 
-    <Grid>
-        <VerticalStackLayout
-            x:Name="FrontCard"
-            BackgroundColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                              Dark={StaticResource Theme_01_Dark_Color}}">
+    <VerticalStackLayout
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+
+        <Grid
+            x:Name="TabGrid"
+            ColumnDefinitions="*, Auto"
+            Margin="10,0">
+            <HorizontalStackLayout>
+                <Image
+                    x:Name="RedCircle"
+                    Source="{StaticResource icon_circle_red_marked_SVG}"
+                    HeightRequest="40"
+                    Margin="0,0,10,0" />
+                <Image
+                    x:Name="YellowCircle"
+                    Source="{StaticResource icon_circle_yellow_unmarked_SVG}"
+                    HeightRequest="40"
+                    Margin="0,0,10,0" />
+                <Image
+                    x:Name="GreenCircle"
+                    Source="{StaticResource icon_circle_green_unmarked_SVG}"
+                    HeightRequest="40"
+                    Margin="0,0,10,0" />
+            </HorizontalStackLayout>
+
+            <Image
+                x:Name="Favourite"
+                Grid.Column="1"
+                Source="{StaticResource icon_circle_red_marked_SVG}"
+                HeightRequest="40"
+                Margin="0,0,10,0"
+                HorizontalOptions="End" />
+        </Grid>
+
+        <VerticalStackLayout x:Name="FrontCard">
+
             <Label
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
@@ -24,10 +56,7 @@
                 FontSize="30" />
         </VerticalStackLayout>
 
-        <VerticalStackLayout
-            x:Name="BackCard"
-            BackgroundColor="{AppThemeBinding Light={StaticResource Theme_03_Light_Color},
-                                              Dark={StaticResource Theme_03_Dark_Color}}">
+        <VerticalStackLayout x:Name="BackCard">
             <VerticalStackLayout>
                 <Label
                     Margin="20,10"
@@ -49,9 +78,10 @@
                     VerticalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
                     FontSize="20" />
+
             </VerticalStackLayout>
         </VerticalStackLayout>
-    </Grid>
+    </VerticalStackLayout>
 
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroupList>
@@ -59,11 +89,13 @@
                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
                     <VisualState.Setters>
                         <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Light_Color}, Dark={StaticResource Primary_02_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
                     <VisualState.Setters>
                         <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

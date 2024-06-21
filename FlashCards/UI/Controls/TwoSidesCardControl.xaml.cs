@@ -14,14 +14,12 @@ public partial class TwoSidesCardControl: Border
     {
         InitializeComponent();
         InitializeCurrentSideOfCard();
-        SetVisualState(CardStates.Front);
     }
 
     private void InitializeCurrentSideOfCard()
     {
-        RootOneCardView.Content = FrontCard;
-        SetVisualState(CardStates.Front);
         _frontCardVisible = true;
+        SetVisibilityProperlySide();
     }
 
     private async void OnCardTapped(object? sender, TappedEventArgs e)
@@ -29,14 +27,27 @@ public partial class TwoSidesCardControl: Border
         _frontCardVisible = !_frontCardVisible;
         
         await RootOneCardView.RotateYTo(90, 250, Easing.Linear);
-        RootOneCardView.Content = _frontCardVisible ? BackCard : FrontCard;
-        SetVisualState(_frontCardVisible ? CardStates.Back : CardStates.Front);
+        SetVisibilityProperlySide();
 
         RootOneCardView.RotationY = -90;
-        RootOneCardView.Content = _frontCardVisible ? FrontCard : BackCard;
-        SetVisualState(_frontCardVisible ? CardStates.Front : CardStates.Back);
 
         await RootOneCardView.RotateYTo(0, 250, Easing.Linear);
+    }
+
+    private void SetVisibilityProperlySide()
+    {
+        if (_frontCardVisible)
+        {
+            FrontCard.IsVisible = true;
+            SetVisualState(CardStates.Front);
+            BackCard.IsVisible = false;
+        }
+        else
+        {
+            BackCard.IsVisible = true;
+            SetVisualState(CardStates.Back);
+            FrontCard.IsVisible = false;
+        }
     }
     
     private void SetVisualState(CardStates state)
