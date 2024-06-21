@@ -24,27 +24,32 @@
                 <Image
                     x:Name="RedCircle"
                     Source="{StaticResource icon_circle_red_marked_SVG}"
-                    HeightRequest="40"
+                    HeightRequest="60"
                     Margin="0,0,10,0" />
                 <Image
                     x:Name="YellowCircle"
                     Source="{StaticResource icon_circle_yellow_unmarked_SVG}"
-                    HeightRequest="40"
+                    HeightRequest="60"
                     Margin="0,0,10,0" />
                 <Image
                     x:Name="GreenCircle"
                     Source="{StaticResource icon_circle_green_unmarked_SVG}"
-                    HeightRequest="40"
+                    HeightRequest="60"
                     Margin="0,0,10,0" />
             </HorizontalStackLayout>
 
             <Image
-                x:Name="Favourite"
+                x:Name="FavouriteIcon"
                 Grid.Column="1"
-                Source="{StaticResource icon_circle_red_marked_SVG}"
-                HeightRequest="40"
+                Source="{StaticResource icon_heart_marked_SVG}"
+                HeightRequest="60"
                 Margin="0,0,10,0"
-                HorizontalOptions="End" />
+                HorizontalOptions="End"
+                ZIndex="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFavoriteTapped" />
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
 
         <VerticalStackLayout x:Name="FrontCard">
@@ -98,6 +103,16 @@
                         <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
+                <!-- <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteClicked}"> -->
+                <!--     <VisualState.Setters> -->
+                <!--         <Setter TargetName="FavouriteIcon" Property="Source" Value="{StaticResource icon_heart_marked_SVG}" /> -->
+                <!--     </VisualState.Setters> -->
+                <!-- </VisualState> -->
+                <!-- <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteUnClicked}"> -->
+                <!--     <VisualState.Setters> -->
+                <!--         <Setter TargetName="FavouriteIcon" Property="Source" Value="{StaticResource icon_heart_unmarked_SVG}" /> -->
+                <!--     </VisualState.Setters> -->
+                <!-- </VisualState> -->
             </VisualStateGroup>
         </VisualStateGroupList>
     </VisualStateManager.VisualStateGroups>

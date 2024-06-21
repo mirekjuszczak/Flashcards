@@ -49,7 +49,16 @@ public partial class TwoSidesCardControl: Border
             FrontCard.IsVisible = false;
         }
     }
-    
+
+    private void OnFavoriteTapped(object? sender, TappedEventArgs e)
+    {
+        if (CurrentCard != null)
+        {
+            CurrentCard.Favourite = !CurrentCard.Favourite;
+            SetVisualState(CurrentCard.Favourite ? CardStates.FavouriteClicked : CardStates.FavouriteUnClicked);
+        }
+    }
+
     private void SetVisualState(CardStates state)
         => VisualStateManager.GoToState(this, state.ToString());
 }
