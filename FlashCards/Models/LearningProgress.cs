@@ -4,6 +4,5 @@ public enum LearningProgress
 {
     NotStarted,
     InProgress,
-    Learned,
-    ToRepeat
+    Learned
 }

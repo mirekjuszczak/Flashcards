@@ -25,17 +25,34 @@
                     x:Name="RedCircle"
                     Source="{StaticResource icon_circle_red_marked_SVG}"
                     HeightRequest="60"
-                    Margin="0,0,10,0" />
+                    Margin="0,0,10,0"
+                    ZIndex="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRedCircleTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
                 <Image
                     x:Name="YellowCircle"
                     Source="{StaticResource icon_circle_yellow_unmarked_SVG}"
                     HeightRequest="60"
-                    Margin="0,0,10,0" />
+                    Margin="0,0,10,0"
+                    ZIndex="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnYellowCircleTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+
                 <Image
                     x:Name="GreenCircle"
                     Source="{StaticResource icon_circle_green_unmarked_SVG}"
                     HeightRequest="60"
-                    Margin="0,0,10,0" />
+                    Margin="0,0,10,0"
+                    ZIndex="1">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGreenCircleTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
             </HorizontalStackLayout>
 
             <Image

@@ -66,6 +66,48 @@ public partial class TwoSidesCardControl: Border
         }
     }
 
+    private void OnRedCircleTapped(object? sender, TappedEventArgs e)
+    {
+        if (CurrentCard != null)
+        {
+            if (CurrentCard.LearningProgress != LearningProgress.NotStarted)
+            {
+                CurrentCard.LearningProgress = LearningProgress.NotStarted;
+                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
+                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
+                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
+            }
+        }
+    }
+
+    private void OnYellowCircleTapped(object? sender, TappedEventArgs e)
+    {
+        if (CurrentCard != null)
+        {
+            if (CurrentCard.LearningProgress != LearningProgress.InProgress)
+            {
+                CurrentCard.LearningProgress = LearningProgress.InProgress;
+                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
+                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
+                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
+            }
+        }
+    }
+
+    private void OnGreenCircleTapped(object? sender, TappedEventArgs e)
+    {
+        if (CurrentCard != null)
+        {
+            if (CurrentCard.LearningProgress != LearningProgress.Learned)
+            {
+                CurrentCard.LearningProgress = LearningProgress.Learned;
+                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
+                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
+                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_marked_SVG");
+            }
+        }
+    }
+
     private void SetVisualState(CardStates state)
         => VisualStateManager.GoToState(this, state.ToString());
 }

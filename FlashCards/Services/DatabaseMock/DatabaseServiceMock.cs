@@ -68,7 +68,7 @@ public class DatabaseServiceMock : IDatabaseServiceMock
             Translation = "przemiaszczać się/przesuwać",
             Example = "We moved our flat last year",
             Category = Categories.Verb,
-            LearningProgress = LearningProgress.ToRepeat,
+            LearningProgress = LearningProgress.Learned,
             Favourite = true
         });
         
