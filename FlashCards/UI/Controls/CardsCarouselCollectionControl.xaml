@@ -9,6 +9,7 @@
 
     <ContentView.Content>
         <CarouselView
+            x:Name="CarouselCollectionView"
             Margin="20,20"
             HorizontalOptions="Fill"
             VerticalOptions="Fill"
