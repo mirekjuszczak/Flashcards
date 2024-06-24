@@ -57,6 +57,10 @@ public partial class TwoSidesCardControl: Border
         {
             var newFavourite = !CurrentCard.Favourite;
             CurrentCard.Favourite = newFavourite;
+            
+            //TEST
+            CurrentCard.Phrase += " FAVOURITE";
+            //END
 
             var source = newFavourite
                 ? Application.Current.GetResource<string>("icon_heart_marked_SVG")

@@ -5,8 +5,6 @@ namespace FlashCards.UI.Controls;
 
 public partial class CardsCarouselCollectionControl : ContentView
 {
-    private const double SwipeThreshold = 50;
-
     [BindableProperty(typeof(List<SingleCard>), OnPropertyChanged = nameof(OnCardsCollectionPropertyChanged))]
     public static readonly BindableProperty CardsCollectionProperty;
 
