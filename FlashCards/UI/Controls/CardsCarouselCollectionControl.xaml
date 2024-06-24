@@ -17,7 +17,10 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <controls:TwoSidesCardControl
+                        Category="{Binding Category}"
+                        Example="{Binding Example}"
                         Favourite="{Binding Favourite}"
+                        LearningProgress="{Binding LearningProgress}"
                         Phrase="{Binding Phrase}"
                         Translation="{Binding Translation}" />
                 </DataTemplate>

@@ -27,9 +27,9 @@
                     HeightRequest="60"
                     Margin="0,0,10,0"
                     ZIndex="1">
-                    <!-- <Image.GestureRecognizers> -->
-                    <!--     <TapGestureRecognizer Tapped="OnRedCircleTapped" /> -->
-                    <!-- </Image.GestureRecognizers> -->
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRedCircleTapped" />
+                    </Image.GestureRecognizers>
                 </Image>
 
                 <Image
@@ -38,9 +38,9 @@
                     HeightRequest="60"
                     Margin="0,0,10,0"
                     ZIndex="1">
-                    <!-- <Image.GestureRecognizers> -->
-                    <!--     <TapGestureRecognizer Tapped="OnYellowCircleTapped" /> -->
-                    <!-- </Image.GestureRecognizers> -->
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnYellowCircleTapped" />
+                    </Image.GestureRecognizers>
                 </Image>
 
                 <Image
@@ -49,9 +49,9 @@
                     HeightRequest="60"
                     Margin="0,0,10,0"
                     ZIndex="1">
-                    <!-- <Image.GestureRecognizers> -->
-                    <!--     <TapGestureRecognizer Tapped="OnGreenCircleTapped" /> -->
-                    <!-- </Image.GestureRecognizers> -->
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGreenCircleTapped" />
+                    </Image.GestureRecognizers>
                 </Image>
             </HorizontalStackLayout>
 
@@ -83,16 +83,16 @@
 
         <VerticalStackLayout x:Name="BackCard">
             <VerticalStackLayout>
-                <!--  <Label  -->
-                <!--  Margin="10,0"  -->
-                <!--  Text="Category:"  -->
-                <!--  Style="{StaticResource Text_Caption}" />  -->
-                <!--  <Label  -->
-                <!--  Margin="20,5,20,10"  -->
-                <!--  HorizontalOptions="Start"  -->
-                <!--  Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category}"  -->
-                <!--  FontSize="20"  -->
-                <!--  Style="{StaticResource Text_Title}" />  -->
+                <Label
+                    Margin="10,0"
+                    Text="Category:"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
+                    HorizontalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=Category}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Title}" />
 
                 <Label
                     Margin="10,0"
@@ -105,16 +105,27 @@
                     FontSize="20"
                     Style="{StaticResource Text_Caption}" />
 
-                <!--  <Label  -->
-                <!--  Margin="10,0"  -->
-                <!--  Text="Example:"  -->
-                <!--  Style="{StaticResource Text_Caption}" />  -->
-                <!--  <Label  -->
-                <!--  Margin="20,5,20,10"  -->
-                <!--  HorizontalOptions="Start"  -->
-                <!--  Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example}"  -->
-                <!--  FontSize="20"  -->
-                <!--  Style="{StaticResource Text_Paragraph}" />  -->
+                <Label
+                    Margin="10,0"
+                    Text="Example:"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
+                    HorizontalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=Example}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Paragraph}" />
+
+                <Label
+                    Margin="10,0"
+                    Text="Learning Progress (TEST):"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
+                    HorizontalOptions="Start"
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=LearningProgress}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Paragraph}" />
 
             </VerticalStackLayout>
         </VerticalStackLayout>

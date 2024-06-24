@@ -5,8 +5,23 @@ namespace FlashCards.UI.Controls;
 
 public partial class TwoSidesCardControl_Old: Grid
 {
-    [BindableProperty(typeof(SingleCard))]
-    public static readonly BindableProperty CurrentCardProperty;
+    [BindableProperty(typeof(string))] 
+    public static readonly BindableProperty PhraseProperty;
+
+    [BindableProperty(typeof(string))] 
+    public static readonly BindableProperty TranslationProperty;
+
+    [BindableProperty(typeof(string))] 
+    public static readonly BindableProperty ExampleProperty;
+
+    [BindableProperty(typeof(Categories))] 
+    public static readonly BindableProperty CategoryProperty;
+
+    [BindableProperty(typeof(LearningProgress))]
+    public static readonly BindableProperty LearningProgressProperty;
+
+    [BindableProperty(typeof(bool))] 
+    public static readonly BindableProperty FavouriteProperty;
     
     public TwoSidesCardControl_Old()
     {

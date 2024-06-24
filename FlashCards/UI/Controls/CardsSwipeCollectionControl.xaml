@@ -13,14 +13,14 @@
             Margin="30,30"
             HorizontalOptions="Fill"
             VerticalOptions="Fill">
-            <!-- <controls:TwoSidesCardControl_Old.GestureRecognizers> -->
-            <!--  <SwipeGestureRecognizer  -->
-            <!--  Direction="Left"  -->
-            <!--  Swiped="OnSwipePrevious" />  -->
-            <!--  <SwipeGestureRecognizer  -->
-            <!--  Direction="Right"  -->
-            <!--  Swiped="OnSwipeNext" />  -->
-            <!-- </controls:TwoSidesCardControl_Old.GestureRecognizers> -->
+            <controls:TwoSidesCardControl_Old.GestureRecognizers>
+                <SwipeGestureRecognizer
+                    Direction="Left"
+                    Swiped="OnSwipePrevious" />
+                <SwipeGestureRecognizer
+                    Direction="Right"
+                    Swiped="OnSwipeNext" />
+            </controls:TwoSidesCardControl_Old.GestureRecognizers>
         </controls:TwoSidesCardControl>
     </ContentView.Content>
 </ContentView>

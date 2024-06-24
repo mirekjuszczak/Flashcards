@@ -20,7 +20,7 @@
         <Label
             HorizontalOptions="Center"
             VerticalOptions="CenterAndExpand"
-            Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
+            Text="{Binding Source={x:Reference RootOneCardView}, Path=Phrase}"
             FontSize="30" />
     </Border>
 
@@ -41,21 +41,21 @@
                 Margin="20,10"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category, StringFormat='Category: {0}'}"
+                Text="{Binding Source={x:Reference RootOneCardView}, Path=Category, StringFormat='Category: {0}'}"
                 FontSize="20" />
 
             <Label
                 Margin="20,20"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation, StringFormat='Translation: {0}'}"
+                Text="{Binding Source={x:Reference RootOneCardView}, Path=Translation, StringFormat='Translation: {0}'}"
                 FontSize="20" />
 
             <Label
                 Margin="20,10"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
+                Text="{Binding Source={x:Reference RootOneCardView}, Path=Example, StringFormat='Example: {0}'}"
                 FontSize="20" />
         </VerticalStackLayout>
 
