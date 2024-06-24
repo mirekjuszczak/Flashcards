@@ -89,6 +89,8 @@ public partial class TwoSidesCardControl : Border
         if (LearningProgress != LearningProgress.NotStarted)
         {
             LearningProgress = LearningProgress.NotStarted;
+            
+            // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
@@ -100,6 +102,8 @@ public partial class TwoSidesCardControl : Border
         if (LearningProgress != LearningProgress.InProgress)
         {
             LearningProgress = LearningProgress.InProgress;
+            
+            // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
@@ -111,6 +115,8 @@ public partial class TwoSidesCardControl : Border
         if (LearningProgress != LearningProgress.Learned)
         {
             LearningProgress = LearningProgress.Learned;
+            
+            // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_marked_SVG");

@@ -21,6 +21,8 @@
             ColumnDefinitions="*, Auto"
             Margin="10,0">
             <HorizontalStackLayout>
+                
+                <!-- TODO - maybe any converter or VisualState for source -->
                 <Image
                     x:Name="RedCircle"
                     Source="{StaticResource icon_circle_red_marked_SVG}"
