@@ -37,15 +37,26 @@ public partial class CardsSwipeCollectionControl : ContentView
     {
         if (CardsCollection != null && CardsCollection.Any())
         {
-            // TwoSidesCard.CurrentCard = CardsCollection[_currentIndex];
+            var item = CardsCollection[_currentIndex];
+            UpdateCard(item);
         }
     }
-    
+
     private static void OnCardsCollectionPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
     {
         if (bindable is CardsSwipeCollectionControl element && newvalue is List<SingleCard> newList && newvalue != oldvalue)
         {
             // element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
         }
+    }
+
+    private void UpdateCard(SingleCard item)
+    {
+        TwoSidesCard.Phrase = item.Phrase;
+        TwoSidesCard.Translation = item.Translation;
+        TwoSidesCard.Example = item.Example;
+        TwoSidesCard.Category = item.Category;
+        TwoSidesCard.LearningProgress = item.LearningProgress;
+        TwoSidesCard.Favourite = item.Favourite;
     }
 }
