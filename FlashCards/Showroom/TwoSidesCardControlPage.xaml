@@ -14,5 +14,7 @@
         Margin="30,30"
         HorizontalOptions="Fill"
         VerticalOptions="Fill"
-        CurrentCard="{Binding Card}" />
+        Favourite="{Binding Card.Favourite}"
+        Phrase="{Binding Card.Phrase}"
+        Translation="{Binding Card.Phrase}" />
 </ContentPage>

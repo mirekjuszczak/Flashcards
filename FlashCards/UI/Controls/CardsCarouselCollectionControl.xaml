@@ -16,7 +16,10 @@
             ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <controls:TwoSidesCardControl CurrentCard="{Binding .}" />
+                    <controls:TwoSidesCardControl
+                        Favourite="{Binding Favourite}"
+                        Phrase="{Binding Phrase}"
+                        Translation="{Binding Translation}" />
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>

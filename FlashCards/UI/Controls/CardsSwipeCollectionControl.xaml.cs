@@ -37,7 +37,7 @@ public partial class CardsSwipeCollectionControl : ContentView
     {
         if (CardsCollection != null && CardsCollection.Any())
         {
-            TwoSidesCard.CurrentCard = CardsCollection[_currentIndex];
+            // TwoSidesCard.CurrentCard = CardsCollection[_currentIndex];
         }
     }
     
@@ -45,7 +45,7 @@ public partial class CardsSwipeCollectionControl : ContentView
     {
         if (bindable is CardsSwipeCollectionControl element && newvalue is List<SingleCard> newList && newvalue != oldvalue)
         {
-            element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
+            // element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
         }
     }
 }

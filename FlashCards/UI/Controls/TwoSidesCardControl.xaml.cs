@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Bindables.Maui;
 using FlashCards.Lib;
 using FlashCards.Models;
@@ -6,8 +7,14 @@ namespace FlashCards.UI.Controls;
 
 public partial class TwoSidesCardControl: Border
 {
-    [BindableProperty(typeof(SingleCard))]
-    public static readonly BindableProperty CurrentCardProperty;
+    [BindableProperty(typeof(string))]
+    public static readonly BindableProperty PhraseProperty;
+    
+    [BindableProperty(typeof(string))]
+    public static readonly BindableProperty TranslationProperty;
+    
+    [BindableProperty(typeof(bool))]
+    public static readonly BindableProperty FavouriteProperty;
 
     private bool _frontCardVisible;
     
@@ -53,13 +60,13 @@ public partial class TwoSidesCardControl: Border
 
     private void OnFavoriteTapped(object? sender, TappedEventArgs e)
     {
-        if (CurrentCard != null)
-        {
-            var newFavourite = !CurrentCard.Favourite;
-            CurrentCard.Favourite = newFavourite;
+        // if (CurrentCard != null)
+        // {
+            var newFavourite = !Favourite;
+            Favourite = newFavourite;
             
             //TEST
-            CurrentCard.Phrase += " FAVOURITE";
+            Phrase += " FAVOURITE";
             //END
 
             var source = newFavourite
@@ -67,50 +74,50 @@ public partial class TwoSidesCardControl: Border
                 : Application.Current.GetResource<string>("icon_heart_unmarked_SVG");
 
             FavouriteIcon.Source = source;
-        }
+        // }
     }
 
-    private void OnRedCircleTapped(object? sender, TappedEventArgs e)
-    {
-        if (CurrentCard != null)
-        {
-            if (CurrentCard.LearningProgress != LearningProgress.NotStarted)
-            {
-                CurrentCard.LearningProgress = LearningProgress.NotStarted;
-                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
-                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
-                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
-            }
-        }
-    }
-
-    private void OnYellowCircleTapped(object? sender, TappedEventArgs e)
-    {
-        if (CurrentCard != null)
-        {
-            if (CurrentCard.LearningProgress != LearningProgress.InProgress)
-            {
-                CurrentCard.LearningProgress = LearningProgress.InProgress;
-                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
-                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
-                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
-            }
-        }
-    }
-
-    private void OnGreenCircleTapped(object? sender, TappedEventArgs e)
-    {
-        if (CurrentCard != null)
-        {
-            if (CurrentCard.LearningProgress != LearningProgress.Learned)
-            {
-                CurrentCard.LearningProgress = LearningProgress.Learned;
-                RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
-                YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
-                GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_marked_SVG");
-            }
-        }
-    }
+    // private void OnRedCircleTapped(object? sender, TappedEventArgs e)
+    // {
+    //     if (CurrentCard != null)
+    //     {
+    //         if (CurrentCard.LearningProgress != LearningProgress.NotStarted)
+    //         {
+    //             CurrentCard.LearningProgress = LearningProgress.NotStarted;
+    //             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
+    //             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
+    //             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
+    //         }
+    //     }
+    // }
+    //
+    // private void OnYellowCircleTapped(object? sender, TappedEventArgs e)
+    // {
+    //     if (CurrentCard != null)
+    //     {
+    //         if (CurrentCard.LearningProgress != LearningProgress.InProgress)
+    //         {
+    //             CurrentCard.LearningProgress = LearningProgress.InProgress;
+    //             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
+    //             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
+    //             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
+    //         }
+    //     }
+    // }
+    //
+    // private void OnGreenCircleTapped(object? sender, TappedEventArgs e)
+    // {
+    //     if (CurrentCard != null)
+    //     {
+    //         if (CurrentCard.LearningProgress != LearningProgress.Learned)
+    //         {
+    //             CurrentCard.LearningProgress = LearningProgress.Learned;
+    //             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
+    //             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
+    //             GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_marked_SVG");
+    //         }
+    //     }
+    // }
 
     private void SetVisualState(CardStates state)
         => VisualStateManager.GoToState(this, state.ToString());
