@@ -12,8 +12,8 @@
             Spacing="25">
 
             <Image
-                Source="{StaticResource icon_circle_green_marked_SVG}"
-                HeightRequest="100"
+                Source="{StaticResource illustration_cards_PNG}"
+                HeightRequest="200"
                 Margin="0,100"
                 HorizontalOptions="Center" />
 
