@@ -69,11 +69,13 @@
             </Image>
         </Grid>
 
-        <VerticalStackLayout x:Name="FrontCard">
-
+        <VerticalStackLayout
+            x:Name="FrontCard"
+            VerticalOptions="End">
             <Label
+                Margin="0,200"
                 HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand"
+                VerticalOptions="Center"
                 Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
                 FontSize="30"
                 Style="{StaticResource Text_Hero}" />
@@ -82,28 +84,37 @@
         <VerticalStackLayout x:Name="BackCard">
             <VerticalStackLayout>
                 <Label
-                    Margin="20,10"
+                    Margin="10,0"
+                    Text="Category:"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
                     HorizontalOptions="Start"
-                    VerticalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category, StringFormat='Category: {0}'}"
-                    FontSize="20" />
-                <!--  Style="{StaticResource Text_Title}" />  -->
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Title}" />
 
                 <Label
-                    Margin="20,20"
+                    Margin="10,0"
+                    Text="Translation:"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
                     HorizontalOptions="Start"
-                    VerticalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation, StringFormat='Translation: {0}'}"
-                    FontSize="20" />
-                <!--  Style="{StaticResource Text_Caption}" />  -->
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Caption}" />
 
                 <Label
-                    Margin="20,10"
+                    Margin="10,0"
+                    Text="Example:"
+                    Style="{StaticResource Text_Caption}" />
+                <Label
+                    Margin="20,5,20,10"
                     HorizontalOptions="Start"
-                    VerticalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
-                    FontSize="20" />
-                <!--  Style="{StaticResource Text_Paragraph}" />  -->
+                    Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example}"
+                    FontSize="20"
+                    Style="{StaticResource Text_Paragraph}" />
 
             </VerticalStackLayout>
         </VerticalStackLayout>
