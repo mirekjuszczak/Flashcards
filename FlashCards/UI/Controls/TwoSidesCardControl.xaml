@@ -75,7 +75,8 @@
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
                 Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Phrase}"
-                FontSize="30" />
+                FontSize="30"
+                Style="{StaticResource Text_Hero}" />
         </VerticalStackLayout>
 
         <VerticalStackLayout x:Name="BackCard">
@@ -86,6 +87,7 @@
                     VerticalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Category, StringFormat='Category: {0}'}"
                     FontSize="20" />
+                <!--  Style="{StaticResource Text_Title}" />  -->
 
                 <Label
                     Margin="20,20"
@@ -93,6 +95,7 @@
                     VerticalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Translation, StringFormat='Translation: {0}'}"
                     FontSize="20" />
+                <!--  Style="{StaticResource Text_Caption}" />  -->
 
                 <Label
                     Margin="20,10"
@@ -100,6 +103,7 @@
                     VerticalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=CurrentCard.Example, StringFormat='Example: {0}'}"
                     FontSize="20" />
+                <!--  Style="{StaticResource Text_Paragraph}" />  -->
 
             </VerticalStackLayout>
         </VerticalStackLayout>
@@ -110,14 +114,14 @@
             <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
                     <VisualState.Setters>
-                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Light_Color}, Dark={StaticResource Primary_02_Dark_Color}}" />
-                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
                     <VisualState.Setters>
-                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Dark_Color}, Dark={StaticResource Theme_02_Dark_Color}}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

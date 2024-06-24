@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <x:Double x:Key="Hero">48</x:Double>
+    <x:Double x:Key="LargeTitle">26</x:Double>
+    <x:Double x:Key="Title">22</x:Double>
+    <x:Double x:Key="Subtitle">18</x:Double>
+    <x:Double x:Key="Body">18</x:Double>
+    <x:Double x:Key="BodyStrong">18</x:Double>
+    <x:Double x:Key="Caption">16</x:Double>
+    <x:Double x:Key="CaptionStrong">16</x:Double>
+    <x:Double x:Key="Label">14</x:Double>
+    <x:Double x:Key="LabelStrong">14</x:Double>
+    <x:Double x:Key="Button">18</x:Double>
+    <x:Double x:Key="SmallButton">16</x:Double>
+    <x:Double x:Key="ActionButton">18</x:Double>
+    <x:Double x:Key="ActionButtonStrong">18</x:Double>
+    <x:Double x:Key="Hyperlink">18</x:Double>
+
+    <Style
+        x:Key="Text_Hero"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="FontSize" Value="{StaticResource Hero}" />
+    </Style>
+
+    <!--  <Style  -->
+    <!--  x:Key="Text_Large_Title"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource LargeTitle}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Title"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Title}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_SubTitle"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Subtitle}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Body"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Body}" /> -->
+    <!--     <Setter Property="Opacity" Value="0.8" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Bold_Body"  -->
+    <!--  BasedOn="{StaticResource Text_Body}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Body_Strong"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource BodyStrong}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_SemiBold_Body"  -->
+    <!--  BasedOn="{StaticResource Text_Body}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontSemiBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Paragraph"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Body}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Paragraph_Strong"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource BodyStrong}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Paragraph_Instruction"  -->
+    <!--  BasedOn="{StaticResource Text_Paragraph}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="Opacity" Value="0.8" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Hyperlink"  -->
+    <!--  BasedOn="{StaticResource Text_Paragraph}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary_03_Light_Color}, Dark={StaticResource Primary_03_Dark_Color}}" /> -->
+    <!--     <Setter Property="TextDecorations" Value="Underline" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Hyperlink_Strong"  -->
+    <!--  BasedOn="{StaticResource Text_Hyperlink}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_SmallButton"  -->
+    <!--  TargetType="Button">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource SmallButton}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Button"  -->
+    <!--  TargetType="Button">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Button}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Action_Button"  -->
+    <!--  TargetType="Button">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary_03_Light_Color}, Dark={StaticResource Primary_03_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource ActionButton}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Action_Button_Strong"  -->
+    <!--  TargetType="Button">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource ActionButtonStrong}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Caption"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Caption}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Caption_Strong"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource CaptionStrong}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Label"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Label}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Label_Strong"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource LabelStrong}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Action_Label"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary_03_Light_Color}, Dark={StaticResource Primary_03_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource ActionButton}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Action_Label_Strong"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource ActionButtonStrong}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary_03_Light_Color}, Dark={StaticResource Primary_03_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Hyperlink_Label"  -->
+    <!--  BasedOn="{StaticResource Text_Label}"  -->
+    <!--  TargetType="Label">  -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary_03_Light_Color}, Dark={StaticResource Primary_03_Dark_Color}}" /> -->
+    <!--     <Setter Property="TextDecorations" Value="Underline" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!--  <Style  -->
+    <!--  x:Key="Text_Caption_Entry"  -->
+    <!--  TargetType="Entry">  -->
+    <!--     <Setter Property="FontSize" Value="{StaticResource Caption}" /> -->
+    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
+    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryBrandFont}" /> -->
+    <!-- </Style> -->
+</ResourceDictionary>

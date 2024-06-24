@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary Source="UI/Styles/Theme.xaml" />
                 <ResourceDictionary Source="UI/Styles/CommonImages.xaml" />
+                <ResourceDictionary Source="UI/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
