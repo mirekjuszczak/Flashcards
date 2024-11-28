@@ -1,0 +1,124 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FlashCards.UI.Controls">
+
+    <Style
+        x:Key="TwoSidesCardBackgroundStyle"
+        TargetType="controls:TwoSidesCardControl">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
+                    <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
+                        <VisualState.Setters>
+                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
+                        <VisualState.Setters>
+                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Dark_Color}, Dark={StaticResource Theme_02_Dark_Color}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="CommonCircleStyle"
+        TargetType="Image">
+        <Setter Property="HeightRequest" Value="60" />
+        <Setter Property="Margin" Value="0,0,10,0" />
+        <Setter Property="ZIndex" Value="1" />
+    </Style>
+
+    <Style
+        x:Key="RedCircleStyle"
+        BasedOn="{StaticResource CommonCircleStyle}"
+        TargetType="Image">
+        <Setter Property="Source" Value="{StaticResource icon_circle_red_marked_SVG}" />
+        <!-- <Setter Property="VisualStateManager.VisualStateGroups"> -->
+        <!--     <VisualStateGroupList> -->
+        <!--         <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}"> -->
+        <!--             <VisualState Name="{x:Static controls:VisualStatesCardControl.NotStarted}"> -->
+        <!--                 <VisualState.Setters> -->
+        <!--                     <Setter Property="Source" Value="{StaticResource icon_circle_red_marked_SVG}" /> -->
+        <!--                 </VisualState.Setters> -->
+        <!--             </VisualState> -->
+        <!--             <VisualState Name="{x:Static controls:VisualStatesCardControl.InProgress}"> -->
+        <!--                 <VisualState.Setters> -->
+        <!--                     <Setter Property="Source" Value="{StaticResource icon_circle_red_unmarked_SVG}" /> -->
+        <!--                 </VisualState.Setters> -->
+        <!--             </VisualState> -->
+        <!--             <VisualState Name="{x:Static controls:VisualStatesCardControl.Learned}"> -->
+        <!--                 <VisualState.Setters> -->
+        <!--                     <Setter Property="Source" Value="{StaticResource icon_circle_red_unmarked_SVG}" /> -->
+        <!--                 </VisualState.Setters> -->
+        <!--             </VisualState> -->
+        <!--         </VisualStateGroup> -->
+        <!--     </VisualStateGroupList> -->
+        <!-- </Setter> -->
+    </Style>
+
+    <Style
+        x:Key="YellowCircleStyle"
+        BasedOn="{StaticResource CommonCircleStyle}"
+        TargetType="Image">
+        <Setter Property="Source" Value="{StaticResource icon_circle_yellow_unmarked_SVG}" />
+        <!-- <Setter Property="VisualStateManager.VisualStateGroups"> -->
+        <!--     <VisualStateManager.VisualStateGroups> -->
+        <!--         <VisualStateGroupList> -->
+        <!--             <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}"> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.NotStarted}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_yellow_unmarked_SVG}" /> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.InProgress}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_yellow_marked_SVG}" /> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Learned}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_yellow_unmarked_SVG}" /> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--             </VisualStateGroup> -->
+        <!--         </VisualStateGroupList> -->
+        <!--     </VisualStateManager.VisualStateGroups> -->
+        <!-- </Setter> -->
+    </Style>
+
+    <Style
+        x:Key="GreenCircleStyle"
+        BasedOn="{StaticResource CommonCircleStyle}"
+        TargetType="Image">
+        <Setter Property="Source" Value="{StaticResource icon_circle_green_unmarked_SVG}" />
+        <!-- <Setter Property="VisualStateManager.VisualStateGroups"> -->
+        <!--     <VisualStateManager.VisualStateGroups> -->
+        <!--         <VisualStateGroupList> -->
+        <!--             <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}"> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.NotStarted}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_green_unmarked_SVG}"/> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.InProgress}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_green_unmarked_SVG}"/> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--                 <VisualState Name="{x:Static controls:VisualStatesCardControl.Learned}"> -->
+        <!--                     <VisualState.Setters> -->
+        <!--                         <Setter Property="Source" Value="{StaticResource icon_circle_green_marked_SVG}"/> -->
+        <!--                     </VisualState.Setters> -->
+        <!--                 </VisualState> -->
+        <!--             </VisualStateGroup> -->
+        <!--         </VisualStateGroupList> -->
+        <!--     </VisualStateManager.VisualStateGroups> -->
+        <!-- </Setter> -->
+    </Style>
+</ResourceDictionary>

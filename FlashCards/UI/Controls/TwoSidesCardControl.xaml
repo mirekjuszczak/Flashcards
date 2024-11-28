@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     x:Name="RootOneCardView"
+    Style="{StaticResource TwoSidesCardBackgroundStyle}"
     StrokeShape="RoundRectangle 32"
     StrokeThickness="1">
     <Border.GestureRecognizers>
@@ -22,13 +23,9 @@
             Margin="10,0">
             <HorizontalStackLayout>
 
-                <!--  TODO - maybe any converter or VisualState for source  -->
                 <Image
                     x:Name="RedCircle"
-                    Source="{StaticResource icon_circle_red_marked_SVG}"
-                    HeightRequest="60"
-                    Margin="0,0,10,0"
-                    ZIndex="1">
+                    Style="{StaticResource RedCircleStyle}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnRedCircleTapped" />
                     </Image.GestureRecognizers>
@@ -36,10 +33,7 @@
 
                 <Image
                     x:Name="YellowCircle"
-                    Source="{StaticResource icon_circle_yellow_unmarked_SVG}"
-                    HeightRequest="60"
-                    Margin="0,0,10,0"
-                    ZIndex="1">
+                    Style="{StaticResource YellowCircleStyle}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnYellowCircleTapped" />
                     </Image.GestureRecognizers>
@@ -47,14 +41,12 @@
 
                 <Image
                     x:Name="GreenCircle"
-                    Source="{StaticResource icon_circle_green_unmarked_SVG}"
-                    HeightRequest="60"
-                    Margin="0,0,10,0"
-                    ZIndex="1">
+                    Style="{StaticResource GreenCircleStyle}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnGreenCircleTapped" />
                     </Image.GestureRecognizers>
                 </Image>
+
             </HorizontalStackLayout>
 
             <Image
@@ -133,22 +125,23 @@
         </VerticalStackLayout>
     </VerticalStackLayout>
 
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroupList>
-            <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
-                <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
-                    <VisualState.Setters>
-                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
-                    <VisualState.Setters>
-                        <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-                        <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Dark_Color}, Dark={StaticResource Theme_02_Dark_Color}}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateGroupList>
-    </VisualStateManager.VisualStateGroups>
+    <!-- <VisualStateManager.VisualStateGroups> -->
+    <!--     <VisualStateGroupList> -->
+    <!--         <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}"> -->
+    <!--    -->
+    <!--             <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}"> -->
+    <!--                 <VisualState.Setters> -->
+    <!--                     <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" /> -->
+    <!--                     <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" /> -->
+    <!--                 </VisualState.Setters> -->
+    <!--             </VisualState> -->
+    <!--             <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}"> -->
+    <!--                 <VisualState.Setters> -->
+    <!--                     <Setter TargetName="RootOneCardView" Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" /> -->
+    <!--                     <Setter TargetName="RootOneCardView" Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Dark_Color}, Dark={StaticResource Theme_02_Dark_Color}}" /> -->
+    <!--                 </VisualState.Setters> -->
+    <!--             </VisualState> -->
+    <!--         </VisualStateGroup> -->
+    <!--     </VisualStateGroupList> -->
+    <!-- </VisualStateManager.VisualStateGroups> -->
 </Border>

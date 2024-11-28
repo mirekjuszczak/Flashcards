@@ -52,16 +52,19 @@ public partial class TwoSidesCardControl : Border
 
     private void SetVisibilityProperlySide()
     {
+        //tylko test potem odczytac poprawny stan  usatwic na starcie
+        // SetVisualState(VisualCardStates.NotStarted);
+        
         if (_frontCardVisible)
         {
             FrontCard.IsVisible = true;
-            SetVisualState(CardStates.Front);
+            SetVisualState(VisualCardStates.Front);
             BackCard.IsVisible = false;
         }
         else
         {
             BackCard.IsVisible = true;
-            SetVisualState(CardStates.Back);
+            SetVisualState(VisualCardStates.Back);
             FrontCard.IsVisible = false;
         }
     }
@@ -90,6 +93,7 @@ public partial class TwoSidesCardControl : Border
         {
             LearningProgress = LearningProgress.NotStarted;
             
+            // SetVisualState(VisualCardStates.NotStarted);
             // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
@@ -103,6 +107,7 @@ public partial class TwoSidesCardControl : Border
         {
             LearningProgress = LearningProgress.InProgress;
             
+            // SetVisualState(VisualCardStates.InProgress);
             // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
@@ -116,6 +121,7 @@ public partial class TwoSidesCardControl : Border
         {
             LearningProgress = LearningProgress.Learned;
             
+            // SetVisualState(VisualCardStates.Learned);
             // TODO - maybe any converter or VisualState for source
             RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
             YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
@@ -123,6 +129,6 @@ public partial class TwoSidesCardControl : Border
         }
     }
 
-    private void SetVisualState(CardStates state)
+    private void SetVisualState(VisualCardStates state)
         => VisualStateManager.GoToState(this, state.ToString());
 }
