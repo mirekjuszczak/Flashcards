@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
     <PropertyGroup>
-        <DotnetVersion>8.0.0</DotnetVersion>
+        <DotnetVersion>9.0.100</DotnetVersion>
         <MauiVersion>9.0.0</MauiVersion>
     </PropertyGroup>
     
