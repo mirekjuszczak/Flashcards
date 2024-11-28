@@ -2,7 +2,7 @@
 <Project>
     <PropertyGroup>
         <DotnetVersion>8.0.0</DotnetVersion>
-        <MauiVersion>8.0.3</MauiVersion>
+        <MauiVersion>9.0.0</MauiVersion>
     </PropertyGroup>
     
     <ItemGroup Label="ExternalPackages">
