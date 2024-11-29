@@ -99,17 +99,22 @@ public partial class CardsSwipeCollectionControl : ContentView
         TwoSidesCard.Category = item.Category;
         TwoSidesCard.LearningProgress = item.LearningProgress;
         TwoSidesCard.Favourite = item.Favourite;
-
-        //UpdateCardInCollection(item);
+        
+        UpdateCardInCollection(item);
     }
 
-    // private void UpdateCardInCollection(SingleCard item)
-    // {
-    //     var referenceToCard = CardsCollection?.FirstOrDefault(card => card.Phrase == item.Phrase);
-    //
-    //     if (referenceToCard != null)
-    //     {
-    //         referenceToCard.LearningProgress = item.LearningProgress;
-    //     }
-    // }
+    private void UpdateCardInCollection(SingleCard item)
+    {
+        var cardInCollection = CardsCollection?.FirstOrDefault(card => card.Phrase == item.Phrase);
+    
+        if (cardInCollection != null)
+        {
+            cardInCollection.Phrase = item.Phrase;
+            cardInCollection.Translation = item.Translation;
+            cardInCollection.Example = item.Example;
+            cardInCollection.Category = item.Category;
+            cardInCollection.LearningProgress = item.LearningProgress;
+            cardInCollection.Favourite = item.Favourite;
+        }
+    }
 }
