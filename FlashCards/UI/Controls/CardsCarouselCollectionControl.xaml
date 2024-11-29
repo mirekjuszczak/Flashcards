@@ -7,26 +7,25 @@
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     x:Name="RootCardCollectionView">
 
-
-    <CarouselView
-        x:Name="CarouselCollectionView"
-        Margin="20,20"
-        HorizontalOptions="Fill"
-        VerticalOptions="Fill"
-        ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate>
-                <controls:TwoSidesCardControl
-                    Category="{Binding Category}"
-                    Example="{Binding Example}"
-                    Favourite="{Binding Favourite}"
-                    LearningProgress="{Binding LearningProgress}"
-                    Phrase="{Binding Phrase}"
-                    Translation="{Binding Translation}" />
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>
-
-
+    <Grid>
+        <CarouselView
+            x:Name="CarouselCollectionView"
+            Margin="20,20"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <controls:TwoSidesCardControl
+                        Category="{Binding Category}"
+                        Example="{Binding Example}"
+                        Favourite="{Binding Favourite}"
+                        LearningProgress="{Binding LearningProgress}"
+                        Phrase="{Binding Phrase}"
+                        Translation="{Binding Translation}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
 
 </ContentView>
