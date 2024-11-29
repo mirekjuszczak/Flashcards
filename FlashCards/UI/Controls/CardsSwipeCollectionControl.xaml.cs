@@ -8,23 +8,26 @@ public partial class CardsSwipeCollectionControl : ContentView
     private const int TimeOfAnimation = 150;
     private const float OpacityWhenMoving = 0.5f;
 
-    [BindableProperty(typeof(List<SingleCard>), OnPropertyChanged = nameof(OnCardsCollectionPropertyChanged))]
+    [BindableProperty(typeof(List<SingleCard>), 
+        BindingMode = BindingMode.TwoWay,
+        OnPropertyChanged = nameof(OnCardsCollectionPropertyChanged))]
     public static readonly BindableProperty CardsCollectionProperty;
 
-    private int _currentIndex = 0;
+    private int _currentIndex;
 
     public CardsSwipeCollectionControl()
     {
+        _currentIndex = 0;
         InitializeComponent();
     }
 
     private async void OnSwipeNext(object? sender, SwipedEventArgs swipedEventArgs)
     {
-        if (CardsCollection != null && _currentIndex < CardsCollection.Count - 1)
+        if (CardsCollection != null)
         {
             await RunAnimationOnChangingCard(1, TimeOfAnimation);
 
-            _currentIndex++;
+            _currentIndex = _currentIndex < CardsCollection.Count - 1 ? _currentIndex + 1 : 0;
             UpdateDisplayedCard();
 
             await FinishAnimationOnChangingCard(TimeOfAnimation);
@@ -33,11 +36,11 @@ public partial class CardsSwipeCollectionControl : ContentView
 
     private async void OnSwipePrevious(object? sender, SwipedEventArgs swipedEventArgs)
     {
-        if (CardsCollection != null && _currentIndex > 0)
+        if (CardsCollection != null)
         {
             await RunAnimationOnChangingCard(-1, TimeOfAnimation);
 
-            _currentIndex--;
+            _currentIndex = _currentIndex > 0 ? _currentIndex - 1 : CardsCollection.Count - 1;
             UpdateDisplayedCard();
 
             await FinishAnimationOnChangingCard(TimeOfAnimation);
@@ -80,8 +83,11 @@ public partial class CardsSwipeCollectionControl : ContentView
         {
             // if (element.CardsCollection != null)
             // {
-            //     element.CardsCollection[element._currentIndex] = newList[element._currentIndex];
+            //     // element.CardsCollection[element._currentIndex] = newList[element._currentIndex];
+            //     element.CardsCollection = newList;
             // }
+            
+            element.UpdateDisplayedCard();
         }
     }
 
@@ -93,5 +99,17 @@ public partial class CardsSwipeCollectionControl : ContentView
         TwoSidesCard.Category = item.Category;
         TwoSidesCard.LearningProgress = item.LearningProgress;
         TwoSidesCard.Favourite = item.Favourite;
+
+        //UpdateCardInCollection(item);
     }
+
+    // private void UpdateCardInCollection(SingleCard item)
+    // {
+    //     var referenceToCard = CardsCollection?.FirstOrDefault(card => card.Phrase == item.Phrase);
+    //
+    //     if (referenceToCard != null)
+    //     {
+    //         referenceToCard.LearningProgress = item.LearningProgress;
+    //     }
+    // }
 }

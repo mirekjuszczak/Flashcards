@@ -1,23 +1,27 @@
 using Bindables.Maui;
-using FlashCards.Lib;
 using FlashCards.Models;
 
 namespace FlashCards.UI.Controls;
 
 public partial class TwoSidesCardControl : Border
 {
-    [BindableProperty(typeof(string))] public static readonly BindableProperty PhraseProperty;
+    [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty PhraseProperty;
 
-    [BindableProperty(typeof(string))] public static readonly BindableProperty TranslationProperty;
+    [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty TranslationProperty;
 
-    [BindableProperty(typeof(string))] public static readonly BindableProperty ExampleProperty;
+    [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty ExampleProperty;
 
-    [BindableProperty(typeof(Categories))] public static readonly BindableProperty CategoryProperty;
+    [BindableProperty(typeof(Categories), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty CategoryProperty;
 
-    [BindableProperty(typeof(LearningProgress))]
+    [BindableProperty(typeof(LearningProgress), BindingMode = BindingMode.TwoWay)]
     public static readonly BindableProperty LearningProgressProperty;
 
-    [BindableProperty(typeof(bool))] public static readonly BindableProperty FavouriteProperty;
+    [BindableProperty(typeof(bool), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty FavouriteProperty;
 
     private bool _frontCardVisible;
 
@@ -43,7 +47,7 @@ public partial class TwoSidesCardControl : Border
             LearningProgress.Learned => VisualCardStates.Learned,
             _ => throw new ArgumentOutOfRangeException($"Argument {LearningProgress} not supported")
         };
-        
+
         SetVisualState(RedCircle, progress);
         SetVisualState(YellowCircle, progress);
         SetVisualState(GreenCircle, progress);
