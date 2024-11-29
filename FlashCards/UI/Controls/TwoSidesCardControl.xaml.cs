@@ -25,6 +25,7 @@ public partial class TwoSidesCardControl : Border
     {
         InitializeComponent();
         InitializeCurrentSideOfCard();
+        // InitializeCurrentLearningProgress();
     }
 
     private void InitializeCurrentSideOfCard()
@@ -33,12 +34,28 @@ public partial class TwoSidesCardControl : Border
         SetVisibilityProperlySide();
     }
 
+    private void InitializeCurrentLearningProgress()
+    {
+        var progress = LearningProgress switch
+        {
+            LearningProgress.NotStarted => VisualCardStates.NotStarted,
+            LearningProgress.InProgress => VisualCardStates.InProgress,
+            LearningProgress.Learned => VisualCardStates.Learned,
+            _ => throw new ArgumentOutOfRangeException($"Argument {LearningProgress} not supported")
+        };
+        
+        SetVisualState(RedCircle, progress);
+        SetVisualState(YellowCircle, progress);
+        SetVisualState(GreenCircle, progress);
+    }
+
     private async void OnCardTapped(object? sender, TappedEventArgs e)
     {
         _frontCardVisible = !_frontCardVisible;
 
         await RootOneCardView.RotateYTo(90, 250, Easing.Linear);
         SetVisibilityProperlySide();
+        // InitializeCurrentLearningProgress();
 
         RootOneCardView.RotationY = -90;
 
@@ -47,9 +64,6 @@ public partial class TwoSidesCardControl : Border
 
     private void SetVisibilityProperlySide()
     {
-        //tylko test potem odczytac poprawny stan  usatwic na starcie
-        // SetVisualState(VisualCardStates.NotStarted);
-
         if (_frontCardVisible)
         {
             FrontCard.IsVisible = true;
@@ -75,11 +89,14 @@ public partial class TwoSidesCardControl : Border
         Example += "EXM";
         //END
 
-        var source = newFavourite
-            ? Application.Current.GetResource<string>("icon_heart_marked_SVG")
-            : Application.Current.GetResource<string>("icon_heart_unmarked_SVG");
-
-        FavouriteIcon.Source = source;
+        if (Favourite)
+        {
+            SetVisualState(FavouriteIcon, VisualCardStates.FavouriteEnabled);
+        }
+        else
+        {
+            SetVisualState(FavouriteIcon, VisualCardStates.FavouriteDisabled);
+        }
     }
 
     private void OnRedCircleTapped(object? sender, TappedEventArgs e)

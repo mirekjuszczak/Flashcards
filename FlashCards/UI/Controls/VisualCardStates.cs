@@ -7,5 +7,8 @@ public enum VisualCardStates
     
     NotStarted,
     InProgress,
-    Learned
+    Learned,
+    
+    FavouriteEnabled,
+    FavouriteDisabled
 }

@@ -12,4 +12,7 @@ public class VisualStatesCardControl
     public static readonly string NotStarted = VisualCardStates.NotStarted.ToString();
     public static readonly string InProgress = VisualCardStates.InProgress.ToString();
     public static readonly string Learned = VisualCardStates.Learned.ToString();
+    
+    public static readonly string FavouriteEnabled = VisualCardStates.FavouriteEnabled.ToString();
+    public static readonly string FavouriteDisabled = VisualCardStates.FavouriteDisabled.ToString();
 }

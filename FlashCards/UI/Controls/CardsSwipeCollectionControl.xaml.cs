@@ -78,7 +78,10 @@ public partial class CardsSwipeCollectionControl : ContentView
         if (bindable is CardsSwipeCollectionControl element && newvalue is List<SingleCard> newList &&
             newvalue != oldvalue)
         {
-            // element.TwoSidesCard.CurrentCard = newList[element._currentIndex];
+            // if (element.CardsCollection != null)
+            // {
+            //     element.CardsCollection[element._currentIndex] = newList[element._currentIndex];
+            // }
         }
     }
 

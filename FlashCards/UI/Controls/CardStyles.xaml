@@ -27,7 +27,7 @@
     </Style>
 
     <Style
-        x:Key="CommonCircleStyle"
+        x:Key="CommonCardIconStyle"
         TargetType="Image">
         <Setter Property="HeightRequest" Value="60" />
         <Setter Property="Margin" Value="0,0,10,0" />
@@ -36,7 +36,7 @@
 
     <Style
         x:Key="RedCircleStyle"
-        BasedOn="{StaticResource CommonCircleStyle}"
+        BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
         <Setter Property="Source" Value="{StaticResource icon_circle_red_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -64,7 +64,7 @@
 
     <Style
         x:Key="YellowCircleStyle"
-        BasedOn="{StaticResource CommonCircleStyle}"
+        BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
         <Setter Property="Source" Value="{StaticResource icon_circle_yellow_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -92,7 +92,7 @@
 
     <Style
         x:Key="GreenCircleStyle"
-        BasedOn="{StaticResource CommonCircleStyle}"
+        BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
         <Setter Property="Source" Value="{StaticResource icon_circle_green_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -111,6 +111,29 @@
                     <VisualState Name="{x:Static controls:VisualStatesCardControl.Learned}">
                         <VisualState.Setters>
                             <Setter Property="Source" Value="{StaticResource icon_circle_green_marked_SVG}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="FavouriteIconStyle"
+        BasedOn="{StaticResource CommonCardIconStyle}"
+        TargetType="Image">
+        <Setter Property="Source" Value="{StaticResource icon_heart_unmarked_SVG}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
+                    <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteDisabled}">
+                        <VisualState.Setters>
+                            <Setter Property="Source" Value="{StaticResource icon_heart_unmarked_SVG}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="{x:Static controls:VisualStatesCardControl.FavouriteEnabled}">
+                        <VisualState.Setters>
+                            <Setter Property="Source" Value="{StaticResource icon_heart_marked_SVG}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

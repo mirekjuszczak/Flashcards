@@ -51,11 +51,7 @@
             <Image
                 x:Name="FavouriteIcon"
                 Grid.Column="1"
-                Source="{StaticResource icon_heart_marked_SVG}"
-                HeightRequest="60"
-                Margin="0,0,10,0"
-                HorizontalOptions="End"
-                ZIndex="1">
+                Style="{StaticResource FavouriteIconStyle}">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnFavoriteTapped" />
                 </Image.GestureRecognizers>
