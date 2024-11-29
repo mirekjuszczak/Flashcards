@@ -91,10 +91,6 @@ public partial class TwoSidesCardControl : Border
             SetVisualState(RedCircle, VisualCardStates.NotStarted);
             SetVisualState(YellowCircle, VisualCardStates.NotStarted);
             SetVisualState(GreenCircle, VisualCardStates.NotStarted);
-            // TODO - maybe any converter or VisualState for source
-            // RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_marked_SVG");
-            // YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
-            // GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
         }
     }
 
@@ -107,12 +103,6 @@ public partial class TwoSidesCardControl : Border
             SetVisualState(RedCircle, VisualCardStates.InProgress);
             SetVisualState(YellowCircle, VisualCardStates.InProgress);
             SetVisualState(GreenCircle, VisualCardStates.InProgress);
-            
-            // SetVisualState(VisualCardStates.InProgress);
-            // TODO - maybe any converter or VisualState for source
-            // RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
-            // YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_marked_SVG");
-            // GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_unmarked_SVG");
         }
     }
 
@@ -125,12 +115,6 @@ public partial class TwoSidesCardControl : Border
             SetVisualState(RedCircle, VisualCardStates.Learned);
             SetVisualState(YellowCircle, VisualCardStates.Learned);
             SetVisualState(GreenCircle, VisualCardStates.Learned);
-            
-            // SetVisualState(VisualCardStates.Learned);
-            // TODO - maybe any converter or VisualState for source
-            // RedCircle.Source = Application.Current.GetResource<string>("icon_circle_red_unmarked_SVG");
-            // YellowCircle.Source = Application.Current.GetResource<string>("icon_circle_yellow_unmarked_SVG");
-            // GreenCircle.Source = Application.Current.GetResource<string>("icon_circle_green_marked_SVG");
         }
     }
 
