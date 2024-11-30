@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentView
+    x:Class="FlashCards.UI.Controls.CardsCollectionControl3"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FlashCards.UI.Controls"
+    xmlns:models="clr-namespace:FlashCards.Models"
+    x:Name="RootCardCollectionView">
+
+    <ContentView.Content>
+        <HorizontalStackLayout
+            x:Name="TwoSidesCard"
+            BindableLayout.ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="models:SingleCard">
+                    <controls:TwoSidesCardControl
+                        Margin="30,30"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        Category="{Binding Category}"
+                        Example="{Binding Example}"
+                        Favourite="{Binding Favourite}"
+                        LearningProgress="{Binding LearningProgress}"
+                        Phrase="{Binding Phrase}"
+                        Translation="{Binding Translation}">
+
+                        <controls:TwoSidesCardControl.GestureRecognizers>
+                            <SwipeGestureRecognizer
+                                Direction="Left"
+                                Swiped="OnSwipePrevious" />
+                            <SwipeGestureRecognizer
+                                Direction="Right"
+                                Swiped="OnSwipeNext" />
+                        </controls:TwoSidesCardControl.GestureRecognizers>
+                    </controls:TwoSidesCardControl>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </HorizontalStackLayout>
+    </ContentView.Content>
+
+</ContentView>
+
+<!--  <VerticalStackLayout  -->
+<!--  Margin="{StaticResource Top_Spacing_s}"  -->
+<!--  BindableLayout.ItemsSource="{Binding ConsentToggles}">  -->
+<!--     <BindableLayout.ItemTemplate> -->
+<!--         <DataTemplate x:DataType="toggleConsent:ToggleConsentWrapper"> -->
+<!--  <controls:LoadingToggleListElement  -->
+<!--  AutomationId="{Binding Key, Converter={converters:ToggleConsentsOrderingIdToAutomationIdConverter}}"  -->
+<!--  DescriptionText="{Binding Description}"  -->
+<!--  IsLoading="{Binding IsGranted, Converter={toolkitConverters:IsNullConverter}}"  -->
+<!--  IsToggled="{Binding IsGranted}"  -->
+<!--  TitleText="{Binding Title}">  -->
+<!--                 <controls:LoadingToggleListElement.Behaviors> -->
+<!--  <toolkitBehaviors:EventToCommandBehavior  -->
+<!--  Command="{Binding UpdateConsentCommand}"  -->
+<!--  EventArgsConverter="{converters:ToggledEventArgsToBoolConverter}"  -->
+<!--  EventName="Toggled" />  -->
+<!--                 </controls:LoadingToggleListElement.Behaviors> -->
+<!--             </controls:LoadingToggleListElement> -->
+<!--         </DataTemplate> -->
+<!--     </BindableLayout.ItemTemplate> -->
+<!-- </VerticalStackLayout> -->

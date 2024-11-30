@@ -44,6 +44,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<CardsSwipeCollectionControlPage>();
 		builder.Services.AddSingleton<CardsCarouselCollectionPage>();
 		builder.Services.AddSingleton<CardsCollectionControlPageViewModel>();
+		builder.Services.AddSingleton<CardsCollection3Page>();
+		builder.Services.AddSingleton<CardsCollection3ViewModel>();
 	}
 
 	private static void RegisterServices(MauiAppBuilder builder)

@@ -14,6 +14,7 @@ public class ShowroomPageViewModel : BaseViewModel
         OnGoToTwoSidesCardPage = new Command(async () => await RunGoToSidesCardPage());
         OnGoToCardsSwipeCollectionPage = new Command(async () => await RunGoToOnGoToCardsSwipeCollectionPage());
         OnGoToCardsCarouselCollectionPage = new Command(async () => await RunGoToOnGoToCardsCarouselCollectionPage());
+        OnGoToCardsCollection3Page = new Command(async () => await RunGoToOnGoToCardsCollection3Page());
     }
 
     public Command OnGoToTwoSidesCardPage { get; }
@@ -22,12 +23,17 @@ public class ShowroomPageViewModel : BaseViewModel
 
     public Command OnGoToCardsCarouselCollectionPage { get; }
 
+    public Command OnGoToCardsCollection3Page { get; }
+
     private async Task RunGoToSidesCardPage() =>
         await _navigationService.NavigateToAsync(nameof(TwoSidesCardControlPage));
 
     private async Task RunGoToOnGoToCardsSwipeCollectionPage() =>
         await _navigationService.NavigateToAsync(nameof(CardsSwipeCollectionControlPage));
 
-    private async Task RunGoToOnGoToCardsCarouselCollectionPage()=>
+    private async Task RunGoToOnGoToCardsCarouselCollectionPage() =>
         await _navigationService.NavigateToAsync(nameof(CardsCarouselCollectionPage));
+
+    private async Task RunGoToOnGoToCardsCollection3Page()
+        => await _navigationService.NavigateToAsync(nameof(CardsCollection3Page));
 }
