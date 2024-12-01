@@ -10,5 +10,7 @@
                                       Dark={StaticResource Theme_02_Light_Color}}"
     x:DataType="viewModels:CardsCollection3ViewModel">
 
-    <controls:CardsCollectionControl3 CardsCollection="{Binding CardsCollection}" />
+    <controls:CardsCollectionControl3
+        Margin="30,30"
+        CardsCollection="{Binding CardsCollection}" />
 </ContentPage>

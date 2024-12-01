@@ -10,12 +10,13 @@
 
     <ContentView.Content>
         <HorizontalStackLayout
-            x:Name="TwoSidesCard"
+            x:Name="TwoSidesCardCollection"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
             BindableLayout.ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:SingleCard">
                     <controls:TwoSidesCardControl
-                        Margin="30,30"
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
                         Category="{Binding Category}"
@@ -39,26 +40,38 @@
         </HorizontalStackLayout>
     </ContentView.Content>
 
-</ContentView>
 
-<!--  <VerticalStackLayout  -->
-<!--  Margin="{StaticResource Top_Spacing_s}"  -->
-<!--  BindableLayout.ItemsSource="{Binding ConsentToggles}">  -->
-<!--     <BindableLayout.ItemTemplate> -->
-<!--         <DataTemplate x:DataType="toggleConsent:ToggleConsentWrapper"> -->
-<!--  <controls:LoadingToggleListElement  -->
-<!--  AutomationId="{Binding Key, Converter={converters:ToggleConsentsOrderingIdToAutomationIdConverter}}"  -->
-<!--  DescriptionText="{Binding Description}"  -->
-<!--  IsLoading="{Binding IsGranted, Converter={toolkitConverters:IsNullConverter}}"  -->
-<!--  IsToggled="{Binding IsGranted}"  -->
-<!--  TitleText="{Binding Title}">  -->
-<!--                 <controls:LoadingToggleListElement.Behaviors> -->
-<!--  <toolkitBehaviors:EventToCommandBehavior  -->
-<!--  Command="{Binding UpdateConsentCommand}"  -->
-<!--  EventArgsConverter="{converters:ToggledEventArgsToBoolConverter}"  -->
-<!--  EventName="Toggled" />  -->
-<!--                 </controls:LoadingToggleListElement.Behaviors> -->
-<!--             </controls:LoadingToggleListElement> -->
-<!--         </DataTemplate> -->
-<!--     </BindableLayout.ItemTemplate> -->
-<!-- </VerticalStackLayout> -->
+    <!--  <HorizontalStackLayout  -->
+    <!--  x:Name="TwoSidesCardCollection"  -->
+    <!--  HorizontalOptions="Fill"  -->
+    <!--  VerticalOptions="Fill"  -->
+    <!--  BindableLayout.ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}">  -->
+    <!--     <BindableLayout.ItemTemplate> -->
+    <!--         <DataTemplate x:DataType="models:SingleCard"> -->
+    <!--  <controls:TwoSidesCardControl  -->
+    <!--  WidthRequest="{Binding Width, Source={x:Reference TwoSidesCardCollection}}"  -->
+    <!--  HeightRequest="{Binding Height, Source={x:Reference TwoSidesCardCollection}}"  -->
+    <!--  Margin="50,0"  -->
+    <!--  HorizontalOptions="Center"  -->
+    <!--  VerticalOptions="Center"  -->
+    <!--  Category="{Binding Category}"  -->
+    <!--  Example="{Binding Example}"  -->
+    <!--  Favourite="{Binding Favourite}"  -->
+    <!--  LearningProgress="{Binding LearningProgress}"  -->
+    <!--  Phrase="{Binding Phrase}"  -->
+    <!--  Translation="{Binding Translation}">  -->
+    <!--    -->
+    <!--                 <controls:TwoSidesCardControl.GestureRecognizers> -->
+    <!--  <SwipeGestureRecognizer  -->
+    <!--  Direction="Left"  -->
+    <!--  Swiped="OnSwipePrevious" />  -->
+    <!--  <SwipeGestureRecognizer  -->
+    <!--  Direction="Right"  -->
+    <!--  Swiped="OnSwipeNext" />  -->
+    <!--                 </controls:TwoSidesCardControl.GestureRecognizers> -->
+    <!--             </controls:TwoSidesCardControl> -->
+    <!--         </DataTemplate> -->
+    <!--     </BindableLayout.ItemTemplate> -->
+    <!-- </HorizontalStackLayout> -->
+
+</ContentView>

@@ -53,18 +53,18 @@ public partial class CardsCollectionControl3 : ContentView
 
         // direction == 1 Next; direction == -1 Previous
         await Task.WhenAll(
-            TwoSidesCard.TranslateTo(direction * TwoSidesCard.Width, 0, duration, Easing.CubicInOut),
-            TwoSidesCard.FadeTo(OpacityWhenMoving, (uint)time),
-            TwoSidesCard.ScaleTo(0.8, duration, Easing.CubicInOut)
+            TwoSidesCardCollection.TranslateTo(direction * TwoSidesCardCollection.Width, 0, duration, Easing.CubicInOut),
+            TwoSidesCardCollection.FadeTo(OpacityWhenMoving, (uint)time),
+            TwoSidesCardCollection.ScaleTo(0.8, duration, Easing.CubicInOut)
         );
     }
 
     private async Task FinishAnimationOnChangingCard(int time)
     {
         await Task.Delay(time);
-        TwoSidesCard.TranslationX = 0;
-        await TwoSidesCard.ScaleTo(1, (uint)time);
-        await TwoSidesCard.FadeTo(1, (uint)time);
+        TwoSidesCardCollection.TranslationX = 0;
+        await TwoSidesCardCollection.ScaleTo(1, (uint)time);
+        await TwoSidesCardCollection.FadeTo(1, (uint)time);
     }
 
     private void UpdateDisplayedCard()
@@ -100,7 +100,7 @@ public partial class CardsCollectionControl3 : ContentView
         // TwoSidesCard.LearningProgress = item.LearningProgress;
         // TwoSidesCard.Favourite = item.Favourite;
         
-        // UpdateCardInCollection(item);
+        UpdateCardInCollection(item);
     }
 
     private void UpdateCardInCollection(SingleCard item)
