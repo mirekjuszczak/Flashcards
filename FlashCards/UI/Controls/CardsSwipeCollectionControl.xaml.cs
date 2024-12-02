@@ -27,6 +27,7 @@ public partial class CardsSwipeCollectionControl : ContentView
         {
             await RunAnimationOnChangingCard(1, TimeOfAnimation);
 
+            UpdateCardInCollection();
             _currentIndex = _currentIndex < CardsCollection.Count - 1 ? _currentIndex + 1 : 0;
             UpdateDisplayedCard();
 
@@ -40,6 +41,7 @@ public partial class CardsSwipeCollectionControl : ContentView
         {
             await RunAnimationOnChangingCard(-1, TimeOfAnimation);
 
+            UpdateCardInCollection();
             _currentIndex = _currentIndex > 0 ? _currentIndex - 1 : CardsCollection.Count - 1;
             UpdateDisplayedCard();
 
@@ -72,7 +74,7 @@ public partial class CardsSwipeCollectionControl : ContentView
         if (CardsCollection != null && CardsCollection.Any())
         {
             var item = CardsCollection[_currentIndex];
-            UpdateCard(item);
+            GetNextCard(item);
         }
     }
 
@@ -81,17 +83,11 @@ public partial class CardsSwipeCollectionControl : ContentView
         if (bindable is CardsSwipeCollectionControl element && newvalue is List<SingleCard> newList &&
             newvalue != oldvalue)
         {
-            // if (element.CardsCollection != null)
-            // {
-            //     // element.CardsCollection[element._currentIndex] = newList[element._currentIndex];
-            //     element.CardsCollection = newList;
-            // }
-            
             element.UpdateDisplayedCard();
         }
     }
 
-    private void UpdateCard(SingleCard item)
+    private void GetNextCard(SingleCard item)
     {
         TwoSidesCard.Phrase = item.Phrase;
         TwoSidesCard.Translation = item.Translation;
@@ -99,22 +95,24 @@ public partial class CardsSwipeCollectionControl : ContentView
         TwoSidesCard.Category = item.Category;
         TwoSidesCard.LearningProgress = item.LearningProgress;
         TwoSidesCard.Favourite = item.Favourite;
-        
-        UpdateCardInCollection(item);
     }
 
-    private void UpdateCardInCollection(SingleCard item)
+    private void UpdateCardInCollection()
     {
-        var cardInCollection = CardsCollection?.FirstOrDefault(card => card.Phrase == item.Phrase);
-    
-        if (cardInCollection != null)
+        if (CardsCollection != null)
         {
-            cardInCollection.Phrase = item.Phrase;
-            cardInCollection.Translation = item.Translation;
-            cardInCollection.Example = item.Example;
-            cardInCollection.Category = item.Category;
-            cardInCollection.LearningProgress = item.LearningProgress;
-            cardInCollection.Favourite = item.Favourite;
+            var currentCard = CardsCollection[_currentIndex];
+            var cardInCollection = CardsCollection?.FirstOrDefault(card => card.Phrase == currentCard.Phrase);
+    
+            if (cardInCollection != null)
+            {
+                cardInCollection.Phrase = TwoSidesCard.Phrase ?? string.Empty;
+                cardInCollection.Translation = TwoSidesCard.Translation  ?? string.Empty;
+                cardInCollection.Example = TwoSidesCard.Example  ?? string.Empty;
+                cardInCollection.Category = TwoSidesCard.Category;
+                cardInCollection.LearningProgress = TwoSidesCard.LearningProgress;
+                cardInCollection.Favourite = TwoSidesCard.Favourite;
+            }
         }
     }
 }
