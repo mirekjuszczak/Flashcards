@@ -17,18 +17,23 @@
                 Margin="0,100"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Flash Cards"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
             <Button
                 x:Name="StartButton"
+                WidthRequest="200"
                 Margin="0,0,0,20"
                 HorizontalOptions="Center"
                 VerticalOptions="End"
-                Text="Start Showroom"
+                Text="Showroom"
                 Command="{Binding OnGoToShowroomCommand}" />
+
+            <Button
+                x:Name="ShowroomButton"
+                WidthRequest="200"
+                Margin="0,0,0,20"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Start Application"
+                IsEnabled="False" />
 
         </VerticalStackLayout>
     </ScrollView>
