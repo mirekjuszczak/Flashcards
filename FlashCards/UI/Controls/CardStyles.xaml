@@ -38,7 +38,6 @@
         x:Key="RedCircleStyle"
         BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
-        <Setter Property="Source" Value="{StaticResource icon_circle_red_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
@@ -66,7 +65,6 @@
         x:Key="YellowCircleStyle"
         BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
-        <Setter Property="Source" Value="{StaticResource icon_circle_yellow_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
@@ -94,7 +92,6 @@
         x:Key="GreenCircleStyle"
         BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
-        <Setter Property="Source" Value="{StaticResource icon_circle_green_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
@@ -122,7 +119,6 @@
         x:Key="FavouriteIconStyle"
         BasedOn="{StaticResource CommonCardIconStyle}"
         TargetType="Image">
-        <Setter Property="Source" Value="{StaticResource icon_heart_unmarked_SVG}" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">

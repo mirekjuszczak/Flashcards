@@ -17,10 +17,15 @@ public partial class TwoSidesCardControl : Border
     [BindableProperty(typeof(Categories), BindingMode = BindingMode.TwoWay)]
     public static readonly BindableProperty CategoryProperty;
 
-    [BindableProperty(typeof(LearningProgress), BindingMode = BindingMode.TwoWay)]
+    [BindableProperty(typeof(LearningProgress), 
+        BindingMode = BindingMode.TwoWay,
+        OnPropertyChanged = nameof(OnLearningProgressPropertyChanged))]
     public static readonly BindableProperty LearningProgressProperty;
 
-    [BindableProperty(typeof(bool), BindingMode = BindingMode.TwoWay)]
+    [BindableProperty(typeof(bool), 
+        BindingMode = BindingMode.TwoWay,
+        OnPropertyChanged = nameof(OnFavouritePropertyChanged))
+    ]
     public static readonly BindableProperty FavouriteProperty;
 
     private bool _frontCardVisible;
@@ -29,7 +34,6 @@ public partial class TwoSidesCardControl : Border
     {
         InitializeComponent();
         InitializeCurrentSideOfCard();
-        // InitializeCurrentLearningProgress();
     }
 
     private void InitializeCurrentSideOfCard()
@@ -37,29 +41,13 @@ public partial class TwoSidesCardControl : Border
         _frontCardVisible = true;
         SetVisibilityProperlySide();
     }
-
-    private void InitializeCurrentLearningProgress()
-    {
-        var progress = LearningProgress switch
-        {
-            LearningProgress.NotStarted => VisualCardStates.NotStarted,
-            LearningProgress.InProgress => VisualCardStates.InProgress,
-            LearningProgress.Learned => VisualCardStates.Learned,
-            _ => throw new ArgumentOutOfRangeException($"Argument {LearningProgress} not supported")
-        };
-
-        SetVisualState(RedCircle, progress);
-        SetVisualState(YellowCircle, progress);
-        SetVisualState(GreenCircle, progress);
-    }
-
+    
     private async void OnCardTapped(object? sender, TappedEventArgs e)
     {
         _frontCardVisible = !_frontCardVisible;
 
         await RootOneCardView.RotateYTo(90, 250, Easing.Linear);
         SetVisibilityProperlySide();
-        // InitializeCurrentLearningProgress();
 
         RootOneCardView.RotationY = -90;
 
@@ -137,6 +125,48 @@ public partial class TwoSidesCardControl : Border
             SetVisualState(YellowCircle, VisualCardStates.Learned);
             SetVisualState(GreenCircle, VisualCardStates.Learned);
         }
+    }
+    
+    private static void OnFavouritePropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+    {
+        if (bindable is TwoSidesCardControl element && newvalue is bool && newvalue != oldvalue)
+        {
+            element.UpdateCurrentFavouriteVisualState();
+        }
+    }
+    
+    private static void OnLearningProgressPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+    {
+        if (bindable is TwoSidesCardControl element && newvalue is LearningProgress && newvalue != oldvalue)
+        {
+            element.UpdateCurrentLearningProgress();
+        }
+    }
+    
+    private void UpdateCurrentLearningProgress()
+    {
+        var progress = LearningProgress switch
+        {
+            LearningProgress.NotStarted => VisualCardStates.NotStarted,
+            LearningProgress.InProgress => VisualCardStates.InProgress,
+            LearningProgress.Learned => VisualCardStates.Learned,
+            _ => throw new ArgumentOutOfRangeException($"Argument {LearningProgress} not supported")
+        };
+
+        SetVisualState(RedCircle, progress);
+        SetVisualState(YellowCircle, progress);
+        SetVisualState(GreenCircle, progress);
+    }
+
+    private void UpdateCurrentFavouriteVisualState()
+    {
+        var state = Favourite switch
+        {
+            true => VisualCardStates.FavouriteEnabled,
+            false => VisualCardStates.FavouriteDisabled
+        };
+
+        SetVisualState(FavouriteIcon, state);
     }
 
     private void SetVisualState(VisualCardStates state)
