@@ -19,7 +19,7 @@
                     <controls:TwoSidesCardControl
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
-                        Category="{Binding Category}"
+                        CategoryName="{Binding CategoryName}"
                         Example="{Binding Example}"
                         Favourite="{Binding Favourite}"
                         LearningProgress="{Binding LearningProgress}"

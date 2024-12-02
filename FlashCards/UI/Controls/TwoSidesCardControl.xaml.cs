@@ -14,8 +14,11 @@ public partial class TwoSidesCardControl : Border
     [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
     public static readonly BindableProperty ExampleProperty;
 
-    [BindableProperty(typeof(Categories), BindingMode = BindingMode.TwoWay)]
-    public static readonly BindableProperty CategoryProperty;
+    [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty CategoryIdProperty;
+    
+    [BindableProperty(typeof(string), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty CategoryNameProperty;
 
     [BindableProperty(typeof(LearningProgress), 
         BindingMode = BindingMode.TwoWay,

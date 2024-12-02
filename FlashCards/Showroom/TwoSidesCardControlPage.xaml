@@ -14,7 +14,7 @@
         Margin="30,30"
         HorizontalOptions="Fill"
         VerticalOptions="Fill"
-        Category="{Binding Card.Category}"
+        CategoryName="{Binding Card.CategoryName}"
         Example="{Binding Card.Example}"
         Favourite="{Binding Card.Favourite}"
         LearningProgress="{Binding Card.LearningProgress}"

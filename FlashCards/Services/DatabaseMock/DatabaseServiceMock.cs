@@ -11,76 +11,114 @@ public class DatabaseServiceMock : IDatabaseServiceMock
 {
     public Task<List<SingleCard>> GetData()
     {
-        var resultList = CreateListMocked();
+        var listCards = CreateMockedCardsList();
 
-        return Task.FromResult(resultList);
+        return Task.FromResult(listCards);
     }
 
-    public List<SingleCard> GetDataAsList() => CreateListMocked();
-
-    private static List<SingleCard> CreateListMocked()
+    private List<Category> CreateMockedCategoriesList()
     {
-        var resultList = new List<SingleCard>();
-
-        resultList.Add(new SingleCard()
+        var categories = new List<Category>();
+        
+        categories.Add(new Category
         {
+            Id = 1.ToString(),
+            Name = "Noun"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 2.ToString(),
+            Name = "Verb"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 3.ToString(),
+            Name = "Airport"
+        });
+
+        return categories;
+    }
+
+    private List<SingleCard> CreateMockedCardsList()
+    {
+        var categories = CreateMockedCategoriesList();
+        
+        var cards = new List<SingleCard>();
+
+        cards.Add(new SingleCard
+        {
+            Id = "C1",
             Phrase = "Cat",
             Translation = "Kot",
             Example = "This is my cat",
-            Category = Categories.Noun,
+            CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
+            CategoryId = 1.ToString(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = true
         });
         
-        resultList.Add(new SingleCard()
+        cards.Add(new SingleCard()
         {
+            Id = "C2",
             Phrase = "Dog",
             Translation = "Pies",
             Example = "This is my dog",
-            Category = Categories.Noun,
+            CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
+            CategoryId = 1.ToString(),
             LearningProgress = LearningProgress.Learned,
             Favourite = true
         });
         
-        resultList.Add(new SingleCard()
+        cards.Add(new SingleCard()
         {
+            Id = "C3",
             Phrase = "run",
             Translation = "biec/biegać",
             Example = "I was running yesterday",
-            Category = Categories.Verb,
+            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
+            CategoryId = 2.ToString(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = false
         });
         
-        resultList.Add(new SingleCard()
+        cards.Add(new SingleCard()
         {
+            Id = "C4",
             Phrase = "buy",
             Translation = "kupować",
             Example = "This is my cat",
-            Category = Categories.Noun,
+            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
+            CategoryId = 2.ToString(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = true
         });
         
-        resultList.Add(new SingleCard()
+        cards.Add(new SingleCard()
         {
+            Id = "C5",
             Phrase = "move",
             Translation = "przemiaszczać się/przesuwać",
             Example = "We moved our flat last year",
-            Category = Categories.Verb,
+            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
+            CategoryId = 2.ToString(),
             LearningProgress = LearningProgress.Learned,
             Favourite = true
         });
         
-        resultList.Add(new SingleCard()
+        cards.Add(new SingleCard()
         {
+            Id = "C61",
             Phrase = "Prepare",
             Translation = "Przygotowywać",
             Example = "I try to prepare this application",
-            Category = Categories.Verb,
+            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
+            CategoryId = 2.ToString(),
             LearningProgress = LearningProgress.NotStarted,
             Favourite = true
         });
-        return resultList;
+        
+        return cards;
     }
 }

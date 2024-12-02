@@ -92,7 +92,7 @@ public partial class CardsSwipeCollectionControl : ContentView
         TwoSidesCard.Phrase = item.Phrase;
         TwoSidesCard.Translation = item.Translation;
         TwoSidesCard.Example = item.Example;
-        TwoSidesCard.Category = item.Category;
+        TwoSidesCard.CategoryName = item.CategoryName;
         TwoSidesCard.LearningProgress = item.LearningProgress;
         TwoSidesCard.Favourite = item.Favourite;
     }
@@ -109,7 +109,7 @@ public partial class CardsSwipeCollectionControl : ContentView
                 cardInCollection.Phrase = TwoSidesCard.Phrase ?? string.Empty;
                 cardInCollection.Translation = TwoSidesCard.Translation  ?? string.Empty;
                 cardInCollection.Example = TwoSidesCard.Example  ?? string.Empty;
-                cardInCollection.Category = TwoSidesCard.Category;
+                cardInCollection.CategoryName = TwoSidesCard.CategoryName;
                 cardInCollection.LearningProgress = TwoSidesCard.LearningProgress;
                 cardInCollection.Favourite = TwoSidesCard.Favourite;
             }

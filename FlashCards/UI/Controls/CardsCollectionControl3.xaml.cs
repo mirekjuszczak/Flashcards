@@ -112,7 +112,7 @@ public partial class CardsCollectionControl3 : ContentView
             cardInCollection.Phrase = item.Phrase;
             cardInCollection.Translation = item.Translation;
             cardInCollection.Example = item.Example;
-            cardInCollection.Category = item.Category;
+            cardInCollection.CategoryName = item.CategoryName;
             cardInCollection.LearningProgress = item.LearningProgress;
             cardInCollection.Favourite = item.Favourite;
         }

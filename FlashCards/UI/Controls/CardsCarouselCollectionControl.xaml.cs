@@ -21,7 +21,7 @@ public partial class CardsCarouselCollectionControl : ContentView
                           $"Phrase: {newItem.Phrase}\n" +
                           $"Translation: {newItem.Translation}\n" +
                           $"Example: {newItem.Example}\n" +
-                          $"Category: {newItem.Category}\n" +
+                          $"Category: {newItem.CategoryName}\n" +
                           $"LearningProgress: {newItem.LearningProgress}\n" +
                           $"Favourite: {newItem.Favourite}");
     }

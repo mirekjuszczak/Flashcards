@@ -23,7 +23,7 @@ public class TwoSidesCardControlPageViewModel : BaseViewModel
             Phrase = "Cat",
             Translation = "Kot",
             Example = "This is my cat",
-            Category = Categories.Noun,
+            CategoryName = "Categories Test",
             LearningProgress = LearningProgress.InProgress,
             Favourite = true
         };
