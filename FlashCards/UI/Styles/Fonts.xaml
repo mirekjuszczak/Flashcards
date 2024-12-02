@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <x:String x:Key="PrimaryFontBold">Bold</x:String>
-    <x:String x:Key="PrimaryFontSemiBold">SemiBold</x:String>
-    <x:String x:Key="PrimaryFont">Regular</x:String>
+    <x:String x:Key="PrimaryFontBold">Font-Bold</x:String>
+    <x:String x:Key="PrimaryFontSemiBold">Font-SemiBold</x:String>
+    <x:String x:Key="PrimaryFont">Font-Regular</x:String>
 </ResourceDictionary>

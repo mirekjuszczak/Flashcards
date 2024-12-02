@@ -5,9 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <x:Double x:Key="Hero">48</x:Double>
-    <!-- <x:Double x:Key="LargeTitle">26</x:Double> -->
+    <x:Double x:Key="LargeTitle">26</x:Double>
     <x:Double x:Key="Title">22</x:Double>
-    <!-- <x:Double x:Key="Subtitle">18</x:Double> -->
+    <x:Double x:Key="Subtitle">18</x:Double>
     <x:Double x:Key="Body">18</x:Double>
     <!-- <x:Double x:Key="BodyStrong">18</x:Double> -->
     <x:Double x:Key="Caption">16</x:Double>
@@ -28,13 +28,13 @@
         <Setter Property="FontSize" Value="{StaticResource Hero}" />
     </Style>
 
-    <!--  <Style  -->
-    <!--  x:Key="Text_Large_Title"  -->
-    <!--  TargetType="Label">  -->
-    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
-    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
-    <!--     <Setter Property="FontSize" Value="{StaticResource LargeTitle}" /> -->
-    <!-- </Style> -->
+    <Style
+        x:Key="Text_Large_Title"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="FontSize" Value="{StaticResource LargeTitle}" />
+    </Style>
 
     <Style
         x:Key="Text_Title"
@@ -44,22 +44,22 @@
         <Setter Property="FontSize" Value="{StaticResource Title}" />
     </Style>
 
-    <!--  <Style  -->
-    <!--  x:Key="Text_SubTitle"  -->
-    <!--  TargetType="Label">  -->
-    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" /> -->
-    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
-    <!--     <Setter Property="FontSize" Value="{StaticResource Subtitle}" /> -->
-    <!-- </Style> -->
+    <Style
+        x:Key="Text_SubTitle"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="FontSize" Value="{StaticResource Subtitle}" />
+    </Style>
 
-    <!--  <Style  -->
-    <!--  x:Key="Text_Body"  -->
-    <!--  TargetType="Label">  -->
-    <!--     <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" /> -->
-    <!--     <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" /> -->
-    <!--     <Setter Property="FontSize" Value="{StaticResource Body}" /> -->
-    <!--     <Setter Property="Opacity" Value="0.8" /> -->
-    <!-- </Style> -->
+    <Style
+        x:Key="Text_Body"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" />
+        <Setter Property="FontSize" Value="{StaticResource Body}" />
+        <Setter Property="Opacity" Value="0.8" />
+    </Style>
 
     <!--  <Style  -->
     <!--  x:Key="Text_Bold_Body"  -->
