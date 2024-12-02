@@ -66,7 +66,6 @@
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Text="{Binding Source={x:Reference RootOneCardView}, Path=Phrase}"
-                FontSize="30"
                 Style="{StaticResource Text_Large_Title}" />
         </VerticalStackLayout>
 
@@ -76,12 +75,11 @@
                     <Label
                         Margin="10,0"
                         Text="Category:"
-                        Style="{StaticResource Text_Title}" />
+                        Style="{StaticResource Text_SubTitle}" />
                     <Label
                         Margin="10,0"
                         HorizontalOptions="Start"
                         Text="{Binding Source={x:Reference RootOneCardView}, Path=CategoryName}"
-                        FontSize="20"
                         Style="{StaticResource Text_Body}" />
                 </HorizontalStackLayout>
 
@@ -94,34 +92,31 @@
                 <Label
                     Margin="10,50,10,0"
                     Text="Translation:"
-                    Style="{StaticResource Text_Title}" />
+                    Style="{StaticResource Text_SubTitle}" />
                 <Label
                     Margin="20,10,10,0"
                     HorizontalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=Translation}"
-                    FontSize="20"
                     Style="{StaticResource Text_Body}" />
 
                 <Label
                     Margin="10,30,10,0"
                     Text="Example:"
-                    Style="{StaticResource Text_Title}" />
+                    Style="{StaticResource Text_SubTitle}" />
                 <Label
                     Margin="20,10,10,0"
                     HorizontalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=Example}"
-                    FontSize="20"
                     Style="{StaticResource Text_Body}" />
 
                 <Label
                     Margin="10,30,10,0"
                     Text="Learning Progress (TEST):"
-                    Style="{StaticResource Text_Title}" />
+                    Style="{StaticResource Text_SubTitle}" />
                 <Label
                     Margin="20,10,10,0"
                     HorizontalOptions="Start"
                     Text="{Binding Source={x:Reference RootOneCardView}, Path=LearningProgress}"
-                    FontSize="20"
                     Style="{StaticResource Text_Body}" />
 
             </VerticalStackLayout>
