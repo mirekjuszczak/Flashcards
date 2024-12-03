@@ -4,7 +4,7 @@
     xmlns:controls="clr-namespace:FlashCards.UI.Controls">
 
     <Style
-        x:Key="TwoSidesCardBackgroundStyle"
+        x:Key="CardBackgroundStyle"
         TargetType="controls:TwoSidesCardControl">
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
