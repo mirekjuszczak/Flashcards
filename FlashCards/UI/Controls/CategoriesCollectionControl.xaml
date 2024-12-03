@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentView
+    x:Class="FlashCards.UI.Controls.CategoriesCollectionControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FlashCards.UI.Controls"
+    x:Name="RootCategoryCollectionView">
+
+    <Grid>
+        <CarouselView
+            x:Name="CategoryCarouselCollectionView"
+            Margin="20,20"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ItemsSource="{Binding CategoryCollection, Source={x:Reference RootCategoryCollectionView}}">
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <controls:CategoryCardControl
+                            Margin="30,30"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center"
+                            CategoryName="{Binding Name}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
+
+</ContentView>

@@ -4,16 +4,24 @@ namespace FlashCards.Services.DatabaseMock;
 
 public interface IDatabaseServiceMock
 {
-    Task<List<SingleCard>> GetData();
+    Task<List<SingleCard>> GetCardsCollection();
+    Task<List<Category>> GetCategoriesCollection();
 }
 
 public class DatabaseServiceMock : IDatabaseServiceMock
 {
-    public Task<List<SingleCard>> GetData()
+    public Task<List<SingleCard>> GetCardsCollection()
     {
         var listCards = CreateMockedCardsList();
 
         return Task.FromResult(listCards);
+    }
+
+    public Task<List<Category>> GetCategoriesCollection()
+    {
+        var listCategories = CreateMockedCategoriesList();
+
+        return Task.FromResult(listCategories);
     }
 
     private List<Category> CreateMockedCategoriesList()

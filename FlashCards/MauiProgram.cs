@@ -49,6 +49,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<CardsCollection3ViewModel>();
 		
 		builder.Services.AddSingleton<CategoryCardPage>();
+		builder.Services.AddSingleton<CategoriesCollectionPage>();
 		builder.Services.AddSingleton<CategoriesPageViewModel>();
 	}
 

@@ -22,7 +22,7 @@ public class CardsCollection3ViewModel : BaseViewModel
 
     private async Task InitializeCardsCollection()
     {
-        var collection = await _databaseServiceMock.GetData();
+        var collection = await _databaseServiceMock.GetCardsCollection();
         CardsCollection.AddRange(collection);
     }
 }

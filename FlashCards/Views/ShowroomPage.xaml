@@ -59,5 +59,17 @@
             Text="Category Control"
             Command="{Binding OnGoToCategoryPage}" />
 
+        <Label
+            Margin="20,20"
+            HorizontalOptions="Center"
+            Text="Categories Collection"
+            Style="{StaticResource Text_SubTitle}" />
+
+        <Button
+            Margin="20,10"
+            VerticalOptions="Start"
+            Text="Categories Collection"
+            Command="{Binding OnGoToCategoriesCollectionPage}" />
+
     </VerticalStackLayout>
 </ContentPage>
