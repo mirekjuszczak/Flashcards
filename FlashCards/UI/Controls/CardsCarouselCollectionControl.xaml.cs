@@ -16,14 +16,14 @@ public partial class CardsCarouselCollectionControl : ContentView
 
     private void CarouselCollectionViewOnCurrentItemChanged(object? sender, CurrentItemChangedEventArgs e)
     {
-        var newItem = (SingleCard)e.CurrentItem;
-        Console.WriteLine($"MOZU_FLASHCARDS: CarouselCollectionViewOnCurrentItemChanged to:\n" +
-                          $"Phrase: {newItem.Phrase}\n" +
-                          $"Translation: {newItem.Translation}\n" +
-                          $"Example: {newItem.Example}\n" +
-                          $"Category: {newItem.CategoryName}\n" +
-                          $"LearningProgress: {newItem.LearningProgress}\n" +
-                          $"Favourite: {newItem.Favourite}");
+        // var newItem = (SingleCard)e.CurrentItem;
+        // Console.WriteLine($"MOZU_FLASHCARDS: CarouselCollectionViewOnCurrentItemChanged to:\n" +
+        //                   $"Phrase: {newItem.Phrase}\n" +
+        //                   $"Translation: {newItem.Translation}\n" +
+        //                   $"Example: {newItem.Example}\n" +
+        //                   $"Category: {newItem.CategoryName}\n" +
+        //                   $"LearningProgress: {newItem.LearningProgress}\n" +
+        //                   $"Favourite: {newItem.Favourite}");
     }
 
     private static void OnCardsCollectionPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)

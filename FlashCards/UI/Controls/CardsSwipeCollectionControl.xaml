@@ -7,44 +7,6 @@
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     x:Name="RootCardCollectionView">
 
-
-    <!--  <CollectionView  -->
-    <!--  x:Name="TwoSidesCard"  -->
-    <!--  ItemsSource="{Binding CardsCollection, Source={x:Reference RootCardCollectionView}}"  -->
-    <!--  SelectionMode="Single">  -->
-    <!--     <CollectionView.ItemsLayout> -->
-    <!--  <LinearItemsLayout  -->
-    <!--  Orientation="Horizontal"  -->
-    <!--  SnapPointsAlignment="Center"  -->
-    <!--  SnapPointsType="MandatorySingle" />  -->
-    <!--     </CollectionView.ItemsLayout> -->
-    <!--     <CollectionView.ItemTemplate> -->
-    <!--         <DataTemplate> -->
-    <!--  <controls:TwoSidesCardControl  -->
-    <!--  Margin="30,30"  -->
-    <!--  HorizontalOptions="Fill"  -->
-    <!--  VerticalOptions="Fill"  -->
-    <!--  Category="{Binding Category}"  -->
-    <!--  Example="{Binding Example}"  -->
-    <!--  Favourite="{Binding Favourite}"  -->
-    <!--  LearningProgress="{Binding LearningProgress}"  -->
-    <!--  Phrase="{Binding Phrase}"  -->
-    <!--  Translation="{Binding Translation}">  -->
-    <!--    -->
-    <!--                 <controls:TwoSidesCardControl.GestureRecognizers> -->
-    <!--  <SwipeGestureRecognizer  -->
-    <!--  Direction="Left"  -->
-    <!--  Swiped="OnSwipePrevious" />  -->
-    <!--  <SwipeGestureRecognizer  -->
-    <!--  Direction="Right"  -->
-    <!--  Swiped="OnSwipeNext" />  -->
-    <!--                 </controls:TwoSidesCardControl.GestureRecognizers> -->
-    <!--             </controls:TwoSidesCardControl> -->
-    <!--         </DataTemplate> -->
-    <!--     </CollectionView.ItemTemplate> -->
-    <!-- </CollectionView> -->
-
-
     <ContentView.Content>
         <controls:TwoSidesCardControl
             x:Name="TwoSidesCard"
