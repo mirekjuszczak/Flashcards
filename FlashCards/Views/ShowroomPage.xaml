@@ -47,5 +47,17 @@
             Text="CardsCollection3 Control"
             Command="{Binding OnGoToCardsCollection3Page}" />
 
+        <Label
+            Margin="20,20"
+            HorizontalOptions="Center"
+            Text="Category Card"
+            Style="{StaticResource Text_SubTitle}" />
+
+        <Button
+            Margin="20,10"
+            VerticalOptions="Start"
+            Text="Category Control"
+            Command="{Binding OnGoToCategoryPage}" />
+
     </VerticalStackLayout>
 </ContentPage>

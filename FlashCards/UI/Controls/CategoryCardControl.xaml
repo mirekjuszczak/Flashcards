@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Border
+    x:Class="FlashCards.UI.Controls.CategoryCardControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="RootCategoryView"
+    HeightRequest="150"
+    Style="{StaticResource CategoryCardBackgroundStyle}"
+    StrokeShape="RoundRectangle 16"
+    StrokeThickness="1">
+
+    <Label
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Text="{Binding CategoryName, Source={x:Reference RootCategoryView}}"
+        Style="{StaticResource Text_Large_Title}" />
+
+</Border>

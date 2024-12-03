@@ -136,4 +136,11 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
+
+    <Style
+        x:Key="CategoryCardBackgroundStyle"
+        TargetType="controls:CategoryCardControl">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
+    </Style>
 </ResourceDictionary>

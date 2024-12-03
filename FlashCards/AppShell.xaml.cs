@@ -19,5 +19,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(CardsSwipeCollectionControlPage), typeof(CardsSwipeCollectionControlPage));
 		Routing.RegisterRoute(nameof(CardsCarouselCollectionPage), typeof(CardsCarouselCollectionPage));
 		Routing.RegisterRoute(nameof(CardsCollection3Page), typeof(CardsCollection3Page));
+		Routing.RegisterRoute(nameof(CategoryCardPage), typeof(CategoryCardPage));
 	}
 }
