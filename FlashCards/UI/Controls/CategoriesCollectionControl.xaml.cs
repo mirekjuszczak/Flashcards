@@ -3,7 +3,7 @@ using Bindables.Maui;
 
 namespace FlashCards.UI.Controls;
 
-public partial class CategoriesCollectionControl : ContentView
+public partial class CategoriesCollectionControl : CarouselView
 {
     [BindableProperty(typeof(List<Category>), OnPropertyChanged = nameof(OnCategoryCollectionPropertyChanged))]
     public static readonly BindableProperty CategoryCollectionProperty;
