@@ -46,6 +46,48 @@ public class DatabaseServiceMock : IDatabaseServiceMock
             Name = "Airport"
         });
 
+        categories.Add(new Category
+        {
+            Id = 4.ToString(),
+            Name = "Adjective"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 5.ToString(),
+            Name = "Restaurant"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 6.ToString(),
+            Name = "Hotel"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 7.ToString(),
+            Name = "Prepositions"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 8.ToString(),
+            Name = "Tenses"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 9.ToString(),
+            Name = "Phrasal Verbs"
+        });
+        
+        categories.Add(new Category
+        {
+            Id = 10.ToString(),
+            Name = "Idioms"
+        });
+        
         return categories;
     }
 
