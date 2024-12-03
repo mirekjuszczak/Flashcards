@@ -11,11 +11,23 @@
         Padding="50,10"
         HorizontalOptions="Center">
 
+        <Label
+            Margin="20,20"
+            HorizontalOptions="Center"
+            Text="Single two sides card"
+            Style="{StaticResource Text_SubTitle}" />
+
         <Button
             Margin="20,10"
             VerticalOptions="Start"
             Text="TwoSidesCard Control"
             Command="{Binding OnGoToTwoSidesCardPage}" />
+
+        <Label
+            Margin="20,20"
+            HorizontalOptions="Center"
+            Text="Card's collection"
+            Style="{StaticResource Text_SubTitle}" />
 
         <Button
             Margin="20,10"
