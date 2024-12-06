@@ -1,5 +1,5 @@
 using FlashCards.Models;
-using FlashCards.Services.DatabaseMock;
+using FlashCards.Services.DatabaseService;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
@@ -7,15 +7,15 @@ namespace FlashCards.Showroom;
 
 public class CategoriesPageViewModel : BaseViewModel
 {
-    private readonly IDatabaseServiceMock _databaseServiceMock;
+    private readonly IDatabaseService _databaseService;
     
     [ObservableAsProperty] public string CategoryName { get; }
     
     [ObservableAsProperty] public List<Category> CategoriesCollection { get; } = new();
 
-    public CategoriesPageViewModel(IDatabaseServiceMock databaseServiceMock)
+    public CategoriesPageViewModel(IDatabaseService databaseService)
     {
-        _databaseServiceMock = databaseServiceMock;
+        _databaseService = databaseService;
         Title = "Categories collection";
         CategoryName = "Test Category";
 
@@ -24,7 +24,7 @@ public class CategoriesPageViewModel : BaseViewModel
     
     private async Task InitializeCategoriesCollection()
     {
-        var collection = await _databaseServiceMock.GetCategoriesCollection();
+        var collection = await _databaseService.GetCategoriesCollection();
         CategoriesCollection.AddRange(collection);
     }
 }

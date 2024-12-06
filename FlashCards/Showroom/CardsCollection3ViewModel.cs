@@ -1,5 +1,5 @@
 using FlashCards.Models;
-using FlashCards.Services.DatabaseMock;
+using FlashCards.Services.DatabaseService;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
@@ -7,14 +7,14 @@ namespace FlashCards.Showroom;
 
 public class CardsCollection3ViewModel : BaseViewModel
 {
-    private readonly IDatabaseServiceMock _databaseServiceMock;
+    private readonly IDatabaseService _databaseService;
     [ObservableAsProperty] public List<SingleCard> CardsCollection { get; } = new List<SingleCard>();
 
     // public ObservableCollection<SingleCard> CardsCollection { get; } = new ObservableCollection<SingleCard>();
 
-    public CardsCollection3ViewModel(IDatabaseServiceMock databaseServiceMock)
+    public CardsCollection3ViewModel(IDatabaseService databaseService)
     {
-        _databaseServiceMock = databaseServiceMock;
+        _databaseService = databaseService;
         _ = InitializeCardsCollection();
         
         Title = "Two Sides Card Collection 3 Sample";
@@ -22,7 +22,7 @@ public class CardsCollection3ViewModel : BaseViewModel
 
     private async Task InitializeCardsCollection()
     {
-        var collection = await _databaseServiceMock.GetCardsCollection();
+        var collection = await _databaseService.GetCardsCollection();
         CardsCollection.AddRange(collection);
     }
 }

@@ -1,14 +1,9 @@
 using FlashCards.Models;
+using FlashCards.Services.DatabaseService;
 
-namespace FlashCards.Services.DatabaseMock;
+namespace FlashCards.Services.DatabaseServiceMock;
 
-public interface IDatabaseServiceMock
-{
-    Task<List<SingleCard>> GetCardsCollection();
-    Task<List<Category>> GetCategoriesCollection();
-}
-
-public class DatabaseServiceMock : IDatabaseServiceMock
+public class DatabaseService : IDatabaseService
 {
     public Task<List<SingleCard>> GetCardsCollection()
     {
