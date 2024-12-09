@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "896769528134",
+    "project_id": "flashcards-mjusz",
+    "storage_bucket": "flashcards-mjusz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896769528134:android:b50b64fd28f17f298cd547",
+        "android_client_info": {
+          "package_name": "com.juszczakmj.flashcards"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxDUtkKGT_8qXJizpEsEm48UXQEcHpaXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
