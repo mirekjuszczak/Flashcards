@@ -13,8 +13,6 @@ public interface IDatabaseService
     Task DeleteCategory(string categoryId);
     Task DeleteCard(string cardId);
     
-
-
     Task<List<SingleCard>> GetCardsCollection();
     Task<List<Category>> GetCategoriesCollection();
 }
