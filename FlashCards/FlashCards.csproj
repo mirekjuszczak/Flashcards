@@ -64,7 +64,7 @@
         <PackageReference Include="ReactiveUI" Version="20.1.1" />
         <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     </ItemGroup>
-
+    
     <ItemGroup>
         <!-- Firebase for Android -->
         <GoogleServicesJson Include="google-services.json">
