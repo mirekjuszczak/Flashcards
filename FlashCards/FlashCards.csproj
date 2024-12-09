@@ -110,8 +110,4 @@
       <AdditionalFiles Include="Showroom\TwoSidesCardControlPage.xaml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\FirebaseDatabaseService\" />
-    </ItemGroup>
-
 </Project>
