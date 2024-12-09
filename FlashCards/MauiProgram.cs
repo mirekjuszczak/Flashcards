@@ -1,5 +1,6 @@
 ﻿using FlashCards.Services.DatabaseService;
 using FlashCards.Services.DatabaseServiceMock;
+using FlashCards.Services.FirebaseService;
 using FlashCards.Services.Navigation;
 using FlashCards.Showroom;
 using FlashCards.ViewModels;
@@ -58,5 +59,8 @@ public static class MauiProgram
 	{
 		builder.Services.AddSingleton<INavigationService, NavigationService>();
 		builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
+		
+		// builder.Services.AddSingleton<IDatabaseService, FirebaseAuthDatabaseService>();
+		builder.Services.AddSingleton<IUserService, FirebaseAuthDatabaseService>();
 	}
 }

@@ -28,6 +28,8 @@ public class DatabaseService : IDatabaseService
         return Task.FromResult(listCategories);
     }
 
+    public Task<bool> TestFirestoreConnection() => Task.FromResult(false);
+
     private List<Category> CreateMockedCategoriesList()
     {
         var categories = new List<Category>();

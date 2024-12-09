@@ -22,7 +22,9 @@ public class CardsCollection3ViewModel : BaseViewModel
 
     private async Task InitializeCardsCollection()
     {
-        var collection = await _databaseService.GetCardsCollection();
-        CardsCollection.AddRange(collection);
+        //var collection = await _databaseService.GetCardsCollection();
+        //CardsCollection.AddRange(collection);
+
+        var testFirestoreConnection = await _databaseService.TestFirestoreConnection();
     }
 }
