@@ -66,6 +66,17 @@
     </ItemGroup>
 
     <ItemGroup>
+        <!-- Firebase for Android -->
+        <GoogleServicesJson Include="google-services.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <AndroidSkipIntermediateProcessing>true</AndroidSkipIntermediateProcessing>
+        </GoogleServicesJson>
+
+        <!-- Firebase for iOS -->
+        <BundleResource Include="GoogleService-Info.plist" />
+    </ItemGroup>
+
+    <ItemGroup>
       <MauiXaml Update="Views\StartPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
