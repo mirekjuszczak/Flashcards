@@ -19,11 +19,12 @@
         <PackageReference Include="ReactiveUI.Fody" Version="[19.5.41]" />
         
         <!--Firebase-->
-<!--        <PackageReference Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
-<!--        <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
-<!--        <PackageReference Include="Firebase.Auth" Version="[1.0.0]" />-->
-<!--        <PackageReference Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
         <PackageReference Include="Plugin.Firebase" Version="[3.1.2]" />
+        <PackageReference Include="Google.Cloud.Firestore" Version="[3.9.0]" />
+        <!-- <PackageReference Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
+        <!-- <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
+        <!-- <PackageReference Include="Firebase.Auth" Version="[1.0.0]" />-->
+        <!-- <PackageReference Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
         
     </ItemGroup>
 </Project>
