@@ -57,13 +57,16 @@
 
     <ItemGroup>
         <PackageReference Include="Bindables.Maui" />
-        <PackageReference Include="CommunityToolkit.Mvvm" />
         <PackageReference Include="CommunityToolkit.Maui" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
         <PackageReference Include="Microsoft.Maui.Controls" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
         <PackageReference Include="ReactiveUI" />
         <PackageReference Include="ReactiveUI.Fody" />
+
+        <PackageReference Include="Plugin.Firebase" />
+        <PackageReference Include="Google.Cloud.Firestore" />
     </ItemGroup>
     
     <ItemGroup>

@@ -4,6 +4,8 @@
     x:Class="FlashCards.Views.ShowroomPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:FlashCards.Views"
+    x:Name="Root"
     BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
                                       Dark={StaticResource Theme_02_Light_Color}}">
 
@@ -32,20 +34,20 @@
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsSwipeCollection Control"
+            Text="CardsSwipeCollection New"
             Command="{Binding OnGoToCardsSwipeCollectionPage}" />
 
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsCarouselCollection Control"
+            Text="CardsCarouselCollection Old"
             Command="{Binding OnGoToCardsCarouselCollectionPage}" />
 
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsCollection3 Control"
-            Command="{Binding OnGoToCardsCollection3Page}" />
+            Text="CardsCollection3 Old"
+            Command="{Binding OnGoToCardsCollection3Page, x:DataType=views:ShowroomPage}" />
 
         <Label
             Margin="20,20"
@@ -57,7 +59,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="Category Control"
-            Command="{Binding OnGoToCategoryPage}" />
+            Command="{Binding OnGoToCategoryPage, x:DataType=views:ShowroomPage}" />
 
         <Label
             Margin="20,20"
@@ -69,7 +71,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="Categories Collection"
-            Command="{Binding OnGoToCategoriesCollectionPage}" />
+            Command="{Binding OnGoToCategoriesCollectionPage, x:DataType=views:ShowroomPage}" />
 
     </VerticalStackLayout>
 </ContentPage>

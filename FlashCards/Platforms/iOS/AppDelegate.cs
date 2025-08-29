@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using Plugin.Firebase.Firestore;
 using UIKit;
 
 namespace FlashCards;
@@ -9,11 +8,6 @@ public class AppDelegate : MauiUIApplicationDelegate
 {
 	public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 	{
-		if (DeviceInfo.Platform == DevicePlatform.iOS)
-		{
-			Firebase.Core.App.Configure();
-		}
-	
 		return base.FinishedLaunching(application, launchOptions);
 	}
 
