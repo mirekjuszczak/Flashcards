@@ -12,7 +12,7 @@
         <PackageVersion Include="Bindables.Maui" Version="[1.4.1]" />
         <PackageVersion Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
-        <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.2.23479.6"/>
+        <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0"/>
             
         <!--ReactiveUI-->
         <PackageVersion Include="ReactiveUI" Version="[20.1.1]" />

@@ -7,6 +7,7 @@ using FlashCards.ViewModels;
 using FlashCards.Views;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace FlashCards;
 
@@ -28,7 +29,7 @@ public static class MauiProgram
 		RegisterServices(builder);
 
 #if DEBUG
-		builder.Logging.AddDebug();
+		builder.Logging.SetMinimumLevel(LogLevel.Debug);
 #endif
 
 		return builder.Build();

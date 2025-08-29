@@ -47,7 +47,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="CardsCollection3 Old"
-            Command="{Binding OnGoToCardsCollection3Page, x:DataType=views:ShowroomPage}" />
+            Command="{Binding OnGoToCardsCollection3Page}" />
 
         <Label
             Margin="20,20"
@@ -59,7 +59,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="Category Control"
-            Command="{Binding OnGoToCategoryPage, x:DataType=views:ShowroomPage}" />
+            Command="{Binding OnGoToCategoryPage}" />
 
         <Label
             Margin="20,20"
@@ -71,7 +71,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="Categories Collection"
-            Command="{Binding OnGoToCategoriesCollectionPage, x:DataType=views:ShowroomPage}" />
+            Command="{Binding OnGoToCategoriesCollectionPage}" />
 
     </VerticalStackLayout>
 </ContentPage>
