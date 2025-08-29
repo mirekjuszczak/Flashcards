@@ -7,24 +7,24 @@
     
     <ItemGroup Label="ExternalPackages">
         <!--Maui packages-->
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="[8.2.2]" />
-        <PackageReference Update="CommunityToolkit.Maui" Version="[9.0.1]" />
-        <PackageReference Update="Bindables.Maui" Version="[1.4.1]" />
-        <!-- <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>-->
-        <!-- <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>-->
-        <!-- <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.2.23479.6"/>-->
+        <PackageVersion Include="CommunityToolkit.Mvvm" Version="[8.2.2]" />
+        <PackageVersion Include="CommunityToolkit.Maui" Version="[9.0.1]" />
+        <PackageVersion Include="Bindables.Maui" Version="[1.4.1]" />
+        <PackageVersion Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
+        <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
+        <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0-rc.2.23479.6"/>
             
         <!--ReactiveUI-->
-        <PackageReference Include="ReactiveUI" Version="[20.1.1]" />
-        <PackageReference Include="ReactiveUI.Fody" Version="[19.5.41]" />
+        <PackageVersion Include="ReactiveUI" Version="[20.1.1]" />
+        <PackageVersion Include="ReactiveUI.Fody" Version="[19.5.41]" />
         
         <!--Firebase-->
-        <PackageReference Include="Plugin.Firebase" Version="[3.1.2]" />
-        <PackageReference Include="Google.Cloud.Firestore" Version="[3.9.0]" />
-        <!-- <PackageReference Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
-        <!-- <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
-        <!-- <PackageReference Include="Firebase.Auth" Version="[1.0.0]" />-->
-        <!-- <PackageReference Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
+        <PackageVersion Include="Plugin.Firebase" Version="[3.1.2]" />
+        <PackageVersion Include="Google.Cloud.Firestore" Version="[3.9.0]" />
+        <!-- <PackageVersion Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
+        <!-- <PackageVersionge Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
+        <!-- <PackageVersion Include="Firebase.Auth" Version="[1.0.0]" />-->
+        <!-- <PackageVersion Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
         
     </ItemGroup>
 </Project>
