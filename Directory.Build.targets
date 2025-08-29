@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
     <PropertyGroup>
-        <DotnetVersion>9.0.100</DotnetVersion>
-        <MauiVersion>9.0.0</MauiVersion>
+        <DotnetVersion>9.0.304</DotnetVersion>
+        <MauiVersion>9.0.100</MauiVersion>
     </PropertyGroup>
     
     <ItemGroup Label="ExternalPackages">
@@ -17,14 +17,15 @@
         <!--ReactiveUI-->
         <PackageVersion Include="ReactiveUI" Version="[20.1.1]" />
         <PackageVersion Include="ReactiveUI.Fody" Version="[19.5.41]" />
-        
-        <!--Firebase-->
-        <PackageVersion Include="Plugin.Firebase" Version="[3.1.4]" />
-        <PackageVersion Include="Google.Cloud.Firestore" Version="[3.10.1]" />
+
+        <!--Firebase - Updated to latest versions for .NET 9 / MAUI 9 compatibility-->
+        <PackageVersion Include="Plugin.Firebase" Version="[3.2.0]" />
+        <PackageVersion Include="Google.Cloud.Firestore" Version="[3.15.0]" />
         <!-- <PackageVersion Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
         <!-- <PackageVersionge Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
         <!-- <PackageVersion Include="Firebase.Auth" Version="[1.0.0]" />-->
         <!-- <PackageVersion Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
+        
         
     </ItemGroup>
 </Project>
