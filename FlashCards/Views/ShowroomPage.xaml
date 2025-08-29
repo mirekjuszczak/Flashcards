@@ -32,19 +32,19 @@
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsSwipeCollection Control"
+            Text="CardsSwipeCollection New"
             Command="{Binding OnGoToCardsSwipeCollectionPage}" />
 
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsCarouselCollection Control"
+            Text="CardsCarouselCollection Old"
             Command="{Binding OnGoToCardsCarouselCollectionPage}" />
 
         <Button
             Margin="20,10"
             VerticalOptions="Start"
-            Text="CardsCollection3 Control"
+            Text="CardsCollection3 Old"
             Command="{Binding OnGoToCardsCollection3Page}" />
 
         <Label
