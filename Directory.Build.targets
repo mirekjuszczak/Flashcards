@@ -5,27 +5,28 @@
         <MauiVersion>9.0.100</MauiVersion>
     </PropertyGroup>
     
-    <ItemGroup Label="ExternalPackages">
-        <!--Maui packages-->
-<!--         Removed CommunityToolkit.Mvvm from here - defined in csproj -->
-        <PackageVersion Include="CommunityToolkit.Maui" Version="[9.0.1]" />
-        <PackageVersion Include="Bindables.Maui" Version="[1.4.1]" />
-        <PackageVersion Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
-        <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
-        <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0"/>
-            
-        <!--ReactiveUI-->
-        <PackageVersion Include="ReactiveUI" Version="[20.1.1]" />
-        <PackageVersion Include="ReactiveUI.Fody" Version="[19.5.41]" />
+<!--    <ItemGroup Label="ExternalPackages">-->
+<!--        &lt;!&ndash;Maui packages&ndash;&gt;-->
+<!--&lt;!&ndash;         Removed CommunityToolkit.Mvvm from here - defined in csproj &ndash;&gt;-->
+<!--        <PackageVersion Include="CommunityToolkit.Maui" Version="[9.0.1]" />-->
+<!--        <PackageVersion Include="Bindables.Maui" Version="[1.4.1]" />-->
+<!--        <PackageVersion Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>-->
+<!--        <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>-->
+<!--        <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5"/>-->
+<!--            -->
+<!--        &lt;!&ndash;ReactiveUI&ndash;&gt;-->
+<!--        <PackageVersion Include="ReactiveUI" Version="[20.1.1]" />-->
+<!--        <PackageVersion Include="ReactiveUI.Fody" Version="[19.5.41]" />-->
 
-        <!--Firebase - Updated to latest versions for .NET 9 / MAUI 9 compatibility-->
-        <PackageVersion Include="Plugin.Firebase" Version="[3.2.0]" />
-        <PackageVersion Include="Google.Cloud.Firestore" Version="[3.15.0]" />
-        <!-- <PackageVersion Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />-->
-        <!-- <PackageVersionge Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />-->
-        <!-- <PackageVersion Include="Firebase.Auth" Version="[1.0.0]" />-->
-        <!-- <PackageVersion Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />-->
-        
-        
-    </ItemGroup>
+<!--        &lt;!&ndash;Firebase - Updated to latest versions for .NET 9 / MAUI 9 compatibility&ndash;&gt;-->
+<!--        <PackageVersion Include="Plugin.Firebase" Version="[3.2.0]" />-->
+<!--        <PackageVersion Include="Google.Cloud.Firestore" Version="[3.15.0]" />-->
+<!--        -->
+<!--        &lt;!&ndash; <PackageVersion Include="Xamarin.Firebase.Core" Version="[121.1.1.12]" />&ndash;&gt;-->
+<!--        &lt;!&ndash; <PackageVersionge Include="Xamarin.Firebase.iOS.Core" Version="[8.10.0.3]" />&ndash;&gt;-->
+<!--        &lt;!&ndash; <PackageVersion Include="Firebase.Auth" Version="[1.0.0]" />&ndash;&gt;-->
+<!--        &lt;!&ndash; <PackageVersion Include="Xamarin.Firebase.Firestore" Version="[125.1.1.1]" />&ndash;&gt;-->
+<!--        -->
+<!--        -->
+<!--    </ItemGroup>-->
 </Project>
