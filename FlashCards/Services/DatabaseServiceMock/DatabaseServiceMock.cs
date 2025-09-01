@@ -1,9 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Services.DatabaseServiceMock;
 
-public class DatabaseService : IDatabaseService
+public class DatabaseServiceMock : IDatabaseService
 {
     public Task CreateCategory(string name) => throw new NotImplementedException();
     public Task CreateCard(User user) => throw new NotImplementedException();

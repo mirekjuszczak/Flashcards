@@ -1,11 +1,9 @@
-using System;
-using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
 
-namespace FlashCards.Services.FirebaseService;
+namespace FlashCards.Services.DatabaseServiceMock;
 
-public class FirebaseAuthService : IUserService
+public class UserServiceMock : IUserService
 {
     public Task CreateOrUpdateUser(User user)
     {

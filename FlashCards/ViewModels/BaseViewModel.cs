@@ -4,5 +4,5 @@ namespace FlashCards.ViewModels;
 
 public partial class BaseViewModel: ObservableObject
 {
-    [ObservableProperty] private string title;
+    [ObservableProperty] private string _title = string.Empty;
 }

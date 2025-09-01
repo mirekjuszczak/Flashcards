@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using FlashCards.Models;
 using Bindables.Maui;
+using Microsoft.Maui.Controls;
 
 namespace FlashCards.UI.Controls;
 

@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
-using Google.Cloud.Firestore;
 using Plugin.Firebase.Firestore;
 
 namespace FlashCards.Services.FirebaseService;

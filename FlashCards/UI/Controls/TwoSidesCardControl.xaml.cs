@@ -1,5 +1,8 @@
+using System;
 using Bindables.Maui;
 using FlashCards.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace FlashCards.UI.Controls;
 

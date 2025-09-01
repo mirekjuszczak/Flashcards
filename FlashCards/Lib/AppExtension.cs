@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Microsoft.Maui.Controls;
+
 namespace FlashCards.Lib;
 
 public static class AppExtension

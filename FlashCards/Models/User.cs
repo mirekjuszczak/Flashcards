@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace FlashCards.Models;
 
 public class User
