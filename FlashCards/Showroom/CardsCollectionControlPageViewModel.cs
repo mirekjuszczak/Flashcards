@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
-using FlashCards.Services.DatabaseServiceMock;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
