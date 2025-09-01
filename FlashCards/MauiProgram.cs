@@ -4,7 +4,10 @@ using FlashCards.Services.Navigation;
 using FlashCards.Showroom;
 using FlashCards.ViewModels;
 using FlashCards.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
 using CommunityToolkit.Maui;
 using FlashCards.Services.DatabaseServiceMock;
 
@@ -39,6 +42,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<CardsSwipeCollectionControlPage>();
         builder.Services.AddSingleton<CardsCarouselCollectionPage>();
         builder.Services.AddSingleton<CardsCollectionControlPageViewModel>();
+        builder.Services.AddSingleton<CardsCollection3Page>();
+        builder.Services.AddSingleton<CardsCollection3ViewModel>();
         builder.Services.AddSingleton<CategoryCardPage>();
         builder.Services.AddSingleton<CategoriesCollectionPage>();
         builder.Services.AddSingleton<CategoriesPageViewModel>();
