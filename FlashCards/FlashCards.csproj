@@ -24,7 +24,7 @@
         <ApplicationTitle>FlashCards</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.flashcards</ApplicationId>
+        <ApplicationId>com.juszczakmj.flashcards</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -55,20 +55,18 @@
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
 
-<!--    <ItemGroup>-->
-<!--        <PackageReference Include="Bindables.Maui" />-->
-<!--        <PackageReference Include="CommunityToolkit.Maui" />-->
-<!--        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />-->
-<!--        <PackageReference Include="Microsoft.Maui.Controls" />-->
-<!--        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" />-->
-<!--        <PackageReference Include="Microsoft.Extensions.Logging.Debug" />-->
-<!--        <PackageReference Include="ReactiveUI" />-->
-<!--        <PackageReference Include="ReactiveUI.Fody" />-->
+    <!-- Platform specific settings-->
+    <!-- Android -->
+    <ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+        <GoogleServicesJson Include="google-services.json" />
+    </ItemGroup>
 
-<!--        <PackageReference Include="Plugin.Firebase" />-->
-<!--        <PackageReference Include="Google.Cloud.Firestore" />-->
-<!--    </ItemGroup>-->
+    <!-- iOS -->
+    <ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+        <BundleResource Include="GoogleService-Info.plist" />
+    </ItemGroup>
     
+    <!-- Nuget packages-->
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="[9.0.1]" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
@@ -83,18 +81,24 @@
     
         <!--Firebase - Updated to latest versions for .NET 9 / MAUI 9 compatibility-->
         <PackageReference Include="Plugin.Firebase" Version="[3.1.4]" />
-        <PackageReference Include="Google.Cloud.Firestore" Version="[3.10.0]" />
+        <!--<PackageReference Include="Google.Cloud.Firestore" Version="[3.10.0]" />-->
     </ItemGroup>
-    
-    <ItemGroup>
-        <!-- Firebase for Android -->
-        <GoogleServicesJson Include="google-services.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <AndroidSkipIntermediateProcessing>true</AndroidSkipIntermediateProcessing>
-        </GoogleServicesJson>
 
-        <!-- Firebase for iOS -->
-        <BundleResource Include="GoogleService-Info.plist" />
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+        <PackageReference Include="Xamarin.AndroidX.Core" Version="[1.17.0]" />
+        <PackageReference Include="Xamarin.AndroidX.Collection" Version="[1.5.0.3]" />
+        <PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="[1.5.0.3]" />
+        <PackageReference Include="Xamarin.AndroidX.Activity.Ktx" Version="[1.10.1.3]" />
+        <PackageReference Include="Xamarin.AndroidX.Browser" Version="[1.9.0]" />
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="[2.9.2.1]" />
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core.Ktx" Version="[2.9.2.1]" />
+        <!-- Adding missing lifecycle packages to resolve version conflicts -->
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="[2.9.2.1]" />
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="[2.9.2.1]" />
+        <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="[2.9.2.1]" />
     </ItemGroup>
 
     <ItemGroup>
