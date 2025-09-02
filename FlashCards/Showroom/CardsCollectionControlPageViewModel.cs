@@ -22,6 +22,10 @@ public class CardsCollectionControlPageViewModel : BaseViewModel
 
     private async Task InitializeCardsCollection()
     {
+        // TEST FIRESTORE CONNECTION
+        _ = await _databaseService.TestFirestoreConnection();
+        // TEST FIRESTORE CONNECTION
+        
         var collection = await _databaseService.GetCardsCollection();
         CardsCollection.AddRange(collection);
     }
