@@ -11,13 +11,13 @@ public class FirebaseDatabaseService : IDatabaseService
     
     private readonly IFirebaseFirestore _firestore;
 
-    public FirebaseDatabaseService()
+    public FirebaseDatabaseService(IFirebaseFirestore firestore)
     {
-        Console.WriteLine("MOZUTEST FirebaseDatabaseService constructor init");
+        Console.WriteLine("MOZU: FirebaseDatabaseService constructor init");
         
-        _firestore = CrossFirebaseFirestore.Current;
+        _firestore = firestore;
         
-        Console.WriteLine($"MOZUTEST FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
+        Console.WriteLine($"MOZU: FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
     }
 
     public Task CreateCategory(string name)
@@ -88,27 +88,25 @@ public class FirebaseDatabaseService : IDatabaseService
                 Favourite = false
             };
             
-            // var collection = _firestore.Collection(CardsCollectionName);
-            // var document = collection.Document(singleCard.Id);
-            // await document.SetAsync(singleCard);
-            
-            // var collection = _firestore.GetCollection(CardsCollectionName);
+            // Correct way to add a document using Plugin.Firebase
             var collection = _firestore.GetCollection(CardsCollectionName);
-            var document = collection.AddDocumentAsync(singleCard);
+            var documentReference = await collection.AddDocumentAsync(singleCard);
             
-            Console.WriteLine($"\nMOZUTEST Dodano karte testowa do kolekcji {CardsCollectionName}\n");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.Id}");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.Phrase}");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.Example}");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.CategoryId}");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.LearningProgress}");
-            Console.WriteLine($"\nMOZUTEST Id={singleCard.Favourite}");
+            Console.WriteLine($"\nMOZU: Dodano karte testowa do kolekcji {CardsCollectionName}\n");
+            Console.WriteLine($"\nMOZU: DocumentId={documentReference.Id}");
+            Console.WriteLine($"\nMOZU: Id={singleCard.Id}");
+            Console.WriteLine($"\nMOZU: Phrase={singleCard.Phrase}");
+            Console.WriteLine($"\nMOZU: Example={singleCard.Example}");
+            Console.WriteLine($"\nMOZU: CategoryId={singleCard.CategoryId}");
+            Console.WriteLine($"\nMOZU: LearningProgress={singleCard.LearningProgress}");
+            Console.WriteLine($"\nMOZU: Favourite={singleCard.Favourite}");
             
             return true;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"MOZUTEST Błąd podczas łączenia z Firestore: {ex.Message}");
+            Console.WriteLine($"MOZU: Błąd podczas łączenia z Firestore: {ex.Message}");
+            Console.WriteLine($"MOZU: StackTrace: {ex.StackTrace}");
             return false;
         }
     }

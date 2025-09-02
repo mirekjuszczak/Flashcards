@@ -9,6 +9,8 @@ using CommunityToolkit.Maui;
 using FlashCards.Services.DatabaseServiceMock;
 using Microsoft.Maui.LifecycleEvents;
 using Plugin.Firebase.Auth;
+using Plugin.Firebase.Firestore;
+using Plugin.Firebase.Storage;
 
 #if IOS
 using Plugin.Firebase.Core.Platforms.iOS;
@@ -77,6 +79,8 @@ public static class MauiProgram
         });
         
         builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
+        builder.Services.AddSingleton(_ => CrossFirebaseStorage.Current);
+        builder.Services.AddSingleton(_ => CrossFirebaseFirestore.Current);
         return builder;
     }
 }
