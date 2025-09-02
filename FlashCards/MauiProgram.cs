@@ -7,6 +7,14 @@ using FlashCards.Views;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using FlashCards.Services.DatabaseServiceMock;
+using Microsoft.Maui.LifecycleEvents;
+using Plugin.Firebase.Auth;
+
+#if IOS
+using Plugin.Firebase.Core.Platforms.iOS;
+#elif ANDROID
+using Plugin.Firebase.Core.Platforms.Android;
+#endif
 
 namespace FlashCards;
 public static class MauiProgram
@@ -22,6 +30,8 @@ public static class MauiProgram
         }).UseMauiCommunityToolkit();
         RegisterViewModelsAndPages(builder);
         RegisterServices(builder);
+        RegisterFirebaseServices(builder);
+        
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
@@ -47,8 +57,26 @@ public static class MauiProgram
     private static void RegisterServices(MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<INavigationService, NavigationService>();
-        builder.Services.AddSingleton<IDatabaseService, DatabaseServiceMock>();
-        // builder.Services.AddSingleton<IDatabaseService, FirebaseDatabaseService>();
+        // builder.Services.AddSingleton<IDatabaseService, DatabaseServiceMock>();
+        builder.Services.AddSingleton<IDatabaseService, FirebaseDatabaseService>();
         builder.Services.AddSingleton<IUserService, FirebaseAuthService>();
+    }
+    
+    private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+    {
+        builder.ConfigureLifecycleEvents(events => {
+#if IOS
+            events.AddiOS(iOS => iOS.WillFinishLaunching((_,__) => {
+                CrossFirebase.Initialize();
+                return false;
+            }));
+#elif ANDROID
+            events.AddAndroid(android => android.OnCreate((activity, _) =>
+                CrossFirebase.Initialize(activity)));
+#endif
+        });
+        
+        builder.Services.AddSingleton(_ => CrossFirebaseAuth.Current);
+        return builder;
     }
 }
