@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
 using Plugin.Firebase.Firestore;
@@ -12,13 +9,13 @@ public class FirebaseDatabaseService : IDatabaseService
     private const string ProjectFirebaseId = "flashcards-mjusz";
     private const string CardsCollectionName = "cards";
     
-    private readonly IFirebaseFirestore _firebase;
+    private readonly IFirebaseFirestore _firestore;
 
     public FirebaseDatabaseService()
     {
         Console.WriteLine("MOZUTEST FirebaseDatabaseService constructor init");
         
-        _firebase = CrossFirebaseFirestore.Current;
+        _firestore = CrossFirebaseFirestore.Current;
         
         Console.WriteLine($"MOZUTEST FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
     }
@@ -95,7 +92,8 @@ public class FirebaseDatabaseService : IDatabaseService
             // var document = collection.Document(singleCard.Id);
             // await document.SetAsync(singleCard);
             
-            var collection = _firebase.GetCollection(CardsCollectionName);
+            // var collection = _firestore.GetCollection(CardsCollectionName);
+            var collection = _firestore.GetCollection(CardsCollectionName);
             var document = collection.AddDocumentAsync(singleCard);
             
             Console.WriteLine($"\nMOZUTEST Dodano karte testowa do kolekcji {CardsCollectionName}\n");
