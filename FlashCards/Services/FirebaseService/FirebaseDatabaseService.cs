@@ -12,7 +12,6 @@ public class FirebaseDatabaseService : IDatabaseService
     private const string ProjectFirebaseId = "flashcards-mjusz";
     private const string CardsCollectionName = "cards";
     
-    // private readonly FirestoreDb _firestore;
     private readonly IFirebaseFirestore _firebase;
 
     public FirebaseDatabaseService()
@@ -20,8 +19,6 @@ public class FirebaseDatabaseService : IDatabaseService
         Console.WriteLine("MOZUTEST FirebaseDatabaseService constructor init");
         
         _firebase = CrossFirebaseFirestore.Current;
-
-        // _firestore = FirestoreDb.Create(ProjectFirebaseId);
         
         Console.WriteLine($"MOZUTEST FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
     }
@@ -86,7 +83,7 @@ public class FirebaseDatabaseService : IDatabaseService
         {
             var singleCard = new SingleCard
             {
-                Phrase = "Hello",
+                Phrase = "Hello FirebaseTest",
                 Translation = "Czesc",
                 Example = "Hello, how are you?",
                 CategoryId = "1",
@@ -125,19 +122,19 @@ public class FirebaseDatabaseService : IDatabaseService
         categories.Add(new Category
         {
             Id = 1.ToString(),
-            Name = "Noun"
+            Name = "Noun FirebaseTest"
         });
         
         categories.Add(new Category
         {
             Id = 2.ToString(),
-            Name = "Verb"
+            Name = "Verb FirebaseTest"
         });
         
         categories.Add(new Category
         {
             Id = 3.ToString(),
-            Name = "Airport"
+            Name = "Airport FirebaseTest"
         });
         
         return categories;
@@ -152,7 +149,7 @@ public class FirebaseDatabaseService : IDatabaseService
         cards.Add(new SingleCard
         {
             Id = "C1",
-            Phrase = "Cat",
+            Phrase = "Cat FirebaseTest",
             Translation = "Kot",
             Example = "This is my cat",
             CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
@@ -164,7 +161,7 @@ public class FirebaseDatabaseService : IDatabaseService
         cards.Add(new SingleCard()
         {
             Id = "C2",
-            Phrase = "Dog",
+            Phrase = "Dog FirebaseTest",
             Translation = "Pies",
             Example = "This is my dog",
             CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
