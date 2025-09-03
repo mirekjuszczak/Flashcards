@@ -6,22 +6,15 @@ using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Services.DatabaseServiceMock;
 
-public class DatabaseServiceMock : IDatabaseService
+public class DatabaseServiceMock
 {
-    public Task CreateCategory(string name) => throw new NotImplementedException();
-    public Task CreateCard(User user) => throw new NotImplementedException();
-    public Task<Category> GetCategory(string name) => throw new NotImplementedException();
-    public Task<List<SingleCard>> GetCardsCollectionByCategroryId(string id) => throw new NotImplementedException();
-    public Task UpdateCategory(string categoryId, string newName) => throw new NotImplementedException();
-    public Task UpdateCard(string cardId, SingleCard newCard) => throw new NotImplementedException();
-    public Task DeleteCategory(string categoryId) => throw new NotImplementedException();
-    public Task DeleteCard(string cardId) => throw new NotImplementedException();
+    public List<SingleCard> CardsCollection { get; }
+    public List<Category> CategoriesCollection { get; }
 
-    public Task<List<SingleCard>> GetCardsCollection()
+    public DatabaseServiceMock()
     {
-        var listCards = CreateMockedCardsList();
-
-        return Task.FromResult(listCards);
+        CardsCollection = CreateMockedCardsList();
+        CategoriesCollection = CreateMockedCategoriesList();
     }
 
     public Task<List<Category>> GetCategoriesCollection()
@@ -30,8 +23,6 @@ public class DatabaseServiceMock : IDatabaseService
 
         return Task.FromResult(listCategories);
     }
-
-    public Task<bool> TestFirestoreConnection() => Task.FromResult(false);
 
     private List<Category> CreateMockedCategoriesList()
     {

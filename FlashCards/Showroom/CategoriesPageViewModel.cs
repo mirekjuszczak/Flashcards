@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
+using FlashCards.Services.DatabaseServiceMock;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
@@ -21,12 +22,12 @@ public class CategoriesPageViewModel : BaseViewModel
         Title = "Categories collection";
         CategoryName = "Test Category";
 
-        _ = InitializeCategoriesCollection();
+        InitializeCategoriesCollection();
     }
     
-    private async Task InitializeCategoriesCollection()
+    private void InitializeCategoriesCollection()
     {
-        var collection = await _databaseService.GetCategoriesCollection();
-        CategoriesCollection.AddRange(collection);
+        var collection = new DatabaseServiceMock();
+        CategoriesCollection.AddRange(collection.CategoriesCollection);
     }
 }

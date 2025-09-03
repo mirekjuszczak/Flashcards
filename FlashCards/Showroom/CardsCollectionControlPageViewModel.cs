@@ -1,5 +1,6 @@
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
+using FlashCards.Services.DatabaseServiceMock;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
@@ -10,23 +11,17 @@ public class CardsCollectionControlPageViewModel : BaseViewModel
     private readonly IDatabaseService _databaseService;
     [ObservableAsProperty] public List<SingleCard> CardsCollection { get; } = new List<SingleCard>();
 
-    // public ObservableCollection<SingleCard> CardsCollection { get; } = new ObservableCollection<SingleCard>();
-
     public CardsCollectionControlPageViewModel(IDatabaseService databaseService)
     {
         _databaseService = databaseService;
-        _ = InitializeCardsCollection();
+        InitializeCardsCollection();
         
         Title = "Two Sides Card Control Sample";
     }
 
-    private async Task InitializeCardsCollection()
+    private void InitializeCardsCollection()
     {
-        // TEST FIRESTORE CONNECTION
-        _ = await _databaseService.TestFirestoreConnection();
-        // TEST FIRESTORE CONNECTION
-        
-        var collection = await _databaseService.GetCardsCollection();
-        CardsCollection.AddRange(collection);
+        var collection = new DatabaseServiceMock();
+        CardsCollection.AddRange(collection.CardsCollection);
     }
 }

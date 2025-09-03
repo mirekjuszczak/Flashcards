@@ -68,7 +68,6 @@ public static class MauiProgram
     private static void RegisterServices(MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<INavigationService, NavigationService>();
-        // builder.Services.AddSingleton<IDatabaseService, DatabaseServiceMock>();
         builder.Services.AddSingleton<IDatabaseService, FirebaseDatabaseService>();
         builder.Services.AddSingleton<IUserService, FirebaseAuthService>();
     }
