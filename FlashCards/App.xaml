@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="UI/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />
                 <ResourceDictionary Source="/UI/Controls/CardStyles.xaml" />
+                <ResourceDictionary Source="UI/Converters/Converters.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

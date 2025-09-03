@@ -4,22 +4,197 @@
     x:Class="FlashCards.Showroom.Firebase.Storage.GetCollectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:FlashCards.Models"
     xmlns:viewModels="clr-namespace:FlashCards.Showroom.Firebase.Storage"
     BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
                                       Dark={StaticResource Theme_02_Light_Color}}"
     x:DataType="viewModels:GetCollectionPageViewModel">
 
-    <VerticalStackLayout
-        Padding="30"
-        VerticalOptions="Start"
-        Spacing="20">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
 
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding InfoText}"
-            TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                        Dark={StaticResource Theme_01_Dark_Color}}"
-            FontSize="18" />
-    </VerticalStackLayout>
+            <!--  Header  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding Title}"
+                TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                            Dark={StaticResource Theme_01_Dark_Color}}"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <!--  Status Info  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding InfoText}"
+                TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                            Dark={StaticResource Theme_01_Dark_Color}}"
+                HorizontalTextAlignment="Center"
+                FontSize="16" />
+
+            <!--  Error Message  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                HorizontalTextAlignment="Center"
+                FontSize="14"
+                IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+
+            <!--  Loading Indicator  -->
+            <ActivityIndicator
+                IsVisible="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}"
+                Color="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                        Dark={StaticResource Theme_01_Dark_Color}}" />
+
+            <!--  Action Buttons  -->
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
+                                                      Dark={StaticResource Primary}}"
+                    Text="Get Collection"
+                    TextColor="White"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"
+                    Command="{Binding LoadCardsCommand}" />
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
+                                                      Dark={StaticResource Secondary}}"
+                    Text="Ad Example"
+                    TextColor="White"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}"
+                    Command="{Binding AddSampleCardCommand}" />
+            </HorizontalStackLayout>
+
+            <!--  Cards Collection  -->
+            <CollectionView
+                IsVisible="{Binding Cards.Count, Converter={StaticResource IntToBoolConverter}}"
+                x:DataType="viewModels:GetCollectionPageViewModel"
+                ItemsSource="{Binding Cards}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:SingleCard">
+                        <Border
+                            Margin="0,5"
+                            Padding="15"
+                            BackgroundColor="{AppThemeBinding Light=White,
+                                                              Dark=#2D2D30}"
+                            StrokeThickness="1"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200},
+                                                     Dark={StaticResource Gray600}}">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+
+                            <VerticalStackLayout Spacing="8">
+
+                                <!--  Phrase and Translation  -->
+                                <Grid
+                                    ColumnDefinitions="*, *"
+                                    ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label
+                                            Text="Phrase:"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray600},
+                                                                        Dark={StaticResource Gray400}}"
+                                            FontSize="12"
+                                            FontAttributes="Bold" />
+                                        <Label
+                                            Text="{Binding Phrase}"
+                                            TextColor="{AppThemeBinding Light={StaticResource Primary},
+                                                                        Dark={StaticResource PrimaryDark}}"
+                                            FontSize="16"
+                                            FontAttributes="Bold" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label
+                                            Text="Translation:"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray600},
+                                                                        Dark={StaticResource Gray400}}"
+                                            FontSize="12"
+                                            FontAttributes="Bold" />
+                                        <Label
+                                            Text="{Binding Translation}"
+                                            TextColor="{AppThemeBinding Light=Black,
+                                                                        Dark=White}"
+                                            FontSize="16" />
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <!--  Example  -->
+                                <VerticalStackLayout IsVisible="{Binding Example, Converter={StaticResource IsNotNullOrEmptyConverter}}">
+                                    <Label
+                                        Text="Example:"
+                                        TextColor="{AppThemeBinding Light={StaticResource Gray600},
+                                                                    Dark={StaticResource Gray400}}"
+                                        FontSize="12"
+                                        FontAttributes="Bold" />
+                                    <Label
+                                        Text="{Binding Example}"
+                                        TextColor="{AppThemeBinding Light={StaticResource Gray900},
+                                                                    Dark={StaticResource Gray200}}"
+                                        FontSize="14" />
+                                </VerticalStackLayout>
+
+                                <!--  Category and Status  -->
+                                <Grid
+                                    ColumnDefinitions="*, Auto, Auto"
+                                    ColumnSpacing="10">
+                                    <Label
+                                        Grid.Column="0"
+                                        VerticalOptions="Center"
+                                        Text="{Binding CategoryName, StringFormat='Kategoria: {0}'}"
+                                        TextColor="{AppThemeBinding Light={StaticResource Gray600},
+                                                                    Dark={StaticResource Gray400}}"
+                                        FontSize="12" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        Text="★"
+                                        TextColor="Gold"
+                                        FontSize="16"
+                                        IsVisible="{Binding Favourite}" />
+
+                                    <Border
+                                        Grid.Column="2"
+                                        Padding="6,2"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
+                                                                          Dark={StaticResource SecondaryDark}}">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="4" />
+                                        </Border.StrokeShape>
+                                        <Label
+                                            Text="{Binding LearningProgress}"
+                                            TextColor="White"
+                                            FontSize="10" />
+                                    </Border>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--  Empty State  -->
+            <Label
+                HorizontalOptions="Center"
+                Text=" No cards to display. Click 'Load Cards' to fetch data from Firestore."
+                TextColor="{AppThemeBinding Light={StaticResource Gray600},
+                                            Dark={StaticResource Gray400}}"
+                HorizontalTextAlignment="Center"
+                FontSize="14"
+                IsVisible="{Binding Cards.Count, Converter={StaticResource IntToInvertedBoolConverter}}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

@@ -1,14 +1,110 @@
 using FlashCards.ViewModels;
-using ReactiveUI.Fody.Helpers;
+using FlashCards.Models;
+using System.Collections.ObjectModel;
+using Plugin.Firebase.Firestore;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
-public class GetCollectionPageViewModel : BaseViewModel
+public partial class GetCollectionPageViewModel : BaseViewModel
 {
-    public GetCollectionPageViewModel()
-    {
-        
-    }
+    private readonly IFirebaseFirestore _firebaseFirestore;
     
-    [ObservableAsProperty] public string InfoText { get; } = "Collection not implemented yet";
+    [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
+    
+    [ObservableProperty] private bool _isLoading;
+    
+    [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
+    
+    [ObservableProperty] private string _errorMessage = string.Empty;
+
+    public GetCollectionPageViewModel(IFirebaseFirestore firebaseFirestore)
+    {
+        _firebaseFirestore = firebaseFirestore;
+        Title = "Cards collection of Firebase";
+    }
+
+    [RelayCommand]
+    private async Task LoadCardsAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            ErrorMessage = string.Empty;
+            InfoText = "Getting cards from Firestore...";
+            Cards.Clear();
+
+            // Get "cards" collection from Firestore
+            var collectionReference = _firebaseFirestore.GetCollection("cards");
+            var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
+
+            if (querySnapshot.Documents?.Any() == true)
+            {
+                foreach (var document in querySnapshot.Documents)
+                {
+                    // Convert a document form Firebase to SingleCard
+                    var card = document.Data;
+                    if (card != null)
+                    {
+                        Cards.Add(card);
+                    }
+                }
+
+                InfoText = $"{Cards.Count} cards got from Firestore";
+            }
+            else
+            {
+                InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Getting cards failed: {ex.Message}";
+            InfoText = "Error during getting cards from Firestore";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    [RelayCommand]
+    private async Task AddSampleCardAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            InfoText = "Adding a card as an example...";
+
+            var sampleCard = new SingleCard
+            {
+                Phrase = "Hello",
+                Translation = "Czesc",
+                Example = "Hello, how are you?",
+                CategoryName = "Basic",
+                CategoryId = "basic",
+                Favourite = false,
+                LearningProgress = LearningProgress.NotStarted
+            };
+
+            // Add card to the  "cards"
+            var collectionReference = _firebaseFirestore.GetCollection("cards");
+            await collectionReference.AddDocumentAsync(sampleCard);
+
+            InfoText = "Example card has been added";
+            
+            // Refresh the cards list
+            await LoadCardsAsync();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Error while adding a card: {ex.Message}";
+            InfoText = "Adding card failed...";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
 }
