@@ -77,7 +77,7 @@
             Margin="20,10"
             VerticalOptions="Start"
             Text="Storage"
-            Command="{Binding OnGoToShowCollectionPage}" />
+            Command="{Binding OnGoToGetCollectionPage}" />
 
     </VerticalStackLayout>
 </ContentPage>

@@ -19,7 +19,7 @@ public class ShowroomPageViewModel : BaseViewModel
         OnGoToCategoriesCollectionPage = new Command(async () => await RunGoToCategoriesCollectionPage());
         
         //Firebase
-        OnGoToShowCollectionPage = new Command(async () => await RunGoToShowCollectionPage());
+        OnGoToGetCollectionPage = new Command(async () => await RunGoToGetCollectionPage());
     }
 
     public Command OnGoToTwoSidesCardPage { get; }
@@ -32,7 +32,7 @@ public class ShowroomPageViewModel : BaseViewModel
 
     public Command OnGoToCategoriesCollectionPage { get; }
 
-    public Command OnGoToShowCollectionPage { get; }
+    public Command OnGoToGetCollectionPage { get; }
 
     private async Task RunGoToSidesCardPage() =>
         await _navigationService.NavigateToAsync(nameof(TwoSidesCardControlPage));
@@ -49,6 +49,6 @@ public class ShowroomPageViewModel : BaseViewModel
     private async Task RunGoToCategoriesCollectionPage()
         => await _navigationService.NavigateToAsync(nameof(CategoriesCollectionPage));
 
-    private async Task RunGoToShowCollectionPage()
+    private async Task RunGoToGetCollectionPage()
         => await _navigationService.NavigateToAsync(nameof(GetCollectionPage));
 }

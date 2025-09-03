@@ -9,9 +9,17 @@
                                       Dark={StaticResource Theme_02_Light_Color}}"
     x:DataType="viewModels:GetCollectionPageViewModel">
 
-    <Button
-        Margin="20,10"
+    <VerticalStackLayout
+        Padding="30"
         VerticalOptions="Start"
-        Text="Storage" />
+        Spacing="20">
+
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding InfoText}"
+            TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
+                                        Dark={StaticResource Theme_01_Dark_Color}}"
+            FontSize="18" />
+    </VerticalStackLayout>
 
 </ContentPage>
