@@ -2,6 +2,7 @@ using System.Globalization;
 
 namespace FlashCards.UI.Converters;
 
+[AcceptEmptyServiceProvider]
 public class IntToInvertedBoolConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

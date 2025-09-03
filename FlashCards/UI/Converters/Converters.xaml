@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:FlashCards.UI.Converters">
 
-    <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
-    <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-    <converters:IntToBoolConverter x:Key="IntToBoolConverter" />
     <converters:IntToInvertedBoolConverter x:Key="IntToInvertedBoolConverter" />
 
 </ResourceDictionary>
