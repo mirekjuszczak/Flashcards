@@ -7,6 +7,7 @@ using FlashCards.Views;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using FlashCards.Services.DatabaseServiceMock;
+using FlashCards.Showroom.Firebase.Storage;
 using Microsoft.Maui.LifecycleEvents;
 using Plugin.Firebase.Auth;
 using Plugin.Firebase.Firestore;
@@ -44,16 +45,24 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<StartPage>();
         builder.Services.AddSingleton<StartPageViewModel>();
+        
         builder.Services.AddSingleton<ShowroomPage>();
         builder.Services.AddSingleton<ShowroomPageViewModel>();
+        
         builder.Services.AddSingleton<TwoSidesCardControlPage>();
         builder.Services.AddSingleton<TwoSidesCardControlPageViewModel>();
+        
         builder.Services.AddSingleton<CardsSwipeCollectionControlPage>();
         builder.Services.AddSingleton<CardsCarouselCollectionPage>();
         builder.Services.AddSingleton<CardsCollectionControlPageViewModel>();
+        
         builder.Services.AddSingleton<CategoryCardPage>();
         builder.Services.AddSingleton<CategoriesCollectionPage>();
         builder.Services.AddSingleton<CategoriesPageViewModel>();
+        
+        // Firebase
+        builder.Services.AddSingleton<GetCollectionPage>();
+        builder.Services.AddSingleton<GetCollectionPageViewModel>();
     }
 
     private static void RegisterServices(MauiAppBuilder builder)

@@ -1,4 +1,5 @@
 ﻿using FlashCards.Showroom;
+using FlashCards.Showroom.Firebase.Storage;
 using FlashCards.Views;
 
 namespace FlashCards;
@@ -20,5 +21,8 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(CardsCarouselCollectionPage), typeof(CardsCarouselCollectionPage));
 		Routing.RegisterRoute(nameof(CategoryCardPage), typeof(CategoryCardPage));
 		Routing.RegisterRoute(nameof(CategoriesCollectionPage), typeof(CategoriesCollectionPage));
+		
+		// Firebase
+		Routing.RegisterRoute(nameof(GetCollectionPage), typeof(GetCollectionPage));
 	}
 }
