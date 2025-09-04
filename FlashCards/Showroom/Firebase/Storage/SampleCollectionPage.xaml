@@ -38,7 +38,8 @@
             <Label
                 HorizontalOptions="Center"
                 Text="{Binding ErrorMessage}"
-                TextColor="Red"
+                TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                            Dark={StaticResource AccentPrimaryDark}}"
                 HorizontalTextAlignment="Center"
                 FontSize="14"
                 IsVisible="{Binding ErrorMessage, Converter={toolkitConverters:IsNotNullConverter}}" />
@@ -56,28 +57,37 @@
                 Spacing="10">
 
                 <Button
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary},
-                                                      Dark={StaticResource Primary}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                      Dark={StaticResource AccentPrimaryDark}}"
                     Text="Get Collection"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                Dark={StaticResource TextPrimaryDark}}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
                     Command="{Binding LoadCardsCommand}" />
 
                 <Button
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
-                                                      Dark={StaticResource Secondary}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
                     Text="Add Example"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                Dark={StaticResource AccentPrimaryDark}}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
-                    Command="{Binding AddSampleCardCommand}" />
+                    Command="{Binding AddSampleCardCommand}"
+                    BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}"
+                    BorderWidth="2" />
 
                 <Button
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
-                                                      Dark={StaticResource Secondary}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
                     Text="Delete All"
-                    TextColor="White"
+                    TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                Dark={StaticResource AccentPrimaryDark}}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
-                    Command="{Binding DeleteCardsCollectionCommand}" />
+                    Command="{Binding DeleteCardsCollectionCommand}"
+                    BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}"
+                    BorderWidth="2" />
             </HorizontalStackLayout>
 
             <!--  Cards Collection  -->
@@ -91,11 +101,11 @@
                         <Border
                             Margin="0,5"
                             Padding="15"
-                            BackgroundColor="{AppThemeBinding Light=White,
-                                                              Dark=#2D2D30}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                              Dark={StaticResource SurfaceDark}}"
                             StrokeThickness="1"
-                            Stroke="{AppThemeBinding Light={StaticResource Gray200},
-                                                     Dark={StaticResource Gray600}}">
+                            Stroke="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                     Dark={StaticResource TextTertiaryDark}}">
 
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="8" />
@@ -110,14 +120,14 @@
                                     <VerticalStackLayout Grid.Column="0">
                                         <Label
                                             Text="Phrase:"
-                                            TextColor="{AppThemeBinding Light={StaticResource Gray600},
-                                                                        Dark={StaticResource Gray400}}"
+                                            TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                                        Dark={StaticResource TextSecondaryDark}}"
                                             FontSize="12"
                                             FontAttributes="Bold" />
                                         <Label
                                             Text="{Binding Phrase}"
-                                            TextColor="{AppThemeBinding Light={StaticResource Primary},
-                                                                        Dark={StaticResource PrimaryDark}}"
+                                            TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                                        Dark={StaticResource AccentPrimaryDark}}"
                                             FontSize="16"
                                             FontAttributes="Bold" />
                                     </VerticalStackLayout>
@@ -125,14 +135,14 @@
                                     <VerticalStackLayout Grid.Column="1">
                                         <Label
                                             Text="Translation:"
-                                            TextColor="{AppThemeBinding Light={StaticResource Gray600},
-                                                                        Dark={StaticResource Gray400}}"
+                                            TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                                        Dark={StaticResource TextSecondaryDark}}"
                                             FontSize="12"
                                             FontAttributes="Bold" />
                                         <Label
                                             Text="{Binding Translation}"
-                                            TextColor="{AppThemeBinding Light=Black,
-                                                                        Dark=White}"
+                                            TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                                        Dark={StaticResource TextPrimaryDark}}"
                                             FontSize="16" />
                                     </VerticalStackLayout>
                                 </Grid>
@@ -141,14 +151,14 @@
                                 <VerticalStackLayout IsVisible="{Binding Example, Converter={toolkitConverters:IsNotNullConverter}}">
                                     <Label
                                         Text="Example:"
-                                        TextColor="{AppThemeBinding Light={StaticResource Gray600},
-                                                                    Dark={StaticResource Gray400}}"
+                                        TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                                    Dark={StaticResource TextSecondaryDark}}"
                                         FontSize="12"
                                         FontAttributes="Bold" />
                                     <Label
                                         Text="{Binding Example}"
-                                        TextColor="{AppThemeBinding Light={StaticResource Gray900},
-                                                                    Dark={StaticResource Gray200}}"
+                                        TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                                    Dark={StaticResource TextPrimaryDark}}"
                                         FontSize="14" />
                                 </VerticalStackLayout>
 
@@ -160,15 +170,16 @@
                                         Grid.Column="0"
                                         VerticalOptions="Center"
                                         Text="{Binding CategoryName, StringFormat='Category: {0}'}"
-                                        TextColor="{AppThemeBinding Light={StaticResource Gray600},
-                                                                    Dark={StaticResource Gray400}}"
+                                        TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                                    Dark={StaticResource TextTertiaryDark}}"
                                         FontSize="12" />
 
                                     <Label
                                         Grid.Column="1"
                                         VerticalOptions="Center"
                                         Text="★"
-                                        TextColor="Gold"
+                                        TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                                    Dark={StaticResource AccentPrimaryDark}}"
                                         FontSize="16"
                                         IsVisible="{Binding Favourite}" />
 
@@ -176,14 +187,15 @@
                                         Grid.Column="2"
                                         Padding="6,2"
                                         VerticalOptions="Center"
-                                        BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
-                                                                          Dark={StaticResource Gray600}}">
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                                          Dark={StaticResource AccentPrimaryDark}}">
                                         <Border.StrokeShape>
                                             <RoundRectangle CornerRadius="4" />
                                         </Border.StrokeShape>
                                         <Label
                                             Text="{Binding LearningProgress}"
-                                            TextColor="White"
+                                            TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                                        Dark={StaticResource TextPrimaryDark}}"
                                             FontSize="10" />
                                     </Border>
                                 </Grid>
@@ -197,8 +209,8 @@
             <Label
                 HorizontalOptions="Center"
                 Text=" No cards to display. Click 'Load Cards' to fetch data from Firestore."
-                TextColor="{AppThemeBinding Light={StaticResource Gray600},
-                                            Dark={StaticResource Gray400}}"
+                TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                            Dark={StaticResource TextSecondaryDark}}"
                 HorizontalTextAlignment="Center"
                 FontSize="14"
                 IsVisible="{Binding Cards.Count, Converter={StaticResource IntToInvertedBoolConverter}}" />
