@@ -41,15 +41,6 @@ public partial class SampleCollectionPageViewModel : BaseViewModel
             InfoText = "Getting cards from Firestore...";
             Cards.Clear();
 
-            // TEST
-            // var mockcollection = new DatabaseServiceMock();
-            // foreach (var card in mockcollection.CardsCollection)
-            // {
-            //     Cards.Add(card);
-            // }
-            // InfoText = $"{Cards.Count} cards from mocked database";
-            // TEST
-
             // Get "cards" collection from Firestore
             var collectionReference = _firebaseFirestore.GetCollection("cards");
             var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
