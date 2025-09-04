@@ -15,7 +15,7 @@ public class ShowroomPageViewModel : BaseViewModel
         OnGoToTwoSidesCardPage = new Command(async () => await RunGoToSidesCardPage());
         OnGoToCardsSwipeCollectionPage = new Command(async () => await RunGoToCardsSwipeCollectionPage());
         OnGoToCardsCarouselCollectionPage = new Command(async () => await RunGoToCardsCarouselCollectionPage());
-        OnGoToCategoryPage = new Command(async () =>await RunGoToCategoryPage());
+        OnGoToCategoryPage = new Command(async () => await RunGoToCategoryPage());
         OnGoToCategoriesCollectionPage = new Command(async () => await RunGoToCategoriesCollectionPage());
         
         //Firebase

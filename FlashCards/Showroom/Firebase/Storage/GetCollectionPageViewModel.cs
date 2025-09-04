@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using Plugin.Firebase.Firestore;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DynamicData;
+using FlashCards.Services.DatabaseServiceMock;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
@@ -23,9 +25,14 @@ public partial class GetCollectionPageViewModel : BaseViewModel
     {
         _firebaseFirestore = firebaseFirestore;
         Title = "Cards collection of Firebase";
-    }
 
-    [RelayCommand]
+        LoadCardsCommand = new Command(async () => await LoadCardsAsync());
+        AddSampleCardCommand = new Command(async () => await AddSampleCardAsync());
+    }
+    
+    public Command LoadCardsCommand { get; }
+    public Command AddSampleCardCommand { get; }
+    
     private async Task LoadCardsAsync()
     {
         try
@@ -35,10 +42,19 @@ public partial class GetCollectionPageViewModel : BaseViewModel
             InfoText = "Getting cards from Firestore...";
             Cards.Clear();
 
+            // TEST
+            // var mockcollection = new DatabaseServiceMock();
+            // foreach (var card in mockcollection.CardsCollection)
+            // {
+            //     Cards.Add(card);
+            // }
+            // InfoText = $"{Cards.Count} cards from mocked database";
+            // TEST
+
             // Get "cards" collection from Firestore
             var collectionReference = _firebaseFirestore.GetCollection("cards");
             var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
-
+            
             if (querySnapshot.Documents?.Any() == true)
             {
                 foreach (var document in querySnapshot.Documents)
@@ -50,7 +66,7 @@ public partial class GetCollectionPageViewModel : BaseViewModel
                         Cards.Add(card);
                     }
                 }
-
+            
                 InfoText = $"{Cards.Count} cards got from Firestore";
             }
             else
@@ -68,8 +84,7 @@ public partial class GetCollectionPageViewModel : BaseViewModel
             IsLoading = false;
         }
     }
-
-    [RelayCommand]
+    
     private async Task AddSampleCardAsync()
     {
         try
