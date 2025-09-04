@@ -3,9 +3,6 @@ using FlashCards.Models;
 using System.Collections.ObjectModel;
 using Plugin.Firebase.Firestore;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using DynamicData;
-using FlashCards.Services.DatabaseServiceMock;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
@@ -14,11 +11,6 @@ public partial class GetCollectionPageViewModel : BaseViewModel
     private readonly IFirebaseFirestore _firebaseFirestore;
     
     [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
-    // public ObservableCollection<SingleCard> Cards
-    // {
-    //     get => _cards;
-    //     set => SetProperty(ref _cards, value);
-    // }
     
     [ObservableProperty] private bool _isLoading;
     
@@ -110,14 +102,12 @@ public partial class GetCollectionPageViewModel : BaseViewModel
                 Favourite = false,
                 LearningProgress = LearningProgress.NotStarted
             };
-
-            // Add card to the  "cards"
+            
             var collectionReference = _firebaseFirestore.GetCollection("cards");
             await collectionReference.AddDocumentAsync(sampleCard);
 
             InfoText = "Example card has been added";
             
-            // Refresh the cards list
             await LoadCardsAsync();
         }
         catch (Exception ex)
