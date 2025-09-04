@@ -24,6 +24,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Text="Showroom"
+                Style="{StaticResource PrimaryButtonStyle}"
                 Command="{Binding OnGoToShowroomCommand}" />
 
             <Button
@@ -33,6 +34,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Text="Start Application"
+                Style="{StaticResource PrimaryButtonStyle}"
                 IsEnabled="False" />
 
         </VerticalStackLayout>

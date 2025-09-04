@@ -29,11 +29,12 @@
                     Spacing="8">
                     <Label
                         HorizontalOptions="Center"
-                        Text="Single two sides card"
+                        Text="Single card control"
                         Style="{StaticResource Text_SubTitle}" />
                     <Button
                         WidthRequest="220"
                         Text="TwoSidesCard Control"
+                        Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToTwoSidesCardPage}" />
                 </VerticalStackLayout>
             </Border>
@@ -54,15 +55,17 @@
                     Spacing="8">
                     <Label
                         HorizontalOptions="Center"
-                        Text="Card's collection"
+                        Text="Card's collection contorols"
                         Style="{StaticResource Text_SubTitle}" />
                     <Button
                         WidthRequest="220"
                         Text="CardsSwipeCollection New"
+                        Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToCardsSwipeCollectionPage}" />
                     <Button
                         WidthRequest="220"
                         Text="CardsCarouselCollection Old"
+                        Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToCardsCarouselCollectionPage}" />
                 </VerticalStackLayout>
             </Border>
@@ -83,39 +86,46 @@
                     Spacing="8">
                     <Label
                         HorizontalOptions="Center"
-                        Text="Category Card"
+                        Text="Categories Controls"
                         Style="{StaticResource Text_SubTitle}" />
                     <Button
                         WidthRequest="220"
                         Text="Category Control"
+                        Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToCategoryPage}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="Categories Collection"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding OnGoToCategoriesCollectionPage}" />
                 </VerticalStackLayout>
             </Border>
 
             <!--  Categories Collection section  -->
-            <Border
-                Margin="0,8"
-                Padding="16"
-                HorizontalOptions="Fill"
-                Background="{AppThemeBinding Light={StaticResource SurfaceLight},
-                                             Dark={StaticResource SurfaceDark}}"
-                Shadow="8,8,16,Black">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="12" />
-                </Border.StrokeShape>
-                <VerticalStackLayout
-                    HorizontalOptions="Center"
-                    Spacing="8">
-                    <Label
-                        HorizontalOptions="Center"
-                        Text="Categories Collection"
-                        Style="{StaticResource Text_SubTitle}" />
-                    <Button
-                        WidthRequest="220"
-                        Text="Categories Collection"
-                        Command="{Binding OnGoToCategoriesCollectionPage}" />
-                </VerticalStackLayout>
-            </Border>
+            <!--  <Border  -->
+            <!--  Margin="0,8"  -->
+            <!--  Padding="16"  -->
+            <!--  HorizontalOptions="Fill"  -->
+            <!--  Background="{AppThemeBinding Light={StaticResource SurfaceLight},  -->
+            <!--  Dark={StaticResource SurfaceDark}}"  -->
+            <!--  Shadow="8,8,16,Black">  -->
+            <!--     <Border.StrokeShape> -->
+            <!--         <RoundRectangle CornerRadius="12" /> -->
+            <!--     </Border.StrokeShape> -->
+            <!--  <VerticalStackLayout  -->
+            <!--  HorizontalOptions="Center"  -->
+            <!--  Spacing="8">  -->
+            <!--  <Label  -->
+            <!--  HorizontalOptions="Center"  -->
+            <!--  Text="Categories Collection"  -->
+            <!--  Style="{StaticResource Text_SubTitle}" />  -->
+            <!--  <Button  -->
+            <!--  WidthRequest="220"  -->
+            <!--  Text="Categories Collection"  -->
+            <!--  Command="{Binding OnGoToCategoriesCollectionPage}"  -->
+            <!--  Style="{StaticResource PrimaryButtonStyle}" />  -->
+            <!--     </VerticalStackLayout> -->
+            <!-- </Border> -->
 
             <!--  Firebase Samples section  -->
             <Border
@@ -138,6 +148,7 @@
                     <Button
                         WidthRequest="220"
                         Text="Storage"
+                        Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToGetCollectionPage}" />
                 </VerticalStackLayout>
             </Border>

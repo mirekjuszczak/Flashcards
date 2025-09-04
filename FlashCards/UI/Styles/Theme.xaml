@@ -25,4 +25,52 @@
     <Color x:Key="AccentPrimaryDark">#ffd6a99d</Color>
     <!--#endregion-->
 
+    <!--#region Additional Button Colors - Light Theme-->
+    <!--  Primary Button Colors  -->
+    <Color x:Key="PrimaryButtonNormalLight">#ffd6a99d</Color>
+    <Color x:Key="PrimaryButtonPressedLight">#ffb89086</Color>
+    <Color x:Key="PrimaryButtonDisabledLight">#ffbfbfbf</Color>
+    <Color x:Key="PrimaryButtonTextLight">#ff2d2d2d</Color>
+    <Color x:Key="PrimaryButtonTextDisabledLight">#ff7a7a7a</Color>
+
+    <!--  Secondary Button Colors  -->
+    <Color x:Key="SecondaryButtonNormalLight">#ffd6dac8</Color>
+    <Color x:Key="SecondaryButtonPressedLight">#ffc0c5b1</Color>
+    <Color x:Key="SecondaryButtonDisabledLight">#ffe6e6e6</Color>
+    <Color x:Key="SecondaryButtonTextLight">#ff2d2d2d</Color>
+    <Color x:Key="SecondaryButtonTextDisabledLight">#ff7a7a7a</Color>
+
+    <!--  Tertiary Button Colors  -->
+    <Color x:Key="TertiaryButtonNormalLight">Transparent</Color>
+    <Color x:Key="TertiaryButtonPressedLight">#1ad6dac8</Color>
+    <Color x:Key="TertiaryButtonDisabledLight">Transparent</Color>
+    <Color x:Key="TertiaryButtonTextLight">#ffd6a99d</Color>
+    <Color x:Key="TertiaryButtonTextPressedLight">#ff2d2d2d</Color>
+    <Color x:Key="TertiaryButtonTextDisabledLight">#ffbfbfbf</Color>
+    <!--#endregion-->
+
+    <!--#region Additional Button Colors - Dark Theme-->
+    <!--  Primary Button Colors  -->
+    <Color x:Key="PrimaryButtonNormalDark">#ffd6a99d</Color>
+    <Color x:Key="PrimaryButtonPressedDark">#ffe2c0b6</Color>
+    <Color x:Key="PrimaryButtonDisabledDark">#ff6b7671</Color>
+    <Color x:Key="PrimaryButtonTextDark">#ff3d4a47</Color>
+    <Color x:Key="PrimaryButtonTextDisabledDark">#ff9cafaa</Color>
+
+    <!--  Secondary Button Colors  -->
+    <Color x:Key="SecondaryButtonNormalDark">#ff5a6b65</Color>
+    <Color x:Key="SecondaryButtonPressedDark">#ff6b7c76</Color>
+    <Color x:Key="SecondaryButtonDisabledDark">#ff4a5450</Color>
+    <Color x:Key="SecondaryButtonTextDark">#fffbf3d5</Color>
+    <Color x:Key="SecondaryButtonTextDisabledDark">#ff9cafaa</Color>
+
+    <!--  Tertiary Button Colors  -->
+    <Color x:Key="TertiaryButtonNormalDark">Transparent</Color>
+    <Color x:Key="TertiaryButtonPressedDark">#1a5a6b65</Color>
+    <Color x:Key="TertiaryButtonDisabledDark">Transparent</Color>
+    <Color x:Key="TertiaryButtonTextDark">#ffd6a99d</Color>
+    <Color x:Key="TertiaryButtonTextPressedDark">#fffbf3d5</Color>
+    <Color x:Key="TertiaryButtonTextDisabledDark">#ff6b7671</Color>
+    <!--#endregion-->
+
 </ResourceDictionary>

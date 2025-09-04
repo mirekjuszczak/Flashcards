@@ -1,0 +1,109 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style
+        x:Key="ButtonBaseStyle"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource AccentPrimaryLight}, Dark={StaticResource AccentPrimaryDark}}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="14,10" />
+        <Setter Property="MinimumHeightRequest" Value="44" />
+        <Setter Property="MinimumWidthRequest" Value="44" />
+    </Style>
+
+    <Style
+        x:Key="PrimaryButtonStyle"
+        BasedOn="{StaticResource ButtonBaseStyle}"
+        TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonNormalLight}, Dark={StaticResource PrimaryButtonNormalDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonTextLight}, Dark={StaticResource PrimaryButtonTextDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonDisabledLight}, Dark={StaticResource PrimaryButtonDisabledDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonTextDisabledLight}, Dark={StaticResource PrimaryButtonTextDisabledDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonPressedLight}, Dark={StaticResource PrimaryButtonPressedDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryButtonTextLight}, Dark={StaticResource PrimaryButtonTextDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="SecondaryButtonStyle"
+        BasedOn="{StaticResource ButtonBaseStyle}"
+        TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonNormalLight}, Dark={StaticResource SecondaryButtonNormalDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonTextLight}, Dark={StaticResource SecondaryButtonTextDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonDisabledLight}, Dark={StaticResource SecondaryButtonDisabledDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonTextDisabledLight}, Dark={StaticResource SecondaryButtonTextDisabledDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonPressedLight}, Dark={StaticResource SecondaryButtonPressedDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryButtonTextLight}, Dark={StaticResource SecondaryButtonTextDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="TertiaryButtonStyle"
+        BasedOn="{StaticResource ButtonBaseStyle}"
+        TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonNormalLight}, Dark={StaticResource TertiaryButtonNormalDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonTextLight}, Dark={StaticResource TertiaryButtonTextDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonDisabledLight}, Dark={StaticResource TertiaryButtonDisabledDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonTextDisabledLight}, Dark={StaticResource TertiaryButtonTextDisabledDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonPressedLight}, Dark={StaticResource TertiaryButtonPressedDark}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TertiaryButtonTextPressedLight}, Dark={StaticResource TertiaryButtonTextPressedDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

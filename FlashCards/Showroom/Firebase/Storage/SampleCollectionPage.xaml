@@ -62,6 +62,7 @@
                     Text="Get Collection"
                     TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
                                                 Dark={StaticResource TextPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
                     Command="{Binding LoadCardsCommand}" />
 
@@ -71,6 +72,7 @@
                     Text="Add Example"
                     TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
                                                 Dark={StaticResource AccentPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
                     Command="{Binding AddSampleCardCommand}"
                     BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
@@ -83,6 +85,7 @@
                     Text="Delete All"
                     TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
                                                 Dark={StaticResource AccentPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
                     Command="{Binding DeleteCardsCollectionCommand}"
                     BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
