@@ -14,6 +14,11 @@ public partial class GetCollectionPageViewModel : BaseViewModel
     private readonly IFirebaseFirestore _firebaseFirestore;
     
     [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
+    // public ObservableCollection<SingleCard> Cards
+    // {
+    //     get => _cards;
+    //     set => SetProperty(ref _cards, value);
+    // }
     
     [ObservableProperty] private bool _isLoading;
     
@@ -91,11 +96,14 @@ public partial class GetCollectionPageViewModel : BaseViewModel
         {
             IsLoading = true;
             InfoText = "Adding a card as an example...";
+            
+            var ticksString = DateTime.Now.Ticks.ToString();
+            var phraseSufix = ticksString.Substring(ticksString.Length - 3);
 
             var sampleCard = new SingleCard
             {
-                Phrase = "Hello",
-                Translation = "Czesc",
+                Phrase = $"Hello {phraseSufix}",
+                Translation = $"Czesc {phraseSufix}",
                 Example = "Hello, how are you?",
                 CategoryName = "Basic",
                 CategoryId = "basic",

@@ -169,7 +169,7 @@
                                         Padding="6,2"
                                         VerticalOptions="Center"
                                         BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
-                                                                          Dark={StaticResource SecondaryDark}}">
+                                                                          Dark={StaticResource Gray600}}">
                                         <Border.StrokeShape>
                                             <RoundRectangle CornerRadius="4" />
                                         </Border.StrokeShape>

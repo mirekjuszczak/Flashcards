@@ -9,75 +9,77 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
                                       Dark={StaticResource Theme_02_Light_Color}}">
 
-    <VerticalStackLayout
-        Padding="50,10"
-        HorizontalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="50,10"
+            HorizontalOptions="Center">
 
-        <Label
-            Margin="20,20"
-            HorizontalOptions="Center"
-            Text="Single two sides card"
-            Style="{StaticResource Text_SubTitle}" />
+            <Label
+                Margin="20,20"
+                HorizontalOptions="Center"
+                Text="Single two sides card"
+                Style="{StaticResource Text_SubTitle}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="TwoSidesCard Control"
-            Command="{Binding OnGoToTwoSidesCardPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="TwoSidesCard Control"
+                Command="{Binding OnGoToTwoSidesCardPage}" />
 
-        <Label
-            Margin="20,20"
-            HorizontalOptions="Center"
-            Text="Card's collection"
-            Style="{StaticResource Text_SubTitle}" />
+            <Label
+                Margin="20,20"
+                HorizontalOptions="Center"
+                Text="Card's collection"
+                Style="{StaticResource Text_SubTitle}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="CardsSwipeCollection New"
-            Command="{Binding OnGoToCardsSwipeCollectionPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="CardsSwipeCollection New"
+                Command="{Binding OnGoToCardsSwipeCollectionPage}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="CardsCarouselCollection Old"
-            Command="{Binding OnGoToCardsCarouselCollectionPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="CardsCarouselCollection Old"
+                Command="{Binding OnGoToCardsCarouselCollectionPage}" />
 
-        <Label
-            Margin="20,20"
-            HorizontalOptions="Center"
-            Text="Category Card"
-            Style="{StaticResource Text_SubTitle}" />
+            <Label
+                Margin="20,20"
+                HorizontalOptions="Center"
+                Text="Category Card"
+                Style="{StaticResource Text_SubTitle}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="Category Control"
-            Command="{Binding OnGoToCategoryPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="Category Control"
+                Command="{Binding OnGoToCategoryPage}" />
 
-        <Label
-            Margin="20,20"
-            HorizontalOptions="Center"
-            Text="Categories Collection"
-            Style="{StaticResource Text_SubTitle}" />
+            <Label
+                Margin="20,20"
+                HorizontalOptions="Center"
+                Text="Categories Collection"
+                Style="{StaticResource Text_SubTitle}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="Categories Collection"
-            Command="{Binding OnGoToCategoriesCollectionPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="Categories Collection"
+                Command="{Binding OnGoToCategoriesCollectionPage}" />
 
-        <Label
-            Margin="20,20"
-            HorizontalOptions="Center"
-            Text="Firebase Samples"
-            Style="{StaticResource Text_SubTitle}" />
+            <Label
+                Margin="20,20"
+                HorizontalOptions="Center"
+                Text="Firebase Samples"
+                Style="{StaticResource Text_SubTitle}" />
 
-        <Button
-            Margin="20,10"
-            VerticalOptions="Start"
-            Text="Storage"
-            Command="{Binding OnGoToGetCollectionPage}" />
+            <Button
+                Margin="20,10"
+                VerticalOptions="Start"
+                Text="Storage"
+                Command="{Binding OnGoToGetCollectionPage}" />
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
