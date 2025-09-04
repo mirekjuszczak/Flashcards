@@ -6,7 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
-public partial class GetCollectionPageViewModel : BaseViewModel
+public partial class SampleCollectionPageViewModel : BaseViewModel
 {
     private readonly IFirebaseFirestore _firebaseFirestore;
     
@@ -18,16 +18,18 @@ public partial class GetCollectionPageViewModel : BaseViewModel
     
     [ObservableProperty] private string _errorMessage = string.Empty;
 
-    public GetCollectionPageViewModel(IFirebaseFirestore firebaseFirestore)
+    public SampleCollectionPageViewModel(IFirebaseFirestore firebaseFirestore)
     {
         _firebaseFirestore = firebaseFirestore;
         Title = "Cards collection of Firebase";
 
         LoadCardsCommand = new Command(async () => await LoadCardsAsync());
+        DeleteCardsCollectionCommand = new Command(async () => await DeleteCardsCollectionAsync());
         AddSampleCardCommand = new Command(async () => await AddSampleCardAsync());
     }
-    
+
     public Command LoadCardsCommand { get; }
+    public Command DeleteCardsCollectionCommand { get; }
     public Command AddSampleCardCommand { get; }
     
     private async Task LoadCardsAsync()
@@ -82,6 +84,50 @@ public partial class GetCollectionPageViewModel : BaseViewModel
         }
     }
     
+    private async Task DeleteCardsCollectionAsync()
+    {
+        try
+        {
+            IsLoading = true;
+            
+            // Delete "cards" collection from Firestore
+            var collectionReference = _firebaseFirestore.GetCollection("cards");
+            var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
+            
+            var deletingCounter = 0;
+            var collectionCount = querySnapshot.Count;
+            
+            if (querySnapshot.Documents?.Any() == true)
+            {
+                foreach (var document in querySnapshot.Documents)
+                {
+                    await document.Reference.DeleteDocumentAsync();
+                    deletingCounter++;
+                }
+            
+                InfoText = $"{deletingCounter} of {collectionCount} cards deleted from Firestore";
+            }
+            else
+            {
+                InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
+            }
+            
+            InfoText = "All cards deleted from Collection";
+            
+            await LoadCardsAsync();
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
     private async Task AddSampleCardAsync()
     {
         try

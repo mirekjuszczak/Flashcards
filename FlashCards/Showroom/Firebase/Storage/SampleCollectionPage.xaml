@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
-    x:Class="FlashCards.Showroom.Firebase.Storage.GetCollectionPage"
+    x:Class="FlashCards.Showroom.Firebase.Storage.SampleCollectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:FlashCards.Models"
@@ -9,7 +9,7 @@
     xmlns:viewModels="clr-namespace:FlashCards.Showroom.Firebase.Storage"
     BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
                                       Dark={StaticResource Theme_02_Light_Color}}"
-    x:DataType="viewModels:GetCollectionPageViewModel">
+    x:DataType="viewModels:SampleCollectionPageViewModel">
 
     <ScrollView>
         <VerticalStackLayout
@@ -66,16 +66,24 @@
                 <Button
                     BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
                                                       Dark={StaticResource Secondary}}"
-                    Text="Ad Example"
+                    Text="Add Example"
                     TextColor="White"
                     IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
                     Command="{Binding AddSampleCardCommand}" />
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Secondary},
+                                                      Dark={StaticResource Secondary}}"
+                    Text="Delete All"
+                    TextColor="White"
+                    IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
+                    Command="{Binding DeleteCardsCollectionCommand}" />
             </HorizontalStackLayout>
 
             <!--  Cards Collection  -->
             <CollectionView
                 IsVisible="{Binding Cards.Count, Converter={toolkitConverters:IntToBoolConverter}}"
-                x:DataType="viewModels:GetCollectionPageViewModel"
+                x:DataType="viewModels:SampleCollectionPageViewModel"
                 ItemsSource="{Binding Cards}">
 
                 <CollectionView.ItemTemplate>

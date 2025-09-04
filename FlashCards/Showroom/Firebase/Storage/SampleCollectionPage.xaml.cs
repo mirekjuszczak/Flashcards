@@ -1,8 +1,8 @@
 namespace FlashCards.Showroom.Firebase.Storage;
 
-public partial class GetCollectionPage : ContentPage
+public partial class SampleCollectionPage : ContentPage
 {
-    public GetCollectionPage(GetCollectionPageViewModel viewModel)
+    public SampleCollectionPage(SampleCollectionPageViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

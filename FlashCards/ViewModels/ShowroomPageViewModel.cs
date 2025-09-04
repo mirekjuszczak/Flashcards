@@ -50,5 +50,5 @@ public class ShowroomPageViewModel : BaseViewModel
         => await _navigationService.NavigateToAsync(nameof(CategoriesCollectionPage));
 
     private async Task RunGoToGetCollectionPage()
-        => await _navigationService.NavigateToAsync(nameof(GetCollectionPage));
+        => await _navigationService.NavigateToAsync(nameof(SampleCollectionPage));
 }

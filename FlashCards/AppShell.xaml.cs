@@ -23,6 +23,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(CategoriesCollectionPage), typeof(CategoriesCollectionPage));
 		
 		// Firebase
-		Routing.RegisterRoute(nameof(GetCollectionPage), typeof(GetCollectionPage));
+		Routing.RegisterRoute(nameof(SampleCollectionPage), typeof(SampleCollectionPage));
 	}
 }
