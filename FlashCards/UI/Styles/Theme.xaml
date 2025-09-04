@@ -6,17 +6,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!--#region Light Theme Colors-->
-    <Color x:Key="Theme_01_Light_Color">#ff3b3c3d</Color>
-    <Color x:Key="Theme_02_Light_Color">#ff5b5a59</Color>
-    <Color x:Key="Primary_04_Light_Color">#ff6b6867</Color>
+    <Color x:Key="TextPrimaryLight">#ff2d2d2d</Color>
+    <Color x:Key="TextSecondaryLight">#ff5a5a5a</Color>
+    <Color x:Key="TextTertiaryLight">#ff7a7a7a</Color>
+    <Color x:Key="BackgroundPrimaryLight">#fffbf3d5</Color>
+    <Color x:Key="SurfaceLight">#ffd6dac8</Color>
+    <Color x:Key="SurfaceSecondaryLight">#ffd6dac8</Color>
+    <Color x:Key="AccentPrimaryLight">#ffd6a99d</Color>
     <!--#endregion-->
 
-    <!--#region Dark Theme Color-->
-    <Color x:Key="Theme_01_Dark_Color">#ffe8e5e1</Color>
-    <Color x:Key="Theme_02_Dark_Color">#ffb7b3ac</Color>
-    <Color x:Key="Theme_03_Dark_Color">#ff898682</Color>
-    <Color x:Key="Primary_02_Dark_Color">#ffe8bf79</Color>
-    <Color x:Key="Primary_04_Dark_Color">#ff927748</Color>
+    <!--#region Dark Theme Colors-->
+    <Color x:Key="TextPrimaryDark">#fffbf3d5</Color>
+    <Color x:Key="TextSecondaryDark">#ffd6dac8</Color>
+    <Color x:Key="TextTertiaryDark">#ff9cafaa</Color>
+    <Color x:Key="BackgroundPrimaryDark">#ff3d4a47</Color>
+    <Color x:Key="SurfaceDark">#ff5a6b65</Color>
+    <Color x:Key="SurfaceSecondaryDark">#ff5a6b65</Color>
+    <Color x:Key="AccentPrimaryDark">#ffd6a99d</Color>
     <!--#endregion-->
 
 </ResourceDictionary>

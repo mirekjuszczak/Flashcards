@@ -7,8 +7,8 @@
     xmlns:models="clr-namespace:FlashCards.Models"
     xmlns:toolkitConverters="clr-namespace:CommunityToolkit.Maui.Converters;assembly=CommunityToolkit.Maui"
     xmlns:viewModels="clr-namespace:FlashCards.Showroom.Firebase.Storage"
-    BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
-                                      Dark={StaticResource Theme_02_Light_Color}}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}"
     x:DataType="viewModels:SampleCollectionPageViewModel">
 
     <ScrollView>
@@ -20,8 +20,8 @@
             <Label
                 HorizontalOptions="Center"
                 Text="{Binding Title}"
-                TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                            Dark={StaticResource Theme_01_Dark_Color}}"
+                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                            Dark={StaticResource TextPrimaryDark}}"
                 FontSize="24"
                 FontAttributes="Bold" />
 
@@ -29,8 +29,8 @@
             <Label
                 HorizontalOptions="Center"
                 Text="{Binding InfoText}"
-                TextColor="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                            Dark={StaticResource Theme_01_Dark_Color}}"
+                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                            Dark={StaticResource TextPrimaryDark}}"
                 HorizontalTextAlignment="Center"
                 FontSize="16" />
 
@@ -47,8 +47,8 @@
             <ActivityIndicator
                 IsVisible="{Binding IsLoading}"
                 IsRunning="{Binding IsLoading}"
-                Color="{AppThemeBinding Light={StaticResource Theme_01_Light_Color},
-                                        Dark={StaticResource Theme_01_Dark_Color}}" />
+                Color="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                        Dark={StaticResource AccentPrimaryDark}}" />
 
             <!--  Action Buttons  -->
             <HorizontalStackLayout

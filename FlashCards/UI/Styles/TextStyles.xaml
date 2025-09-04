@@ -24,7 +24,7 @@
         x:Key="Text_Hero"
         TargetType="Label">
         <Setter Property="FontFamily" Value="Bold" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontSize" Value="{StaticResource Hero}" />
     </Style>
 
@@ -32,7 +32,7 @@
         x:Key="Text_Large_Title"
         TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontSize" Value="{StaticResource LargeTitle}" />
     </Style>
 
@@ -40,7 +40,7 @@
         x:Key="Text_Title"
         TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontSize" Value="{StaticResource Title}" />
     </Style>
 
@@ -48,14 +48,14 @@
         x:Key="Text_SubTitle"
         TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontSize" Value="{StaticResource Subtitle}" />
     </Style>
 
     <Style
         x:Key="Text_Body"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" />
         <Setter Property="FontSize" Value="{StaticResource Body}" />
         <Setter Property="Opacity" Value="0.8" />
@@ -86,7 +86,7 @@
     <Style
         x:Key="Text_Paragraph"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" />
         <Setter Property="FontSize" Value="{StaticResource Body}" />
     </Style>
@@ -154,7 +154,7 @@
         x:Key="Text_Caption"
         TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource Caption}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" />
     </Style>
 
@@ -170,7 +170,7 @@
         x:Key="Text_Label"
         TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource Label}" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Theme_01_Light_Color}, Dark={StaticResource Theme_01_Dark_Color}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimaryDark}}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}" />
     </Style>
 

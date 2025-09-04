@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     xmlns:viewModels="clr-namespace:FlashCards.Showroom;assembly=FlashCards"
-    BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
-                                      Dark={StaticResource Theme_02_Light_Color}}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}"
     x:DataType="viewModels:CardsCollectionControlPageViewModel">
 
     <controls:CardsCarouselCollectionControl CardsCollection="{Binding CardsCollection}" />

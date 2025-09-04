@@ -11,14 +11,14 @@
                 <VisualStateGroup Name="{x:Static controls:VisualStatesCardControl.GroupName}">
                     <VisualState Name="{x:Static controls:VisualStatesCardControl.Front}">
                         <VisualState.Setters>
-                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
+                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource AccentPrimaryLight}, Dark={StaticResource AccentPrimaryDark}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState Name="{x:Static controls:VisualStatesCardControl.Back}">
                         <VisualState.Setters>
-                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Theme_03_Dark_Color}, Dark={StaticResource Theme_02_Dark_Color}}" />
+                            <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource AccentPrimaryLight}, Dark={StaticResource AccentPrimaryDark}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceSecondaryLight}, Dark={StaticResource SurfaceSecondaryDark}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -140,7 +140,7 @@
     <Style
         x:Key="CategoryCardBackgroundStyle"
         TargetType="controls:CategoryCardControl">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color}, Dark={StaticResource Primary_04_Dark_Color}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary_04_Light_Color}, Dark={StaticResource Theme_03_Dark_Color}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource AccentPrimaryLight}, Dark={StaticResource AccentPrimaryDark}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
     </Style>
 </ResourceDictionary>

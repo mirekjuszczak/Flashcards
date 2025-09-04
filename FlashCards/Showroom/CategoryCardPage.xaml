@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
     xmlns:showroom="clr-namespace:FlashCards.Showroom"
-    BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
-                                      Dark={StaticResource Theme_02_Light_Color}}"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}"
     x:DataType="showroom:CategoriesPageViewModel">
 
     <controls:CategoryCardControl

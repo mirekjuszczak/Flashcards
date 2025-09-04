@@ -3,8 +3,8 @@
     x:Class="FlashCards.Views.StartPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
-                                      Dark={StaticResource Theme_02_Light_Color}}">
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}">
 
     <ScrollView>
         <VerticalStackLayout
