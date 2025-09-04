@@ -4,81 +4,143 @@
     x:Class="FlashCards.Views.ShowroomPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:storage="clr-namespace:FlashCards.Showroom.Firebase.Storage"
     x:Name="Root"
     BackgroundColor="{AppThemeBinding Light={StaticResource Theme_02_Dark_Color},
                                       Dark={StaticResource Theme_02_Light_Color}}">
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="50,10"
-            HorizontalOptions="Center">
+            Padding="16"
+            Spacing="18">
 
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Center"
-                Text="Single two sides card"
-                Style="{StaticResource Text_SubTitle}" />
+            <!--  Single two sides card section  -->
+            <Border
+                Margin="0,8"
+                Padding="16"
+                HorizontalOptions="Fill"
+                Background="{AppThemeBinding Light={StaticResource Theme_01_Dark_Color},
+                                             Dark={StaticResource Theme_01_Light_Color}}"
+                Shadow="8,8,16,Black">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Single two sides card"
+                        Style="{StaticResource Text_SubTitle}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="TwoSidesCard Control"
+                        Command="{Binding OnGoToTwoSidesCardPage}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="TwoSidesCard Control"
-                Command="{Binding OnGoToTwoSidesCardPage}" />
+            <!--  Card's collection section  -->
+            <Border
+                Margin="0,8"
+                Padding="16"
+                HorizontalOptions="Fill"
+                Background="{AppThemeBinding Light={StaticResource Theme_01_Dark_Color},
+                                             Dark={StaticResource Theme_01_Light_Color}}"
+                Shadow="8,8,16,Black">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Card's collection"
+                        Style="{StaticResource Text_SubTitle}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="CardsSwipeCollection New"
+                        Command="{Binding OnGoToCardsSwipeCollectionPage}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="CardsCarouselCollection Old"
+                        Command="{Binding OnGoToCardsCarouselCollectionPage}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Center"
-                Text="Card's collection"
-                Style="{StaticResource Text_SubTitle}" />
+            <!--  Category Card section  -->
+            <Border
+                Margin="0,8"
+                Padding="16"
+                HorizontalOptions="Fill"
+                Background="{AppThemeBinding Light={StaticResource Theme_01_Dark_Color},
+                                             Dark={StaticResource Theme_01_Light_Color}}"
+                Shadow="8,8,16,Black">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Category Card"
+                        Style="{StaticResource Text_SubTitle}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="Category Control"
+                        Command="{Binding OnGoToCategoryPage}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="CardsSwipeCollection New"
-                Command="{Binding OnGoToCardsSwipeCollectionPage}" />
+            <!--  Categories Collection section  -->
+            <Border
+                Margin="0,8"
+                Padding="16"
+                HorizontalOptions="Fill"
+                Background="{AppThemeBinding Light={StaticResource Theme_01_Dark_Color},
+                                             Dark={StaticResource Theme_01_Light_Color}}"
+                Shadow="8,8,16,Black">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Categories Collection"
+                        Style="{StaticResource Text_SubTitle}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="Categories Collection"
+                        Command="{Binding OnGoToCategoriesCollectionPage}" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="CardsCarouselCollection Old"
-                Command="{Binding OnGoToCardsCarouselCollectionPage}" />
-
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Center"
-                Text="Category Card"
-                Style="{StaticResource Text_SubTitle}" />
-
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="Category Control"
-                Command="{Binding OnGoToCategoryPage}" />
-
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Center"
-                Text="Categories Collection"
-                Style="{StaticResource Text_SubTitle}" />
-
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="Categories Collection"
-                Command="{Binding OnGoToCategoriesCollectionPage}" />
-
-            <Label
-                Margin="20,20"
-                HorizontalOptions="Center"
-                Text="Firebase Samples"
-                Style="{StaticResource Text_SubTitle}" />
-
-            <Button
-                Margin="20,10"
-                VerticalOptions="Start"
-                Text="Storage"
-                Command="{Binding OnGoToGetCollectionPage}" />
+            <!--  Firebase Samples section  -->
+            <Border
+                Margin="0,8"
+                Padding="16"
+                HorizontalOptions="Fill"
+                Background="{AppThemeBinding Light={StaticResource Theme_01_Dark_Color},
+                                             Dark={StaticResource Theme_01_Light_Color}}"
+                Shadow="8,8,16,Black">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Firebase Samples"
+                        Style="{StaticResource Text_SubTitle}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="Storage"
+                        Command="{Binding OnGoToGetCollectionPage}" />
+                </VerticalStackLayout>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>
