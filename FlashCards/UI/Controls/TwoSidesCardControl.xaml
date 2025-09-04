@@ -83,12 +83,6 @@
                         Style="{StaticResource Text_Body}" />
                 </HorizontalStackLayout>
 
-                <!--  <BoxView  -->
-                <!--  HeightRequest="1"  -->
-                <!--  HorizontalOptions="Fill"  -->
-                <!--  BackgroundColor="{AppThemeBinding Light={StaticResource Primary_02_Dark_Color},  -->
-                <!--  Dark={StaticResource Primary_04_Dark_Color}}" />  -->
-
                 <Label
                     Margin="10,50,10,0"
                     Text="Translation:"
@@ -111,7 +105,7 @@
 
                 <Label
                     Margin="10,30,10,0"
-                    Text="Learning Progress (TEST):"
+                    Text="Learning Progress:"
                     Style="{StaticResource Text_SubTitle}" />
                 <Label
                     Margin="20,10,10,0"
