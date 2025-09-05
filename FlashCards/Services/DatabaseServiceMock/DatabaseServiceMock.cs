@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
+using FlashCards.Showroom.Firebase.Storage;
 
 namespace FlashCards.Services.DatabaseServiceMock;
 
@@ -103,8 +104,8 @@ public class DatabaseServiceMock
             Phrase = "Cat",
             Translation = "Kot",
             Example = "This is my cat",
-            CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
-            CategoryId = 1.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = true
         });
@@ -115,8 +116,8 @@ public class DatabaseServiceMock
             Phrase = "Dog",
             Translation = "Pies",
             Example = "This is my dog",
-            CategoryName = categories.GetCategoryName(1.ToString()) ?? string.Empty,
-            CategoryId = 1.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.Learned,
             Favourite = true
         });
@@ -127,8 +128,8 @@ public class DatabaseServiceMock
             Phrase = "run",
             Translation = "biec/biegać",
             Example = "I was running yesterday",
-            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
-            CategoryId = 2.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = false
         });
@@ -139,8 +140,8 @@ public class DatabaseServiceMock
             Phrase = "buy",
             Translation = "kupować",
             Example = "This is my cat",
-            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
-            CategoryId = 2.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.InProgress,
             Favourite = true
         });
@@ -151,8 +152,8 @@ public class DatabaseServiceMock
             Phrase = "move",
             Translation = "przemiaszczać się/przesuwać",
             Example = "We moved our flat last year",
-            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
-            CategoryId = 2.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.Learned,
             Favourite = true
         });
@@ -163,8 +164,8 @@ public class DatabaseServiceMock
             Phrase = "Prepare",
             Translation = "Przygotowywać",
             Example = "I try to prepare this application",
-            CategoryName = categories.GetCategoryName(2.ToString()) ?? string.Empty,
-            CategoryId = 2.ToString(),
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = RandomTestsValuesMock.GetRandomIdCategory(),
             LearningProgress = LearningProgress.NotStarted,
             Favourite = true
         });

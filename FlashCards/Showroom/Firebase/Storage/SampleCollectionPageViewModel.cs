@@ -106,8 +106,8 @@ public partial class SampleCollectionPageViewModel : BaseViewModel
             Phrase = $"Hello {phraseSufix}",
             Translation = $"Czesc {phraseSufix}",
             Example = "Hello, how are you?",
-            CategoryName = "Basic",
-            CategoryId = "basic",
+            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
+            CategoryId = "noname",
             Favourite = false,
             LearningProgress = LearningProgress.NotStarted
         };
