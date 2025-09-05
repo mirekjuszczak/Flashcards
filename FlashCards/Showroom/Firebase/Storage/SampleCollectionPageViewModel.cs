@@ -1,26 +1,26 @@
 using FlashCards.ViewModels;
 using FlashCards.Models;
 using System.Collections.ObjectModel;
-using Plugin.Firebase.Firestore;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
 public partial class SampleCollectionPageViewModel : BaseViewModel
 {
-    private readonly IFirebaseFirestore _firebaseFirestore;
-    
+    private readonly IDatabaseService _databaseService;
+
     [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
-    
+
     [ObservableProperty] private bool _isLoading;
-    
+
     [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
-    
+
     [ObservableProperty] private string _errorMessage = string.Empty;
 
-    public SampleCollectionPageViewModel(IFirebaseFirestore firebaseFirestore)
+    public SampleCollectionPageViewModel(IDatabaseService databaseService)
     {
-        _firebaseFirestore = firebaseFirestore;
+        _databaseService = databaseService;
         Title = "Cards collection of Firebase";
 
         LoadCardsCommand = new Command(async () => await LoadCardsAsync());
@@ -31,130 +31,96 @@ public partial class SampleCollectionPageViewModel : BaseViewModel
     public Command LoadCardsCommand { get; }
     public Command DeleteCardsCollectionCommand { get; }
     public Command AddSampleCardCommand { get; }
-    
+
     private async Task LoadCardsAsync()
     {
-        try
-        {
-            IsLoading = true;
-            ErrorMessage = string.Empty;
-            InfoText = "Getting cards from Firestore...";
-            Cards.Clear();
+        IsLoading = true;
+        ErrorMessage = string.Empty;
+        InfoText = "Getting cards from Firestore...";
+        Cards.Clear();
 
-            // Get "cards" collection from Firestore
-            var collectionReference = _firebaseFirestore.GetCollection("cards");
-            var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
-            
-            if (querySnapshot.Documents?.Any() == true)
-            {
-                foreach (var document in querySnapshot.Documents)
-                {
-                    // Convert a document form Firebase to SingleCard
-                    var card = document.Data;
-                    if (card != null)
-                    {
-                        Cards.Add(card);
-                    }
-                }
-            
-                InfoText = $"{Cards.Count} cards got from Firestore";
-            }
-            else
-            {
-                InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
-            }
-        }
-        catch (Exception ex)
+        var cards = await _databaseService.GetCardsCollection();
+
+        if (cards == null)
         {
-            ErrorMessage = $"Getting cards failed: {ex.Message}";
-            InfoText = "Error during getting cards from Firestore";
+            ErrorMessage = "Failed to load cards from database";
+            InfoText = "Error occurred while loading cards";
         }
-        finally
+        else if (cards.Any())
         {
-            IsLoading = false;
+            foreach (var card in cards)
+            {
+                Cards.Add(card);
+            }
+
+            InfoText = $"{Cards.Count} cards loaded Firestore";
         }
+        else
+        {
+            InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
+        }
+
+        IsLoading = false;
     }
-    
+
     private async Task DeleteCardsCollectionAsync()
     {
-        try
-        {
-            IsLoading = true;
-            
-            // Delete "cards" collection from Firestore
-            var collectionReference = _firebaseFirestore.GetCollection("cards");
-            var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
-            
-            var deletingCounter = 0;
-            var collectionCount = querySnapshot.Count;
-            
-            if (querySnapshot.Documents?.Any() == true)
-            {
-                foreach (var document in querySnapshot.Documents)
-                {
-                    await document.Reference.DeleteDocumentAsync();
-                    deletingCounter++;
-                }
-            
-                InfoText = $"{deletingCounter} of {collectionCount} cards deleted from Firestore";
-            }
-            else
-            {
-                InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
-            }
-            
-            InfoText = "All cards deleted from Collection";
-            
-            await LoadCardsAsync();
+        IsLoading = true;
 
-        }
-        catch (Exception e)
+        // Delete "cards" collection from Firestore
+        var deletingCounter = await _databaseService.DeleteAllCards();
+
+        InfoText = deletingCounter switch
         {
-            Console.WriteLine(e);
-            throw;
-        }
-        finally
+            > 0 => $"{deletingCounter} cards deleted from Firestore",
+            0 => "No card in collection. Add a few cards to the collection at the beginning.",
+            -1 => "Something went wrong while deleting cards from Collection",
+        };
+
+        if (deletingCounter > 0)
         {
-            IsLoading = false;
+            InfoText = $"{deletingCounter} cards deleted from Firestore";
         }
+        else
+        {
+            InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
+        }
+
+        InfoText = "All cards deleted from Collection";
+
+        await LoadCardsAsync();
+
+        IsLoading = false;
     }
 
     private async Task AddSampleCardAsync()
     {
-        try
-        {
-            IsLoading = true;
-            InfoText = "Adding a card as an example...";
-            
-            var ticksString = DateTime.Now.Ticks.ToString();
-            var phraseSufix = ticksString.Substring(ticksString.Length - 3);
+        IsLoading = true;
+        InfoText = "Adding a card as an example...";
 
-            var sampleCard = new SingleCard
-            {
-                Phrase = $"Hello {phraseSufix}",
-                Translation = $"Czesc {phraseSufix}",
-                Example = "Hello, how are you?",
-                CategoryName = "Basic",
-                CategoryId = "basic",
-                Favourite = false,
-                LearningProgress = LearningProgress.NotStarted
-            };
-            
-            var collectionReference = _firebaseFirestore.GetCollection("cards");
-            await collectionReference.AddDocumentAsync(sampleCard);
+        var ticksString = DateTime.Now.Ticks.ToString();
+        var phraseSufix = ticksString.Substring(ticksString.Length - 3);
 
-            InfoText = "Example card has been added";
-            
-            await LoadCardsAsync();
-        }
-        catch (Exception ex)
+        var sampleCard = new SingleCard
         {
-            ErrorMessage = $"Error while adding a card: {ex.Message}";
-            InfoText = "Adding card failed...";
-        }
-        finally
+            Phrase = $"Hello {phraseSufix}",
+            Translation = $"Czesc {phraseSufix}",
+            Example = "Hello, how are you?",
+            CategoryName = "Basic",
+            CategoryId = "basic",
+            Favourite = false,
+            LearningProgress = LearningProgress.NotStarted
+        };
+
+        var addingResult = await _databaseService.CreateCard(sampleCard);
+
+        InfoText = addingResult switch
         {
-            IsLoading = false;
-        }
+            true => "Card added to Firestore",
+            false => "Card not adde. Validation failed. Phrase and Translation are required.",
+            null => "Card not added, Exception invoked.",
+        };
+
+        await LoadCardsAsync();
     }
 }

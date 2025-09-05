@@ -63,8 +63,8 @@ public interface IDatabaseService
     /// Creates a new flashcard in the Firestore database
     /// </summary>
     /// <param name="card">The card object to create</param>
-    /// <returns>The created card with generated ID, or null if creation failed</returns>
-    Task<SingleCard?> CreateCard(SingleCard card);
+    /// <returns>true OK, false not added, or null if execption</returns>
+    Task<bool?> CreateCard(SingleCard card);
     
     /// <summary>
     /// Retrieves a specific card by its unique identifier
@@ -157,6 +157,12 @@ public interface IDatabaseService
     /// <returns>Number of cards deleted (0 or more), or -1 if operation failed</returns>
     Task<int> DeleteAllCardsInCategory(string categoryId);
     
+    /// <summary>
+    /// Deletes all cards from the database (WARNING: This will remove ALL cards!)
+    /// </summary>
+    /// <returns>Number of cards deleted (0 or more), or -1 if operation failed</returns>
+    Task<int> DeleteAllCards();
+    
     // BULK OPERATIONS
     
     /// <summary>
@@ -172,13 +178,4 @@ public interface IDatabaseService
     /// <param name="cardIds">List of card IDs to delete</param>
     /// <returns>Number of cards successfully deleted (0 or more), or -1 if operation failed</returns>
     Task<int> DeleteMultipleCards(List<string> cardIds);
-    
-    /// <summary>
-    /// Updates category ID for all cards that reference the old category
-    /// Used when merging categories or fixing references
-    /// </summary>
-    /// <param name="oldCategoryId">The category ID to replace</param>
-    /// <param name="newCategoryId">The new category ID to assign</param>
-    /// <returns>Number of cards updated (0 or more), or -1 if operation failed</returns>
-    Task<int> UpdateCardsCategory(string oldCategoryId, string newCategoryId);
 }

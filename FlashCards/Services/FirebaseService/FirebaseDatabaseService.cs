@@ -55,9 +55,23 @@ public class FirebaseDatabaseService : IDatabaseService
         throw new NotImplementedException();
     }
 
-    public Task<SingleCard?> CreateCard(SingleCard card)
+    public async Task<bool?> CreateCard(SingleCard card)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // Validation - return false for invalid input (not exceptions)
+            if (string.IsNullOrWhiteSpace(card.Phrase) || string.IsNullOrWhiteSpace(card.Translation))
+                return false;
+        
+            var collectionReference = _firestore.GetCollection("cards");
+            await collectionReference.AddDocumentAsync(card);
+        
+            return true; // Successfully created
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public Task<SingleCard?> GetCard(string cardId)
@@ -65,9 +79,35 @@ public class FirebaseDatabaseService : IDatabaseService
         throw new NotImplementedException();
     }
 
-    public Task<List<SingleCard>?> GetCardsCollection()
+    public async Task<List<SingleCard>?> GetCardsCollection()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var cards = new List<SingleCard>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    // Convert a document form Firebase to SingleCard
+                    var card = document.Data;
+                    if (card != null)
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            
+            return cards; // empty list if na cards
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error: {ex.Message}");
+            return null; // null - Error
+        }
     }
 
     public Task<List<SingleCard>?> GetCardsCollectionByCategroryId(string categoryId)
@@ -114,7 +154,7 @@ public class FirebaseDatabaseService : IDatabaseService
     {
         throw new NotImplementedException();
     }
-
+    
     public Task<bool> DeleteCard(string cardId)
     {
         throw new NotImplementedException();
@@ -133,6 +173,33 @@ public class FirebaseDatabaseService : IDatabaseService
     public Task<int> DeleteMultipleCards(List<string> cardIds)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<int> DeleteAllCards()
+    {
+        try
+        {
+            var collectionReference = _firestore.GetCollection(CardsCollectionName);
+            var querySnapshot = await collectionReference.GetDocumentsAsync<SingleCard>();
+                
+            var deletingCounter = 0;
+                
+            if (querySnapshot.Documents?.Any() == true)
+            {
+                foreach (var document in querySnapshot.Documents)
+                {
+                    await document.Reference.DeleteDocumentAsync();
+                    deletingCounter++;
+                }
+            }
+            
+            return deletingCounter; // Return number of deleted cards (0 if no cards)
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting all cards: {ex.Message}");
+            return -1; // -1 indicates error according to interface convention
+        }
     }
 
     public Task<int> UpdateCardsCategory(string oldCategoryId, string newCategoryId)
