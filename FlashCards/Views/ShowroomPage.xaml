@@ -147,7 +147,7 @@
                         Style="{StaticResource Text_SubTitle}" />
                     <Button
                         WidthRequest="220"
-                        Text="Storage"
+                        Text="Cards Collection"
                         Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding OnGoToGetCollectionPage}" />
                 </VerticalStackLayout>
