@@ -17,6 +17,4 @@ public interface IDatabaseService
     
     Task<List<SingleCard>> GetCardsCollection();
     Task<List<Category>> GetCategoriesCollection();
-
-    Task<bool> TestFirestoreConnection();
 }
