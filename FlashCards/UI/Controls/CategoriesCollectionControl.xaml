@@ -9,10 +9,11 @@
     Margin="30,20">
 
     <CollectionView
-        ItemsSource="{Binding CategoryCollection, Source={x:Reference RootCategoryCollectionView}}"
+        ItemsSource="{Binding CategoryCollection, Source={x:Reference RootCategoryCollectionView}, x:DataType=RootCategoryCollectionView}"
         RemainingItemsThreshold="5">
         <CollectionView.ItemTemplate>
             <DataTemplate>
+                <!--  Probably better to use only CategoryCardControl directly on page related to ViewModel - we can use then ObservableProperty as CardsCout  -->
                 <controls:CategoryCardControl
                     Margin="0,10"
                     HorizontalOptions="Fill"

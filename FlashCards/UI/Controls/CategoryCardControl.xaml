@@ -4,7 +4,7 @@
     x:Class="FlashCards.UI.Controls.CategoryCardControl"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="RootCategoryView"
+    x:Name="Root"
     HeightRequest="150"
     Margin="0,20,0,0"
     Padding="24,20"
@@ -20,7 +20,7 @@
             Style="{StaticResource Text_SubTitle}" />
         <Label
             HorizontalOptions="Center"
-            Text="{Binding CategoryName, Source={x:Reference RootCategoryView}}"
+            Text="{Binding CategoryName, Source={x:Reference Root}, x:DataType=Root}"
             LineBreakMode="WordWrap"
             Style="{StaticResource Text_Title}" />
         <Border
@@ -40,7 +40,7 @@
                     FontAttributes="Bold"
                     Style="{StaticResource Text_Label}" />
                 <Label
-                    Text="XXX"
+                    Text="{Binding Path=CardsCount, Source={x:Reference Root}, x:DataType=Root}"
                     TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
                                                 Dark={StaticResource TextPrimaryLight}}"
                     FontAttributes="Bold"
