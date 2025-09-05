@@ -20,52 +20,122 @@ public class FirebaseDatabaseService : IDatabaseService
         Console.WriteLine($"MOZU: FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
     }
 
-    public Task CreateCategory(string name)
+    public Task<Category?> CreateCategory(string name)
     {
         throw new NotImplementedException();
     }
 
-    public Task CreateCard(User user)
+    public Task<Category?> GetCategory(string categoryId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Category> GetCategory(string name)
+    public Task<Category?> GetCategoryByName(string name)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<SingleCard>> GetCardsCollectionByCategroryId(string id)
+    public Task<List<Category>?> GetCategoriesCollection()
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateCategory(string categoryId, string newName)
+    public Task<bool> UpdateCategory(string categoryId, string newName)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateCard(string cardId, SingleCard newCard)
+    public Task<bool> DeleteCategory(string categoryId)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteCategory(string categoryId)
+    public Task<bool?> CategoryExists(string categoryId)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteCard(string cardId)
+    public Task<SingleCard?> CreateCard(SingleCard card)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<SingleCard>> GetCardsCollection()
+    public Task<SingleCard?> GetCard(string cardId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<Category>> GetCategoriesCollection()
+    public Task<List<SingleCard>?> GetCardsCollection()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<SingleCard>?> GetCardsCollectionByCategroryId(string categoryId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<SingleCard>?> GetCardsWithUndefinedCategory()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<SingleCard>?> GetFavoriteCards()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<SingleCard>?> GetCardsByLearningProgress(LearningProgress progress)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> UpdateCard(string cardId, SingleCard updatedCard)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> UpdateCardCategory(string cardId, string categoryId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> SetCardCategoryToUndefined(string cardId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> UpdateCardLearningProgress(string cardId, LearningProgress progress)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> ToggleCardFavorite(string cardId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> DeleteCard(string cardId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> DeleteAllCardsInCategory(string categoryId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<SingleCard>?> CreateMultipleCards(List<SingleCard> cards)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> DeleteMultipleCards(List<string> cardIds)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> UpdateCardsCategory(string oldCategoryId, string newCategoryId)
     {
         throw new NotImplementedException();
     }
