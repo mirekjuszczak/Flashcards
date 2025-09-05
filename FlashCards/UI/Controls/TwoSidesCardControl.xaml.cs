@@ -83,8 +83,8 @@ public partial class TwoSidesCardControl : Border
 
         //TEST
         Phrase += " FAV";
-        Translation += "TRA";
-        Example += "EXM";
+        Translation += " TRA";
+        Example += " EXM";
         //END
 
         if (Favourite)
