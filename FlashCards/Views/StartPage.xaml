@@ -18,24 +18,24 @@
                 HorizontalOptions="Center" />
 
             <Button
+                x:Name="ShowroomButton"
+                WidthRequest="200"
+                Margin="0,0,0,10"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Start Application"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Command="{Binding OnGoToAuthorisationPage}" />
+
+            <Button
                 x:Name="StartButton"
                 WidthRequest="200"
-                Margin="0,0,0,20"
+                Margin="0,0,0,10"
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Text="Showroom"
                 Style="{StaticResource PrimaryButtonStyle}"
                 Command="{Binding OnGoToShowroomCommand}" />
-
-            <Button
-                x:Name="ShowroomButton"
-                WidthRequest="200"
-                Margin="0,0,0,20"
-                HorizontalOptions="Center"
-                VerticalOptions="End"
-                Text="Start Application"
-                Style="{StaticResource PrimaryButtonStyle}"
-                IsEnabled="False" />
 
         </VerticalStackLayout>
     </ScrollView>

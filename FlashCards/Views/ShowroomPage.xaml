@@ -101,32 +101,6 @@
                 </VerticalStackLayout>
             </Border>
 
-            <!--  Categories Collection section  -->
-            <!--  <Border  -->
-            <!--  Margin="0,8"  -->
-            <!--  Padding="16"  -->
-            <!--  HorizontalOptions="Fill"  -->
-            <!--  Background="{AppThemeBinding Light={StaticResource SurfaceLight},  -->
-            <!--  Dark={StaticResource SurfaceDark}}"  -->
-            <!--  Shadow="8,8,16,Black">  -->
-            <!--     <Border.StrokeShape> -->
-            <!--         <RoundRectangle CornerRadius="12" /> -->
-            <!--     </Border.StrokeShape> -->
-            <!--  <VerticalStackLayout  -->
-            <!--  HorizontalOptions="Center"  -->
-            <!--  Spacing="8">  -->
-            <!--  <Label  -->
-            <!--  HorizontalOptions="Center"  -->
-            <!--  Text="Categories Collection"  -->
-            <!--  Style="{StaticResource Text_SubTitle}" />  -->
-            <!--  <Button  -->
-            <!--  WidthRequest="220"  -->
-            <!--  Text="Categories Collection"  -->
-            <!--  Command="{Binding OnGoToCategoriesCollectionPage}"  -->
-            <!--  Style="{StaticResource PrimaryButtonStyle}" />  -->
-            <!--     </VerticalStackLayout> -->
-            <!-- </Border> -->
-
             <!--  Firebase Samples section  -->
             <Border
                 Margin="0,8"

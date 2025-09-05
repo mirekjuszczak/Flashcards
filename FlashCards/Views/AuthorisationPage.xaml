@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="FlashCards.Views.AuthorisationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}">
+
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="Placeholder"
+            Style="{StaticResource Text_Title}" />
+
+        <Button
+            WidthRequest="200"
+            Margin="0,0,0,10"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Text="Skip temporary"
+            Style="{StaticResource PrimaryButtonStyle}" />
+    </VerticalStackLayout>
+</ContentPage>
