@@ -6,7 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="RootOneCardView"
     Style="{StaticResource CardBackgroundStyle}"
-    StrokeShape="RoundRectangle 32"
+    StrokeShape="RoundRectangle 16"
     StrokeThickness="1">
     <Border.GestureRecognizers>
         <TapGestureRecognizer Tapped="OnCardTapped" />
@@ -20,7 +20,7 @@
             x:Name="TabGrid"
             ColumnDefinitions="*, Auto"
             Margin="10,0">
-            <HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="0">
 
                 <Image
                     x:Name="RedCircle"
@@ -58,62 +58,162 @@
             </Image>
         </Grid>
 
-        <VerticalStackLayout
+        <Grid
             x:Name="FrontCard"
-            VerticalOptions="End">
-            <Label
-                Margin="0,200"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Text="{Binding Source={x:Reference RootOneCardView}, Path=Phrase}"
-                Style="{StaticResource Text_Large_Title}" />
-        </VerticalStackLayout>
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
 
-        <VerticalStackLayout x:Name="BackCard">
-            <VerticalStackLayout>
-                <HorizontalStackLayout>
+            <!--  Main phrase display with enhanced visual appeal  -->
+            <Border
+                Margin="20,40,20,20"
+                Padding="24,20"
+                VerticalOptions="Center"
+                BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                                  Dark={StaticResource BackgroundPrimaryDark}}"
+                StrokeShape="RoundRectangle 16"
+                StrokeThickness="0">
+                <VerticalStackLayout Spacing="12">
                     <Label
-                        Margin="10,0"
-                        Text="Category:"
+                        Text="Phrase"
+                        TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                    Dark={StaticResource AccentPrimaryDark}}"
                         Style="{StaticResource Text_SubTitle}" />
                     <Label
-                        Margin="10,0"
-                        HorizontalOptions="Start"
-                        Text="{Binding Source={x:Reference RootOneCardView}, Path=CategoryName}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="{Binding Source={x:Reference RootOneCardView}, Path=Phrase}"
+                        LineBreakMode="WordWrap"
+                        HorizontalTextAlignment="Center"
                         Style="{StaticResource Text_Body}" />
-                </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
 
-                <Label
-                    Margin="10,50,10,0"
-                    Text="Translation:"
-                    Style="{StaticResource Text_SubTitle}" />
-                <Label
-                    Margin="20,10,10,0"
-                    HorizontalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=Translation}"
-                    Style="{StaticResource Text_Body}" />
+        <Grid
+            x:Name="BackCard"
+            RowDefinitions="*,Auto"
+            Margin="20"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
 
-                <Label
-                    Margin="10,30,10,0"
-                    Text="Example:"
-                    Style="{StaticResource Text_SubTitle}" />
-                <Label
-                    Margin="20,10,10,0"
-                    HorizontalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=Example}"
-                    Style="{StaticResource Text_Body}" />
+            <!--  Main content area  -->
+            <VerticalStackLayout
+                Grid.Row="0"
+                VerticalOptions="Start"
+                Spacing="24">
 
-                <Label
-                    Margin="10,30,10,0"
-                    Text="Learning Progress:"
-                    Style="{StaticResource Text_SubTitle}" />
-                <Label
-                    Margin="20,10,10,0"
-                    HorizontalOptions="Start"
-                    Text="{Binding Source={x:Reference RootOneCardView}, Path=LearningProgress}"
-                    Style="{StaticResource Text_Body}" />
+                <!--  Translation Section  -->
+                <Border
+                    Margin="0,20,0,0"
+                    Padding="24,20"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                                      Dark={StaticResource BackgroundPrimaryDark}}"
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="0">
+                    <VerticalStackLayout Spacing="12">
+                        <Label
+                            Text="Translation"
+                            TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                        Dark={StaticResource AccentPrimaryDark}}"
+                            Style="{StaticResource Text_SubTitle}" />
+                        <Label
+                            Text="{Binding Source={x:Reference RootOneCardView}, Path=Translation}"
+                            LineBreakMode="WordWrap"
+                            Style="{StaticResource Text_Body}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!--  Example Section  -->
+                <Border
+                    Padding="24,20"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    StrokeShape="RoundRectangle 16"
+                    StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                             Dark={StaticResource AccentPrimaryDark}}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label
+                            Text="Example"
+                            TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                        Dark={StaticResource AccentPrimaryDark}}"
+                            Style="{StaticResource Text_SubTitle}" />
+                        <Label
+                            Text="{Binding Source={x:Reference RootOneCardView}, Path=Example}"
+                            LineBreakMode="WordWrap"
+                            Style="{StaticResource Text_Body_Italic}"
+                            Opacity="0.9" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!--  Fixed bottom section with Category and Progress  -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                Margin="0,20,0,20"
+                Spacing="16">
+
+                <!--  Info Cards Row at bottom  -->
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="12">
+
+                    <!--  Category Card  -->
+                    <Border
+                        Grid.Column="0"
+                        Padding="16,14"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                          Dark={StaticResource AccentPrimaryDark}}"
+                        StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0">
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Category"
+                                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                            Dark={StaticResource TextPrimaryLight}}"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                Style="{StaticResource Text_Body}"
+                                Opacity="0.85" />
+                            <Label
+                                Text="{Binding Source={x:Reference RootOneCardView}, Path=CategoryName}"
+                                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                            Dark={StaticResource TextPrimaryLight}}"
+                                LineBreakMode="TailTruncation"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                Style="{StaticResource Text_SubTitle}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Learning Progress Card  -->
+                    <Border
+                        Grid.Column="1"
+                        Padding="16,14"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceSecondaryLight},
+                                                          Dark={StaticResource SurfaceSecondaryDark}}"
+                        StrokeShape="RoundRectangle 12"
+                        StrokeThickness="2"
+                        Stroke="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                 Dark={StaticResource AccentPrimaryDark}}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Progress"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                Style="{StaticResource Text_Body}"
+                                Opacity="0.85" />
+                            <Label
+                                Text="{Binding Source={x:Reference RootOneCardView}, Path=LearningProgress}"
+                                LineBreakMode="TailTruncation"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                Style="{StaticResource Text_SubTitle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
 
             </VerticalStackLayout>
-        </VerticalStackLayout>
+        </Grid>
     </VerticalStackLayout>
 </Border>

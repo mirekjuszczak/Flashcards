@@ -61,6 +61,13 @@
         <Setter Property="Opacity" Value="0.8" />
     </Style>
 
+    <Style
+        x:Key="Text_Body_Italic"
+        BasedOn="{StaticResource Text_Body}"
+        TargetType="Label">
+        <Setter Property="FontAttributes" Value="Italic" />
+    </Style>
+
     <!--  <Style  -->
     <!--  x:Key="Text_Bold_Body"  -->
     <!--  BasedOn="{StaticResource Text_Body}"  -->
