@@ -9,4 +9,7 @@ public class Category
     
     [FirestoreProperty("name")]
     public string Name { get; set; }
+    
+    [FirestoreProperty("countcards")]
+    public int CountCards { get; set; }
 }

@@ -12,7 +12,7 @@ public partial class CategoryCardControl : Border
     [BindableProperty(typeof(int), 
         BindingMode = BindingMode.TwoWay,
         DefaultValueField = nameof(DefaultIntValue))]
-    public static readonly BindableProperty CardsCountProperty;
+    public static readonly BindableProperty CountCardsProperty;
 
     public CategoryCardControl()
     {

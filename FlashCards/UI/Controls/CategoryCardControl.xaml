@@ -40,7 +40,7 @@
                     FontAttributes="Bold"
                     Style="{StaticResource Text_Label}" />
                 <Label
-                    Text="{Binding Path=CardsCount, Source={x:Reference Root}, x:DataType=Root}"
+                    Text="{Binding Path=CountCards, Source={x:Reference Root}, x:DataType=Root}"
                     TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
                                                 Dark={StaticResource TextPrimaryLight}}"
                     FontAttributes="Bold"

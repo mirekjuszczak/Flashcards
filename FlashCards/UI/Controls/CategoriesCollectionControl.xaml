@@ -18,7 +18,8 @@
                     Margin="0,10"
                     HorizontalOptions="Fill"
                     VerticalOptions="Start"
-                    CategoryName="{Binding Name}" />
+                    CategoryName="{Binding Name}"
+                    CountCards="{Binding CountCards}" />
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
