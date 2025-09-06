@@ -8,6 +8,7 @@ public class FirebaseDatabaseService : IDatabaseService
 {
     private const string ProjectFirebaseId = "flashcards-mjusz";
     private const string CardsCollectionName = "cards";
+    private const string CategoriesCollectionName = "categories";
     
     private readonly IFirebaseFirestore _firestore;
 
@@ -20,9 +21,33 @@ public class FirebaseDatabaseService : IDatabaseService
         Console.WriteLine($"MOZU: FirebaseDatabaseService constructor _firestore created {ProjectFirebaseId}");
     }
 
-    public Task<Category?> CreateCategory(string name)
+    public async Task<Category?> CreateCategory(string name)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // Validation - return null for invalid input
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+
+            var newCategory = new Category 
+            { 
+                Name = name 
+                // Id = null - Firestore will create unique Id!
+            };
+
+            var collectionReference = _firestore.GetCollection(CategoriesCollectionName);
+            var documentRef = await collectionReference.AddDocumentAsync(newCategory);
+            
+            // Get category with new Id
+            var snapshot = await documentRef.GetDocumentSnapshotAsync<Category>();
+            
+            // Return new Category 
+            return snapshot.Data; 
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
     public Task<Category?> GetCategory(string categoryId)
