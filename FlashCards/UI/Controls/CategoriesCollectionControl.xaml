@@ -19,7 +19,8 @@
                     HorizontalOptions="Fill"
                     VerticalOptions="Start"
                     CategoryName="{Binding Name}"
-                    CountCards="{Binding CountCards}" />
+                    CountCards="{Binding CountCards}"
+                    LastModified="{Binding LastModified}" />
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

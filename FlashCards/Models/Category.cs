@@ -12,4 +12,7 @@ public class Category
     
     [FirestoreProperty("countcards")]
     public int CountCards { get; set; }
+    
+    [FirestoreProperty("lastmodified")]
+    public DateOnly LastModified { get; set; }
 }

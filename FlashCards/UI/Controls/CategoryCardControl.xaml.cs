@@ -13,6 +13,9 @@ public partial class CategoryCardControl : Border
         BindingMode = BindingMode.TwoWay,
         DefaultValueField = nameof(DefaultIntValue))]
     public static readonly BindableProperty CountCardsProperty;
+    
+    [BindableProperty(typeof(DateOnly), BindingMode = BindingMode.TwoWay)]
+    public static readonly BindableProperty LastModifiedProperty;
 
     public CategoryCardControl()
     {

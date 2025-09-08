@@ -31,62 +31,82 @@ public class DatabaseServiceMock
         
         categories.Add(new Category
         {
-            Id = 1.ToString(),
-            Name = "Noun"
+            Id = 1.ToString(),  //Firebase automationally generates string IDs
+            Name = "Noun",
+            CountCards = 10,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 2.ToString(),
-            Name = "Verb"
+            Id = 2.ToString(),  //Firebase automationally generates string IDs
+            Name = "Verb",
+            CountCards = 3,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 3.ToString(),
-            Name = "Airport"
+            Id = 3.ToString(),  //Firebase automationally generates string IDs
+            Name = "Airport",
+            CountCards = 5,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
 
         categories.Add(new Category
         {
-            Id = 4.ToString(),
-            Name = "Adjective"
+            Id = 4.ToString(),  //Firebase automationally generates string IDs
+            Name = "Adjective",
+            CountCards = 13,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 5.ToString(),
-            Name = "Restaurant"
+            Id = 5.ToString(),  //Firebase automationally generates string IDs
+            Name = "Restaurant",
+            CountCards = 15,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 6.ToString(),
-            Name = "Hotel"
+            Id = 6.ToString(),  //Firebase automationally generates string IDs
+            Name = "Hotel",
+            CountCards = 23,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 7.ToString(),
-            Name = "Prepositions"
+            Id = 7.ToString(),  //Firebase automationally generates string IDs
+            Name = "Prepositions",
+            CountCards = 2,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 8.ToString(),
-            Name = "Tenses"
+            Id = 8.ToString(),  //Firebase automationally generates string IDs
+            Name = "Tenses",
+            CountCards = 0,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 9.ToString(),
-            Name = "Phrasal Verbs"
+            Id = 9.ToString(),  //Firebase automationally generates string IDs
+            Name = "Phrasal Verbs",
+            CountCards = 0,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         categories.Add(new Category
         {
-            Id = 10.ToString(),
-            Name = "Idioms"
+            Id = 10.ToString(),  //Firebase automationally generates string IDs
+            Name = "Idioms",
+            CountCards = 9,
+            LastModified = DateOnly.FromDateTime(DateTime.Now)
         });
         
         return categories;

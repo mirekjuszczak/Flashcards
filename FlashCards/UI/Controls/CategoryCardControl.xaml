@@ -23,30 +23,45 @@
             Text="{Binding CategoryName, Source={x:Reference Root}, x:DataType=Root}"
             LineBreakMode="WordWrap"
             Style="{StaticResource Text_Title}" />
-        <Border
-            Padding="10,8"
-            HorizontalOptions="End"
-            VerticalOptions="End"
-            BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
-                                              Dark={StaticResource AccentPrimaryDark}}"
-            Opacity="0.7"
-            StrokeShape="RoundRectangle 12"
-            StrokeThickness="0">
-            <HorizontalStackLayout Spacing="6">
-                <Label
-                    Text="Cards"
-                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
-                                                Dark={StaticResource TextPrimaryLight}}"
-                    FontAttributes="Bold"
-                    Style="{StaticResource Text_Label}" />
-                <Label
-                    Text="{Binding Path=CountCards, Source={x:Reference Root}, x:DataType=Root}"
-                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
-                                                Dark={StaticResource TextPrimaryLight}}"
-                    FontAttributes="Bold"
-                    Style="{StaticResource Text_Label}" />
-            </HorizontalStackLayout>
-        </Border>
+
+        <Grid
+            ColumnDefinitions="*, Auto, Auto"
+            ColumnSpacing="10">
+            <Label
+                Grid.Column="0"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                Text="{Binding LastModified, StringFormat='Modified: {0}'}"
+                TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                            Dark={StaticResource TextTertiaryDark}}"
+                FontSize="12" />
+
+            <Border
+                Grid.Column="2"
+                Padding="10,8"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}"
+                Opacity="0.7"
+                StrokeShape="RoundRectangle 12"
+                StrokeThickness="0">
+                <HorizontalStackLayout Spacing="6">
+                    <Label
+                        Text="Cards"
+                        TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                    Dark={StaticResource TextPrimaryLight}}"
+                        FontAttributes="Bold"
+                        Style="{StaticResource Text_Label}" />
+                    <Label
+                        Text="{Binding Path=CountCards, Source={x:Reference Root}, x:DataType=Root}"
+                        TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                    Dark={StaticResource TextPrimaryLight}}"
+                        FontAttributes="Bold"
+                        Style="{StaticResource Text_Label}" />
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
     </VerticalStackLayout>
 
 </Border>
