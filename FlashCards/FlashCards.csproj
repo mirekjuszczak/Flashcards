@@ -40,10 +40,11 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
+<!--        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#d6dac8"/>-->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#d6dac8"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\illustration_cards.png" Color="#34495E" BaseSize="128,128"/>
+        <MauiSplashScreen Include="Resources\Splash\illustration_cards.png" Color="#d6dac8" BaseSize="200,200"/>
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*"/>
