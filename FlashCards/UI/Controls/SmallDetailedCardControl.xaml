@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Border
+    x:Class="FlashCards.UI.Controls.SmallDetailedCardControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="Root"
+    Margin="0,5"
+    Padding="15"
+    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                      Dark={StaticResource SurfaceDark}}"
+    StrokeThickness="1"
+    Stroke="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                             Dark={StaticResource TextTertiaryDark}}">
+
+
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="8" />
+    </Border.StrokeShape>
+
+    <VerticalStackLayout Spacing="8">
+
+        <!--  Phrase and Translation  -->
+        <Grid
+            ColumnDefinitions="*, *"
+            ColumnSpacing="10">
+            <VerticalStackLayout Grid.Column="0">
+                <Label
+                    Text="Phrase:"
+                    TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                Dark={StaticResource TextSecondaryDark}}"
+                    FontSize="12"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="{Binding Phrase, Source={x:Reference Root}, x:DataType=Root}"
+                    TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                Dark={StaticResource AccentPrimaryDark}}"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1">
+                <Label
+                    Text="Translation:"
+                    TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                Dark={StaticResource TextSecondaryDark}}"
+                    FontSize="12"
+                    FontAttributes="Bold" />
+                <Label
+                    Text="{Binding Translation, Source={x:Reference Root}, x:DataType=Root}"
+                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                Dark={StaticResource TextPrimaryDark}}"
+                    FontSize="16" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!--  Example  -->
+        <VerticalStackLayout IsVisible="{Binding Example, Converter={toolkit:IsNotNullConverter}}">
+            <Label
+                Text="Example:"
+                TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                            Dark={StaticResource TextSecondaryDark}}"
+                FontSize="12"
+                FontAttributes="Bold" />
+            <Label
+                Text="{Binding Example, Source={x:Reference Root}, x:DataType=Root}"
+                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                            Dark={StaticResource TextPrimaryDark}}"
+                FontSize="14" />
+        </VerticalStackLayout>
+
+        <!--  Category and Status  -->
+        <Grid
+            ColumnDefinitions="*, Auto, Auto"
+            ColumnSpacing="10">
+            <Label
+                Grid.Column="0"
+                VerticalOptions="Center"
+                Text="{Binding CategoryName, StringFormat='Category: {0}', Source={x:Reference Root}, x:DataType=Root}"
+                TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                            Dark={StaticResource TextTertiaryDark}}"
+                FontSize="12" />
+
+            <Label
+                Grid.Column="1"
+                VerticalOptions="Center"
+                Text="★"
+                TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                            Dark={StaticResource AccentPrimaryDark}}"
+                FontSize="16"
+                IsVisible="{Binding Favourite, Source={x:Reference Root}, x:DataType=Root}" />
+
+            <Border
+                Grid.Column="2"
+                Padding="6,2"
+                VerticalOptions="Center"
+                BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="4" />
+                </Border.StrokeShape>
+                <Label
+                    Text="{Binding LearningProgress, Source={x:Reference Root}, x:DataType=Root}"
+                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                Dark={StaticResource TextPrimaryDark}}"
+                    FontSize="10" />
+            </Border>
+        </Grid>
+    </VerticalStackLayout>
+</Border>
