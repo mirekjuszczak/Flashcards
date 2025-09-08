@@ -7,19 +7,209 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
                                       Dark={StaticResource BackgroundPrimaryDark}}">
 
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Text="Placeholder"
-            Style="{StaticResource Text_Title}" />
+    <ScrollView>
+        <Grid
+            RowSpacing="20"
+            Padding="30,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Button
-            WidthRequest="200"
-            Margin="0,0,0,10"
-            HorizontalOptions="Center"
-            VerticalOptions="End"
-            Text="Skip temporary"
-            Style="{StaticResource PrimaryButtonStyle}" />
-    </VerticalStackLayout>
+            <!--  Logo/Title Section  -->
+            <Grid
+                Grid.Row="0"
+                RowSpacing="10"
+                Margin="0,60,0,40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Text="Sign in to continue..."
+                    Style="{StaticResource Text_Title}" />
+                <Label
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    Text="Placeholder for tests..."
+                    Style="{StaticResource Text_Body}" />
+            </Grid>
+
+            <!--  Email Login Form  -->
+            <Grid
+                Grid.Row="1"
+                RowSpacing="15"
+                Margin="0,0,0,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border
+                    Grid.Row="0"
+                    Padding="15"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                             Dark={StaticResource TextTertiaryDark}}">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                    Dark={StaticResource TextPrimaryDark}}"
+                        Keyboard="Email"
+                        Placeholder="Email address"
+                        PlaceholderColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                           Dark={StaticResource TextSecondaryDark}}" />
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Padding="15"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                             Dark={StaticResource TextTertiaryDark}}">
+                    <Entry
+                        BackgroundColor="Transparent"
+                        TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                    Dark={StaticResource TextPrimaryDark}}"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        PlaceholderColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                                           Dark={StaticResource TextSecondaryDark}}" />
+                </Border>
+
+                <Button
+                    Grid.Row="2"
+                    HorizontalOptions="End"
+                    Text="Forgot Password?"
+                    FontSize="14"
+                    Style="{StaticResource TertiaryButtonStyle}" />
+
+                <Button
+                    Grid.Row="3"
+                    HeightRequest="50"
+                    Margin="0,10,0,0"
+                    Text="Sign In"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            </Grid>
+
+            <Grid
+                Grid.Row="2"
+                ColumnSpacing="0"
+                Margin="0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView
+                    Grid.Column="0"
+                    HeightRequest="1"
+                    VerticalOptions="Center"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                      Dark={StaticResource TextTertiaryDark}}" />
+                <Label
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    Text="  or continue with  "
+                    Style="{StaticResource Text_Body}" />
+                <BoxView
+                    Grid.Column="2"
+                    HeightRequest="1"
+                    VerticalOptions="Center"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                      Dark={StaticResource TextTertiaryDark}}" />
+            </Grid>
+
+            <Grid
+                Grid.Row="3"
+                RowSpacing="12"
+                Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Google Login  -->
+                <Border
+                    Grid.Row="0"
+                    HeightRequest="50"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                             Dark={StaticResource TextTertiaryDark}}">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Text="Continue with Google"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        BorderWidth="0" />
+                </Border>
+
+                <!--  Facebook Login  -->
+                <Border
+                    Grid.Row="1"
+                    HeightRequest="50"
+                    BackgroundColor="#1877F2"
+                    StrokeShape="RoundRectangle 12">
+                    <Button
+                        BackgroundColor="Transparent"
+                        Text="Continue with Facebook"
+                        TextColor="White"
+                        FontSize="16"
+                        BorderWidth="0" />
+                </Border>
+            </Grid>
+
+            <Grid
+                Grid.Row="4"
+                Margin="0,30,0,0"
+                HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Column="0"
+                    VerticalOptions="Center"
+                    Text="Don't have an account? "
+                    Style="{StaticResource Text_Body}" />
+                <Button
+                    Grid.Column="1"
+                    Padding="0"
+                    VerticalOptions="Center"
+                    Text="Sign Up"
+                    FontSize="16"
+                    Style="{StaticResource TertiaryButtonStyle}" />
+            </Grid>
+
+            <!--  Skip placeholder Button  -->
+            <Button
+                Grid.Row="5"
+                WidthRequest="200"
+                Margin="0,20,0,40"
+                HorizontalOptions="Center"
+                Text="Skip for now"
+                Style="{StaticResource SecondaryButtonStyle}" />
+
+        </Grid>
+    </ScrollView>
 </ContentPage>
