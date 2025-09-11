@@ -144,6 +144,35 @@ public class FirebaseDatabaseService : IDatabaseService
         throw new NotImplementedException();
     }
 
+    public async Task<int> DeleteAllCategories()
+    {
+        try
+        {
+            var collectionReference = _firestore.GetCollection(CategoriesCollectionName);
+            var querySnapshot = await collectionReference.GetDocumentsAsync<Category>();
+                
+            var deletingCounter = 0;
+                
+            if (querySnapshot.Documents?.Any() == true)
+            {
+                foreach (var document in querySnapshot.Documents)
+                {
+                    await document.Reference.DeleteDocumentAsync();
+                    deletingCounter++;
+                    
+                    // TODO Note: Cards that belonged to these categories should be handled separately !!!!!!
+                }
+            }
+            
+            return deletingCounter; // Return number of deleted categories (0 if no cards)
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting all cards: {ex.Message}");
+            return -1; // -1 indicates error according to interface convention
+        }
+    }
+
     public Task<bool?> CategoryExists(string categoryId)
     {
         throw new NotImplementedException();

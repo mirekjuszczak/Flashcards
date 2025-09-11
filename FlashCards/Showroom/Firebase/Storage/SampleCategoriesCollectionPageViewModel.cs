@@ -68,7 +68,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         IsLoading = true;
 
         // Delete "categories" collection from Firestore
-        var deletingCounter = await _databaseService.DeleteAllCards();
+        var deletingCounter = await _databaseService.DeleteAllCategories();
 
         InfoText = deletingCounter switch
         {

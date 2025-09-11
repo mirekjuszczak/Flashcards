@@ -52,6 +52,13 @@ public interface IDatabaseService
     Task<bool> DeleteCategory(string categoryId);
     
     /// <summary>
+    /// Deletes all categories from the database
+    /// Remember to handle cards that belonged to these categories separately and set e.g. Undefined category for them
+    /// </summary>
+    /// <returns>Number of cards deleted (0 or more), or -1 if operation failed</returns>
+    Task<int> DeleteAllCategories();
+    
+    /// <summary>
     /// Checks if a category exists in the database
     /// </summary>
     /// <param name="categoryId">The unique identifier of the category</param>
