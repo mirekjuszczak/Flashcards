@@ -8,11 +8,11 @@ public class Category
     public string? Id { get; set; }
     
     [FirestoreProperty("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     
     [FirestoreProperty("countcards")]
     public int CountCards { get; set; }
     
     [FirestoreProperty("lastmodified")]
-    public DateOnly LastModified { get; set; }
+    public DateTime LastModified { get; set; }
 }

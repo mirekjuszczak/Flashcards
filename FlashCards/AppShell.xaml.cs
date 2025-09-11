@@ -26,5 +26,6 @@ public partial class AppShell : Shell
 		
 		// Firebase
 		Routing.RegisterRoute(nameof(SampleCardsCollectionPage), typeof(SampleCardsCollectionPage));
+		Routing.RegisterRoute(nameof(SampleCategoriesCollectionPage), typeof(SampleCategoriesCollectionPage));
 	}
 }

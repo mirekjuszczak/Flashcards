@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="FlashCards.Showroom.Firebase.Storage.SampleCategoriesCollectionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FlashCards.UI.Controls"
+    xmlns:models="clr-namespace:FlashCards.Models"
+    xmlns:toolkitConverters="clr-namespace:CommunityToolkit.Maui.Converters;assembly=CommunityToolkit.Maui"
+    xmlns:viewModels="clr-namespace:FlashCards.Showroom.Firebase.Storage"
+    BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
+                                      Dark={StaticResource BackgroundPrimaryDark}}"
+    x:DataType="viewModels:SampleCategoriesCollectionPageViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+
+            <!--  Header  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding Title}"
+                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                            Dark={StaticResource TextPrimaryDark}}"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <!--  Status Info  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding InfoText}"
+                TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                            Dark={StaticResource TextPrimaryDark}}"
+                HorizontalTextAlignment="Center"
+                FontSize="16" />
+
+            <!--  Error Message  -->
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding ErrorMessage}"
+                TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                            Dark={StaticResource AccentPrimaryDark}}"
+                HorizontalTextAlignment="Center"
+                FontSize="14"
+                IsVisible="{Binding ErrorMessage, Converter={toolkitConverters:IsNotNullConverter}}" />
+
+            <!--  Loading Indicator  -->
+            <ActivityIndicator
+                IsVisible="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}"
+                Color="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                        Dark={StaticResource AccentPrimaryDark}}" />
+
+            <!--  Action Buttons  -->
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                      Dark={StaticResource AccentPrimaryDark}}"
+                    Text="Get All"
+                    TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
+                                                Dark={StaticResource TextPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
+                    Command="{Binding LoadCategoriesCommand}" />
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    Text="Add Example"
+                    TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                Dark={StaticResource AccentPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
+                    Command="{Binding AddSampleCategoryCommand}"
+                    BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}"
+                    BorderWidth="2" />
+
+                <Button
+                    BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight},
+                                                      Dark={StaticResource SurfaceDark}}"
+                    Text="Delete All"
+                    TextColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                Dark={StaticResource AccentPrimaryDark}}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    IsEnabled="{Binding IsLoading, Converter={toolkitConverters:InvertedBoolConverter}}"
+                    Command="{Binding DeleteCategoriesCollectionCommand}"
+                    BorderColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
+                                                  Dark={StaticResource AccentPrimaryDark}}"
+                    BorderWidth="2" />
+            </HorizontalStackLayout>
+
+            <!--  Categories Collection  -->
+            <CollectionView
+                IsVisible="{Binding Cards.Count, Converter={toolkitConverters:IntToBoolConverter}}"
+                x:DataType="viewModels:SampleCardsCollectionPageViewModel"
+                ItemsSource="{Binding Cards}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Category">
+                        <controls:CategoryCardControl
+                            CategoryName="{Binding Name}"
+                            CountCards="{Binding CountCards}"
+                            LastModified="{Binding LastModified}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--  Empty State  -->
+            <Label
+                HorizontalOptions="Center"
+                Text=" No cards to display. Click 'Load Cards' to fetch data from Firestore."
+                TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
+                                            Dark={StaticResource TextSecondaryDark}}"
+                HorizontalTextAlignment="Center"
+                FontSize="14"
+                IsVisible="{Binding Cards.Count, Converter={StaticResource IntToInvertedBoolConverter}}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

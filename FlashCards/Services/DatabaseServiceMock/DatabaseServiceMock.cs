@@ -34,7 +34,7 @@ public class DatabaseServiceMock
             Id = 1.ToString(),  //Firebase automationally generates string IDs
             Name = "Noun",
             CountCards = 10,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -42,7 +42,7 @@ public class DatabaseServiceMock
             Id = 2.ToString(),  //Firebase automationally generates string IDs
             Name = "Verb",
             CountCards = 3,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -50,7 +50,7 @@ public class DatabaseServiceMock
             Id = 3.ToString(),  //Firebase automationally generates string IDs
             Name = "Airport",
             CountCards = 5,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
 
         categories.Add(new Category
@@ -58,7 +58,7 @@ public class DatabaseServiceMock
             Id = 4.ToString(),  //Firebase automationally generates string IDs
             Name = "Adjective",
             CountCards = 13,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -66,7 +66,7 @@ public class DatabaseServiceMock
             Id = 5.ToString(),  //Firebase automationally generates string IDs
             Name = "Restaurant",
             CountCards = 15,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -74,7 +74,7 @@ public class DatabaseServiceMock
             Id = 6.ToString(),  //Firebase automationally generates string IDs
             Name = "Hotel",
             CountCards = 23,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -82,7 +82,7 @@ public class DatabaseServiceMock
             Id = 7.ToString(),  //Firebase automationally generates string IDs
             Name = "Prepositions",
             CountCards = 2,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -90,7 +90,7 @@ public class DatabaseServiceMock
             Id = 8.ToString(),  //Firebase automationally generates string IDs
             Name = "Tenses",
             CountCards = 0,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -98,7 +98,7 @@ public class DatabaseServiceMock
             Id = 9.ToString(),  //Firebase automationally generates string IDs
             Name = "Phrasal Verbs",
             CountCards = 0,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         categories.Add(new Category
@@ -106,7 +106,7 @@ public class DatabaseServiceMock
             Id = 10.ToString(),  //Firebase automationally generates string IDs
             Name = "Idioms",
             CountCards = 9,
-            LastModified = DateOnly.FromDateTime(DateTime.Now)
+            LastModified = DateTime.Now
         });
         
         return categories;

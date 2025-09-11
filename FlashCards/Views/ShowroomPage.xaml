@@ -123,7 +123,12 @@
                         WidthRequest="220"
                         Text="Cards Collection"
                         Style="{StaticResource PrimaryButtonStyle}"
-                        Command="{Binding OnGoToGetCollectionPage}" />
+                        Command="{Binding OnGoToSampleGetCardsCollectionPage}" />
+                    <Button
+                        WidthRequest="220"
+                        Text="Categories Collection"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding OnGoToSampleGetCategoriesCollectionPage}" />
                 </VerticalStackLayout>
             </Border>
 

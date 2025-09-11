@@ -25,27 +25,43 @@ public class FirebaseDatabaseService : IDatabaseService
     {
         try
         {
-            // Validation - return null for invalid input
+            // Validation - return null for invalid input (not exceptions)
             if (string.IsNullOrWhiteSpace(name))
                 return null;
-
-            var newCategory = new Category 
-            { 
-                Name = name 
-                // Id = null - Firestore will create unique Id!
+            
+            // Check if category with this name already exists
+            var existingCategory = await GetCategoryByName(name);
+            if (existingCategory != null)
+            {
+                Console.WriteLine($"Category with name '{name}' already exists");
+                return null;
+            }
+        
+            var newCategory = new Category
+            {
+                Name = name,
+                CountCards = 0,
+                LastModified = DateTime.Now
             };
-
+        
             var collectionReference = _firestore.GetCollection(CategoriesCollectionName);
-            var documentRef = await collectionReference.AddDocumentAsync(newCategory);
+            var documentReference = await collectionReference.AddDocumentAsync(newCategory);
+        
+            // Retrieve the created category with its generated ID
+            var createdCategorySnapshot = await documentReference.GetDocumentSnapshotAsync<Category>();
+
+            if (createdCategorySnapshot?.Data != null)
+            {
+                return createdCategorySnapshot.Data; // Return the created category with ID
+            }
             
-            // Get category with new Id
-            var snapshot = await documentRef.GetDocumentSnapshotAsync<Category>();
-            
-            // Return new Category 
-            return snapshot.Data; 
+            // If data is null, return null indicating failure
+            Console.WriteLine("Warning: Category was not properly created or retrieved from Firebase");
+            return null;
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Database error creating category: {ex.Message}");
             return null;
         }
     }
@@ -55,14 +71,67 @@ public class FirebaseDatabaseService : IDatabaseService
         throw new NotImplementedException();
     }
 
-    public Task<Category?> GetCategoryByName(string name)
+    public async Task<Category?> GetCategoryByName(string name)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return null;
+                
+            var collectionRef = _firestore.GetCollection(CategoriesCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<Category>();
+            
+            // Search through all categories to find one with matching name
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var category = document.Data;
+                    if (category != null && string.Equals(category.Name, name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return category; // Found matching category
+                    }
+                }
+            }
+            
+            return null; // Category not found
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting category by name: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<List<Category>?> GetCategoriesCollection()
+    public async Task<List<Category>?> GetCategoriesCollection()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CategoriesCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<Category>();
+            
+            var categories = new List<Category>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    // Convert a document from Firebase to Category
+                    var category = document.Data;
+                    if (category != null)
+                    {
+                        categories.Add(category);
+                    }
+                }
+            }
+            
+            return categories; // empty list if no categories
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error: {ex.Message}");
+            return null; // null - Error
+        }
     }
 
     public Task<bool> UpdateCategory(string categoryId, string newName)
@@ -88,13 +157,14 @@ public class FirebaseDatabaseService : IDatabaseService
             if (string.IsNullOrWhiteSpace(card.Phrase) || string.IsNullOrWhiteSpace(card.Translation))
                 return false;
         
-            var collectionReference = _firestore.GetCollection("cards");
+            var collectionReference = _firestore.GetCollection(CardsCollectionName);
             await collectionReference.AddDocumentAsync(card);
         
             return true; // Successfully created
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
+            Console.WriteLine($"Database error creating card: {ex.Message}");
             return null;
         }
     }

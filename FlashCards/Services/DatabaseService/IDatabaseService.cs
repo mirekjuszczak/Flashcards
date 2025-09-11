@@ -14,6 +14,7 @@ public interface IDatabaseService
     /// <param name="name">The name of the category to create</param>
     /// <returns>The created category object with generated ID, or null if creation failed</returns>
     Task<Category?> CreateCategory(string name);
+
     
     /// <summary>
     /// Retrieves a category by its unique identifier
