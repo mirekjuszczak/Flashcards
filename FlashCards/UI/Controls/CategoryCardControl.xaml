@@ -27,14 +27,24 @@
         <Grid
             ColumnDefinitions="*, Auto, Auto"
             ColumnSpacing="10">
-            <Label
+            <Grid
                 Grid.Column="0"
+                RowDefinitions="Auto, Auto"
                 HorizontalOptions="Start"
-                VerticalOptions="End"
-                Text="{Binding LastModified, StringFormat='Modified: {0}'}"
-                TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
-                                            Dark={StaticResource TextTertiaryDark}}"
-                FontSize="12" />
+                VerticalOptions="End">
+                <Label
+                    Grid.Row="0"
+                    Text="Modified:"
+                    TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                Dark={StaticResource TextTertiaryDark}}"
+                    FontSize="12" />
+                <Label
+                    Grid.Row="1"
+                    Text="{Binding LastModified}"
+                    TextColor="{AppThemeBinding Light={StaticResource TextTertiaryLight},
+                                                Dark={StaticResource TextTertiaryDark}}"
+                    FontSize="12" />
+            </Grid>
 
             <Border
                 Grid.Column="2"
