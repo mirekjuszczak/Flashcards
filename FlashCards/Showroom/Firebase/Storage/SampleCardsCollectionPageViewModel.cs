@@ -6,7 +6,7 @@ using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
-public partial class SampleCollectionPageViewModel : BaseViewModel
+public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 {
     private readonly IDatabaseService _databaseService;
 
@@ -18,7 +18,7 @@ public partial class SampleCollectionPageViewModel : BaseViewModel
 
     [ObservableProperty] private string _errorMessage = string.Empty;
 
-    public SampleCollectionPageViewModel(IDatabaseService databaseService)
+    public SampleCardsCollectionPageViewModel(IDatabaseService databaseService)
     {
         _databaseService = databaseService;
         Title = "Cards collection of Firebase";

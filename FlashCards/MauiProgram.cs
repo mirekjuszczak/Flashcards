@@ -64,8 +64,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<AuthorisationPageViewModel>();
         
         // Firebase
-        builder.Services.AddSingleton<SampleCollectionPage>();
-        builder.Services.AddSingleton<SampleCollectionPageViewModel>();
+        builder.Services.AddSingleton<SampleCardsCollectionPage>();
+        builder.Services.AddSingleton<SampleCardsCollectionPageViewModel>();
     }
 
     private static void RegisterServices(MauiAppBuilder builder)

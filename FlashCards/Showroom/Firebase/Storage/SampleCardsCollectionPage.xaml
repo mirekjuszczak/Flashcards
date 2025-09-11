@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
-    x:Class="FlashCards.Showroom.Firebase.Storage.SampleCollectionPage"
+    x:Class="FlashCards.Showroom.Firebase.Storage.SampleCardsCollectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:FlashCards.UI.Controls"
@@ -10,7 +10,7 @@
     xmlns:viewModels="clr-namespace:FlashCards.Showroom.Firebase.Storage"
     BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundPrimaryLight},
                                       Dark={StaticResource BackgroundPrimaryDark}}"
-    x:DataType="viewModels:SampleCollectionPageViewModel">
+    x:DataType="viewModels:SampleCardsCollectionPageViewModel">
 
     <ScrollView>
         <VerticalStackLayout
@@ -60,7 +60,7 @@
                 <Button
                     BackgroundColor="{AppThemeBinding Light={StaticResource AccentPrimaryLight},
                                                       Dark={StaticResource AccentPrimaryDark}}"
-                    Text="Get Collection"
+                    Text="Get All"
                     TextColor="{AppThemeBinding Light={StaticResource TextPrimaryLight},
                                                 Dark={StaticResource TextPrimaryDark}}"
                     Style="{StaticResource PrimaryButtonStyle}"
@@ -97,7 +97,7 @@
             <!--  Cards Collection  -->
             <CollectionView
                 IsVisible="{Binding Cards.Count, Converter={toolkitConverters:IntToBoolConverter}}"
-                x:DataType="viewModels:SampleCollectionPageViewModel"
+                x:DataType="viewModels:SampleCardsCollectionPageViewModel"
                 ItemsSource="{Binding Cards}">
 
                 <CollectionView.ItemTemplate>
