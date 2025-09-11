@@ -117,7 +117,7 @@
             <!--  Empty State  -->
             <Label
                 HorizontalOptions="Center"
-                Text=" No cards to display. Click 'Load Cards' to fetch data from Firestore."
+                Text=" No cards to display. Click 'Get all' to fetch data from Firestore."
                 TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
                                             Dark={StaticResource TextSecondaryDark}}"
                 HorizontalTextAlignment="Center"

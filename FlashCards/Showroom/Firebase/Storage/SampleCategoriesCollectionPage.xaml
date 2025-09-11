@@ -96,9 +96,9 @@
 
             <!--  Categories Collection  -->
             <CollectionView
-                IsVisible="{Binding Cards.Count, Converter={toolkitConverters:IntToBoolConverter}}"
-                x:DataType="viewModels:SampleCardsCollectionPageViewModel"
-                ItemsSource="{Binding Cards}">
+                IsVisible="{Binding Categories.Count, Converter={toolkitConverters:IntToBoolConverter}}"
+                x:DataType="viewModels:SampleCategoriesCollectionPageViewModel"
+                ItemsSource="{Binding Categories}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Category">
@@ -113,12 +113,12 @@
             <!--  Empty State  -->
             <Label
                 HorizontalOptions="Center"
-                Text=" No cards to display. Click 'Load Cards' to fetch data from Firestore."
+                Text=" No categories to display. Click 'Get All' to fetch data from Firestore."
                 TextColor="{AppThemeBinding Light={StaticResource TextSecondaryLight},
                                             Dark={StaticResource TextSecondaryDark}}"
                 HorizontalTextAlignment="Center"
                 FontSize="14"
-                IsVisible="{Binding Cards.Count, Converter={StaticResource IntToInvertedBoolConverter}}" />
+                IsVisible="{Binding Categories.Count, Converter={StaticResource IntToInvertedBoolConverter}}" />
 
         </VerticalStackLayout>
     </ScrollView>

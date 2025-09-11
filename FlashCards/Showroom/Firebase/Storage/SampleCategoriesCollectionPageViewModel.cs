@@ -10,7 +10,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
 {
     private readonly IDatabaseService _databaseService;
 
-    [ObservableProperty] private ObservableCollection<Category> _cards = new();
+    [ObservableProperty] private ObservableCollection<Category> _categories = new();
 
     [ObservableProperty] private bool _isLoading;
 
@@ -37,7 +37,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         ErrorMessage = string.Empty;
         InfoText = "Getting categories from Firestore...";
-        Cards.Clear();
+        Categories.Clear();
 
         var categories = await _databaseService.GetCategoriesCollection(); 
 
@@ -50,7 +50,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         {
             foreach (var category in categories)
             {
-                Cards.Add(category);
+                Categories.Add(category);
             }
 
             InfoText = $"{categories.Count} categories loaded Firestore";
