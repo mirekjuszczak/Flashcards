@@ -279,8 +279,28 @@ public class FlashcardsDataService : IFlashcardsDataService
         }
     }
 
-    public Task<int> DeleteAllCategoriesAsync()
+    public async Task<int> DeleteAllCategoriesAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            // TODO Note: Cards that belonged to these categories should be handled separately in FirebaseDatabaseService!!!!!!
+            var deletingCounter = await _databaseService.DeleteAllCategories();
+
+            if (deletingCounter > 0)
+            {
+                Data.Categories.Clear();
+                
+                // TODO Note: Cards that belonged to these categories should be handled separately !!!!!!
+                // This metod UpdateAllCategoryCardCounts to change
+                Data.UpdateAllCategoryCardCounts();
+            }
+
+            return deletingCounter;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error deleting all cards: {e.Message}");
+            throw;
+        }
     }
 }

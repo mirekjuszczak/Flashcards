@@ -60,16 +60,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
     {
         IsLoading = true;
         
-        var deletedCount = 0;
-        var categoriesToDelete = _flashcardsDataService.Data.Categories.ToList();
-        
-        foreach (var category in categoriesToDelete)
-        {
-            if (category.Id != null && await _flashcardsDataService.DeleteCategoryAsync(category.Id))
-            {
-                deletedCount++;
-            }
-        }
+        var deletedCount = await _flashcardsDataService.DeleteAllCategoriesAsync();
 
         InfoText = deletedCount switch
         {
