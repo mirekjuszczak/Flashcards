@@ -10,14 +10,10 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 {
     private readonly IFlashcardsDataService _flashcardsDataService;
 
-    [ObservableProperty] private bool _isLoading;
-
-    [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
-
-    [ObservableProperty] private string _errorMessage = string.Empty;
-
-    // Direct binding to service's ObservableCollection
     public ObservableCollection<SingleCard> Cards => _flashcardsDataService.Data.Cards;
+    [ObservableProperty] private bool _isLoading;
+    [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
+    [ObservableProperty] private string _errorMessage = string.Empty;
 
     public SampleCardsCollectionPageViewModel(IFlashcardsDataService flashcardsDataService)
     {
@@ -38,8 +34,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         ErrorMessage = string.Empty;
         InfoText = "Getting cards from Firestore...";
-
-        // Ensure data is loaded from database
+        
         if (!_flashcardsDataService.IsLoaded)
         {
             var loadResult = await _flashcardsDataService.LoadDataAsync();
@@ -51,8 +46,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
                 return;
             }
         }
-
-        // No need to manually populate - UI will automatically update via ObservableCollection
+        
         var cardsCount = _flashcardsDataService.Data.Cards.Count;
 
         InfoText = cardsCount > 0 
@@ -65,8 +59,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
     private async Task DeleteCardsCollectionAsync()
     {
         IsLoading = true;
-
-        // Delete all cards through data service (this will sync with Firestore)
+        
         var deletedCount = 0;
         var cardsToDelete = _flashcardsDataService.Data.Cards.ToList();
         
@@ -84,8 +77,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             0 => "No cards were deleted",
             _ => "Error occurred while deleting cards"
         };
-
-        // No need to call LoadCardsAsync - ObservableCollection will auto-update
+        
         IsLoading = false;
     }
 
