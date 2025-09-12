@@ -34,7 +34,7 @@ public class FlashcardsDataService : IFlashcardsDataService
             if (cards == null || categories == null)
                 return false;
             
-            // Clear and populate local data
+            // Clear local data
             Data.Cards.Clear();
             Data.Categories.Clear();
             
