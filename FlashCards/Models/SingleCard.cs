@@ -16,9 +16,6 @@ public class SingleCard
     [FirestoreProperty("example")]
     public string? Example { get; set; }
     
-    [FirestoreProperty("categoryName")]
-    public string CategoryName { get; set; } = string.Empty;
-    
     [FirestoreProperty("categoryId")]
     public string CategoryId { get; set; } = string.Empty;
     
