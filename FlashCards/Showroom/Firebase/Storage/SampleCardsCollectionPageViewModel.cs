@@ -60,16 +60,8 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
     {
         IsLoading = true;
         
-        var deletedCount = 0;
+        var deletedCount = await _flashcardsDataService.DeleteAllCardsAsync();
         var cardsToDelete = _flashcardsDataService.Data.Cards.ToList();
-        
-        foreach (var card in cardsToDelete)
-        {
-            if (card.Id != null && await _flashcardsDataService.DeleteCardAsync(card.Id))
-            {
-                deletedCount++;
-            }
-        }
 
         InfoText = deletedCount switch
         {

@@ -149,6 +149,27 @@ public class FlashcardsDataService : IFlashcardsDataService
         }
     }
 
+    public async Task<int> DeleteAllCardsAsync()
+    {
+        try
+        {
+            var deletingCounter = await _databaseService.DeleteAllCards();
+
+            if (deletingCounter > 0)
+            {
+                Data.Cards.Clear();
+                Data.UpdateAllCategoryCardCounts();
+            }
+
+            return deletingCounter;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error deleting all cards: {e.Message}");
+            throw;
+        }
+    }
+
     public async Task<bool> UpdateCardCategoryAsync(string cardId, string newCategoryId)
     {
         try
@@ -256,5 +277,10 @@ public class FlashcardsDataService : IFlashcardsDataService
             Console.WriteLine($"Error deleting category: {ex.Message}");
             return false;
         }
+    }
+
+    public Task<int> DeleteAllCategoriesAsync()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -46,6 +46,12 @@ public interface IFlashcardsDataService
     Task<bool> DeleteCardAsync(string cardId);
     
     /// <summary>
+    /// Deletes all cards locally and syncs to Firestore
+    /// >0 - number of deleted cards; -1 - error occurred
+    /// </summary>
+    Task<int> DeleteAllCardsAsync();
+    
+    /// <summary>
     /// Updates card category locally and syncs to Firestore
     /// </summary>
     Task<bool> UpdateCardCategoryAsync(string cardId, string newCategoryId);
@@ -64,4 +70,10 @@ public interface IFlashcardsDataService
     /// Deletes a category locally and syncs to Firestore
     /// </summary>
     Task<bool> DeleteCategoryAsync(string categoryId);
+    
+    /// <summary>
+    /// Deletes all categories locally and syncs to Firestore
+    /// >0 - number of deleted cards; -1 - error occurred
+    /// </summary>
+    Task<int> DeleteAllCategoriesAsync();
 }
