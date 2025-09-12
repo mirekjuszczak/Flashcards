@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using FlashCards.Services.DatabaseService;
 using FlashCards.Showroom.Firebase.Storage;
 
@@ -9,7 +10,7 @@ namespace FlashCards.Services.DatabaseServiceMock;
 
 public class DatabaseServiceMock
 {
-    public List<SingleCard> CardsCollection { get; }
+    public List<SingleCardDto> CardsCollection { get; }
     public List<Category> CategoriesCollection { get; }
 
     public DatabaseServiceMock()
@@ -112,13 +113,13 @@ public class DatabaseServiceMock
         return categories;
     }
 
-    private List<SingleCard> CreateMockedCardsList()
+    private List<SingleCardDto> CreateMockedCardsList()
     {
         var categories = CreateMockedCategoriesList();
         
-        var cards = new List<SingleCard>();
+        var cards = new List<SingleCardDto>();
 
-        cards.Add(new SingleCard
+        cards.Add(new SingleCardDto
         {
             Id = "C1",
             Phrase = "Cat",
@@ -130,7 +131,7 @@ public class DatabaseServiceMock
             Favourite = true
         });
         
-        cards.Add(new SingleCard()
+        cards.Add(new SingleCardDto
         {
             Id = "C2",
             Phrase = "Dog",
@@ -142,7 +143,7 @@ public class DatabaseServiceMock
             Favourite = true
         });
         
-        cards.Add(new SingleCard()
+        cards.Add(new SingleCardDto
         {
             Id = "C3",
             Phrase = "run",
@@ -154,7 +155,7 @@ public class DatabaseServiceMock
             Favourite = false
         });
         
-        cards.Add(new SingleCard()
+        cards.Add(new SingleCardDto
         {
             Id = "C4",
             Phrase = "buy",
@@ -166,7 +167,7 @@ public class DatabaseServiceMock
             Favourite = true
         });
         
-        cards.Add(new SingleCard()
+        cards.Add(new SingleCardDto
         {
             Id = "C5",
             Phrase = "move",
@@ -178,7 +179,7 @@ public class DatabaseServiceMock
             Favourite = true
         });
         
-        cards.Add(new SingleCard()
+        cards.Add(new SingleCardDto
         {
             Id = "C61",
             Phrase = "Prepare",

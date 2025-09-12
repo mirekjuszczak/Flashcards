@@ -1,4 +1,5 @@
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using FlashCards.Services.DatabaseServiceMock;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
@@ -7,7 +8,7 @@ namespace FlashCards.Showroom;
 
 public class CardsCollectionControlPageViewModel : BaseViewModel
 {
-    [ObservableAsProperty] public List<SingleCard> CardsCollection { get; } = [];
+    [ObservableAsProperty] public List<SingleCardDto> CardsCollection { get; } = [];
 
     public CardsCollectionControlPageViewModel()
     {

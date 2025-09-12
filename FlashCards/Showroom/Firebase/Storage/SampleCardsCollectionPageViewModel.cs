@@ -2,13 +2,13 @@ using FlashCards.ViewModels;
 using FlashCards.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using FlashCards.Services.DatabaseService;
+using FlashCards.Services.DataService;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
 public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 {
-    private readonly IDatabaseService _databaseService;
+    private readonly IFlashcardsDataService _flashcardsDataService;
 
     [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
 
@@ -18,14 +18,46 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 
     [ObservableProperty] private string _errorMessage = string.Empty;
 
-    public SampleCardsCollectionPageViewModel(IDatabaseService databaseService)
+    public SampleCardsCollectionPageViewModel(IFlashcardsDataService flashcardsDataService)
     {
-        _databaseService = databaseService;
+        _flashcardsDataService = flashcardsDataService;
         Title = "Cards collection of Firebase";
 
-        LoadCardsCommand = new Command(async () => await LoadCardsAsync());
-        DeleteCardsCollectionCommand = new Command(async () => await DeleteCardsCollectionAsync());
-        AddSampleCardCommand = new Command(async () => await AddSampleCardAsync());
+        LoadCardsCommand = new Command(async () => 
+        {
+            try
+            {
+                await LoadCardsAsync();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error loading cards: {ex.Message}";
+            }
+        });
+        
+        DeleteCardsCollectionCommand = new Command(async () => 
+        {
+            try
+            {
+                await DeleteCardsCollectionAsync();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error deleting cards: {ex.Message}";
+            }
+        });
+        
+        AddSampleCardCommand = new Command(async () => 
+        {
+            try
+            {
+                await AddSampleCardAsync();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Error adding card: {ex.Message}";
+            }
+        });
     }
 
     public Command LoadCardsCommand { get; }
@@ -39,21 +71,30 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         InfoText = "Getting cards from Firestore...";
         Cards.Clear();
 
-        var cards = await _databaseService.GetCardsCollection();
-
-        if (cards == null)
+        // Ensure data is loaded from database
+        if (!_flashcardsDataService.IsLoaded)
         {
-            ErrorMessage = "Failed to load cards from database";
-            InfoText = "Error occurred while loading cards";
+            var loadResult = await _flashcardsDataService.LoadDataAsync();
+            if (!loadResult)
+            {
+                ErrorMessage = "Failed to load data from database";
+                InfoText = "Error occurred while loading data";
+                IsLoading = false;
+                return;
+            }
         }
-        else if (cards.Any())
+
+        // Get cards from local data service
+        var cards = _flashcardsDataService.Data.Cards;
+
+        if (cards.Any())
         {
             foreach (var card in cards)
             {
                 Cards.Add(card);
             }
 
-            InfoText = $"{Cards.Count} cards loaded Firestore";
+            InfoText = $"{Cards.Count} cards loaded from data service";
         }
         else
         {
@@ -67,29 +108,26 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
     {
         IsLoading = true;
 
-        // Delete "cards" collection from Firestore
-        var deletingCounter = await _databaseService.DeleteAllCards();
-
-        InfoText = deletingCounter switch
+        // Delete all cards through data service (this will sync with Firestore)
+        var deletedCount = 0;
+        var cardsToDelete = _flashcardsDataService.Data.Cards.ToList();
+        
+        foreach (var card in cardsToDelete)
         {
-            > 0 => $"{deletingCounter} cards deleted from Firestore",
-            0 => "No card in collection. Add a few cards to the collection at the beginning.",
-            -1 => "Something went wrong while deleting cards from Collection",
+            if (await _flashcardsDataService.DeleteCardAsync(card.Id))
+            {
+                deletedCount++;
+            }
+        }
+
+        InfoText = deletedCount switch
+        {
+            > 0 => $"{deletedCount} cards deleted from Firestore",
+            0 => "No cards were deleted",
+            _ => "Error occurred while deleting cards"
         };
 
-        if (deletingCounter > 0)
-        {
-            InfoText = $"{deletingCounter} cards deleted from Firestore";
-        }
-        else
-        {
-            InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
-        }
-
-        InfoText = "All cards deleted from Collection";
-
         await LoadCardsAsync();
-
         IsLoading = false;
     }
 
@@ -106,21 +144,20 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             Phrase = $"Hello {phraseSufix}",
             Translation = $"Czesc {phraseSufix}",
             Example = "Hello, how are you?",
-            CategoryName = RandomTestsValuesMock.GetRandomCategoryName(),
-            CategoryId = "noname",
+            CategoryId = "undefined", // Use a default category
             Favourite = false,
             LearningProgress = LearningProgress.NotStarted
         };
 
-        var addingResult = await _databaseService.CreateCard(sampleCard);
+        var addingResult = await _flashcardsDataService.AddCardAsync(sampleCard);
 
         InfoText = addingResult switch
         {
-            true => "Card added to Firestore",
-            false => "Card not adde. Validation failed. Phrase and Translation are required.",
-            null => "Card not added, Exception invoked.",
+            true => "Card added to Firestore and local data",
+            false => "Card not added. Validation failed or error occurred."
         };
 
         await LoadCardsAsync();
+        IsLoading = false;
     }
 }

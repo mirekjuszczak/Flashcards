@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FlashCards.Models;
 using Bindables.Maui;
+using FlashCards.Models.Dto;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
@@ -13,7 +14,7 @@ public partial class CardsSwipeCollectionControl : ContentView
     private const int TimeOfAnimation = 150;
     private const float OpacityWhenMoving = 0.5f;
 
-    [BindableProperty(typeof(List<SingleCard>), 
+    [BindableProperty(typeof(List<SingleCardDto>), 
         BindingMode = BindingMode.TwoWay,
         OnPropertyChanged = nameof(OnCardsCollectionPropertyChanged))]
     public static readonly BindableProperty CardsCollectionProperty;
@@ -92,7 +93,7 @@ public partial class CardsSwipeCollectionControl : ContentView
         }
     }
 
-    private void GetNextCard(SingleCard item)
+    private void GetNextCard(SingleCardDto item)
     {
         TwoSidesCard.Phrase = item.Phrase;
         TwoSidesCard.Translation = item.Translation;

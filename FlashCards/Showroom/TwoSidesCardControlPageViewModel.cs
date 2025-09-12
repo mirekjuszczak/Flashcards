@@ -1,4 +1,5 @@
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using FlashCards.ViewModels;
 using ReactiveUI.Fody.Helpers;
 
@@ -6,7 +7,7 @@ namespace FlashCards.Showroom;
 
 public class TwoSidesCardControlPageViewModel : BaseViewModel
 {
-    [ObservableAsProperty] public SingleCard Card { get; }
+    [ObservableAsProperty] public SingleCardDto Card { get; }
 
     public TwoSidesCardControlPageViewModel()
     {
@@ -15,9 +16,9 @@ public class TwoSidesCardControlPageViewModel : BaseViewModel
         Title = "Two Sides Card Control Sample";
     }
 
-    private static SingleCard CreateSingleCardForTesting()
+    private static SingleCardDto CreateSingleCardForTesting()
     {
-        return new SingleCard
+        return new SingleCardDto
         {
             Phrase = "Cat",
             Translation = "Kot",

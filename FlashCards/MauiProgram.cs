@@ -7,6 +7,7 @@ using FlashCards.Views;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using FlashCards.Services.DatabaseServiceMock;
+using FlashCards.Services.DataService;
 using FlashCards.Showroom.Firebase.Storage;
 using Microsoft.Maui.LifecycleEvents;
 using Plugin.Firebase.Auth;
@@ -75,6 +76,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<IDatabaseService, FirebaseDatabaseService>();
         builder.Services.AddSingleton<IUserService, FirebaseAuthService>();
+        builder.Services.AddSingleton<IFlashcardsDataService, FlashcardsDataService>();
     }
     
     private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
