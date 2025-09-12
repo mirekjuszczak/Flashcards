@@ -2,15 +2,13 @@ using FlashCards.ViewModels;
 using FlashCards.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using FlashCards.Services.DatabaseService;
+using FlashCards.Services.DataService;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 
 public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
 {
-    private readonly IDatabaseService _databaseService;
-
-    [ObservableProperty] private ObservableCollection<Category> _categories = new();
+    private readonly IFlashcardsDataService _flashcardsDataService;
 
     [ObservableProperty] private bool _isLoading;
 
@@ -18,9 +16,12 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
 
     [ObservableProperty] private string _errorMessage = string.Empty;
 
-    public SampleCategoriesCollectionPageViewModel(IDatabaseService databaseService)
+    // Direct binding to service's ObservableCollection
+    public ObservableCollection<Category> Categories => _flashcardsDataService.Data.Categories;
+
+    public SampleCategoriesCollectionPageViewModel(IFlashcardsDataService flashcardsDataService)
     {
-        _databaseService = databaseService;
+        _flashcardsDataService = flashcardsDataService;
         Title = "Categories collection of Firebase";
 
         LoadCategoriesCommand = new Command(async () => await LoadCategoriesAsync());
@@ -37,28 +38,26 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         ErrorMessage = string.Empty;
         InfoText = "Getting categories from Firestore...";
-        Categories.Clear();
 
-        var categories = await _databaseService.GetCategoriesCollection(); 
-
-        if (categories == null)
+        // Ensure data is loaded from database
+        if (!_flashcardsDataService.IsLoaded)
         {
-            ErrorMessage = "Failed to load categories from database";
-            InfoText = "Error occurred while loading categories";
-        }
-        else if (categories.Any())
-        {
-            foreach (var category in categories)
+            var loadResult = await _flashcardsDataService.LoadDataAsync();
+            if (!loadResult)
             {
-                Categories.Add(category);
+                ErrorMessage = "Failed to load data from database";
+                InfoText = "Error occurred while loading data";
+                IsLoading = false;
+                return;
             }
+        }
 
-            InfoText = $"{categories.Count} categories loaded Firestore";
-        }
-        else
-        {
-            InfoText = "No categories in collection. Add a few categories to the collection at the beginning.";
-        }
+        // No need to manually populate - UI will automatically update via ObservableCollection
+        var categoriesCount = _flashcardsDataService.Data.Categories.Count;
+
+        InfoText = categoriesCount > 0 
+            ? $"{categoriesCount} categories loaded from data service"
+            : "No categories in collection. Add a few categories to the collection at the beginning.";
 
         IsLoading = false;
     }
@@ -67,29 +66,26 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
     {
         IsLoading = true;
 
-        // Delete "categories" collection from Firestore
-        var deletingCounter = await _databaseService.DeleteAllCategories();
-
-        InfoText = deletingCounter switch
+        // Delete all categories through data service (this will sync with Firestore)
+        var deletedCount = 0;
+        var categoriesToDelete = _flashcardsDataService.Data.Categories.ToList();
+        
+        foreach (var category in categoriesToDelete)
         {
-            > 0 => $"{deletingCounter} categories deleted from Firestore",
-            0 => "No category in collection. Add a few categories to the collection at the beginning.",
-            -1 => "Something went wrong while deleting categories from Collection",
+            if (category.Id != null && await _flashcardsDataService.DeleteCategoryAsync(category.Id))
+            {
+                deletedCount++;
+            }
+        }
+
+        InfoText = deletedCount switch
+        {
+            > 0 => $"{deletedCount} categories deleted from Firestore",
+            0 => "No categories were deleted",
+            _ => "Error occurred while deleting categories"
         };
 
-        if (deletingCounter > 0)
-        {
-            InfoText = $"{deletingCounter} categories deleted from Firestore";
-        }
-        else
-        {
-            InfoText = "No category in collection. Add a few categories to the collection at the beginning.";
-        }
-
-        InfoText = "All categories deleted from Collection";
-
-        await LoadCategoriesAsync();
-
+        // No need to call LoadCategoriesAsync - ObservableCollection will auto-update
         IsLoading = false;
     }
 
@@ -102,12 +98,13 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         var phraseSufix = ticksString.Substring(ticksString.Length - 3);
         var newCategoryName = $"{RandomTestsValuesMock.GetRandomCategoryName()} {phraseSufix}";
 
-        var addingResult = await _databaseService.CreateCategory(newCategoryName);
+        var addingResult = await _flashcardsDataService.AddCategoryAsync(newCategoryName);
         
-        InfoText = addingResult != null
-            ? $"Category '{newCategoryName}' added to Firestore"
-            : "Category not added. Validation failed. Name is required.";
+        InfoText = addingResult
+            ? $"Category '{newCategoryName}' added to Firestore and local data"
+            : "Category not added. Validation failed or error occurred.";
 
-        await LoadCategoriesAsync();
+        // No need to call LoadCategoriesAsync - ObservableCollection will auto-update
+        IsLoading = false;
     }
 }

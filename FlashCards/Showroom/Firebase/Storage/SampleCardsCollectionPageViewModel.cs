@@ -10,54 +10,23 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 {
     private readonly IFlashcardsDataService _flashcardsDataService;
 
-    [ObservableProperty] private ObservableCollection<SingleCard> _cards = new();
-
     [ObservableProperty] private bool _isLoading;
 
     [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
 
     [ObservableProperty] private string _errorMessage = string.Empty;
 
+    // Direct binding to service's ObservableCollection
+    public ObservableCollection<SingleCard> Cards => _flashcardsDataService.Data.Cards;
+
     public SampleCardsCollectionPageViewModel(IFlashcardsDataService flashcardsDataService)
     {
         _flashcardsDataService = flashcardsDataService;
         Title = "Cards collection of Firebase";
 
-        LoadCardsCommand = new Command(async () => 
-        {
-            try
-            {
-                await LoadCardsAsync();
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Error loading cards: {ex.Message}";
-            }
-        });
-        
-        DeleteCardsCollectionCommand = new Command(async () => 
-        {
-            try
-            {
-                await DeleteCardsCollectionAsync();
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Error deleting cards: {ex.Message}";
-            }
-        });
-        
-        AddSampleCardCommand = new Command(async () => 
-        {
-            try
-            {
-                await AddSampleCardAsync();
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Error adding card: {ex.Message}";
-            }
-        });
+        LoadCardsCommand = new Command(async () => await LoadCardsAsync());
+        DeleteCardsCollectionCommand = new Command(async () => await DeleteCardsCollectionAsync());
+        AddSampleCardCommand = new Command(async () => await AddSampleCardAsync());
     }
 
     public Command LoadCardsCommand { get; }
@@ -69,7 +38,6 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         ErrorMessage = string.Empty;
         InfoText = "Getting cards from Firestore...";
-        Cards.Clear();
 
         // Ensure data is loaded from database
         if (!_flashcardsDataService.IsLoaded)
@@ -84,22 +52,12 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             }
         }
 
-        // Get cards from local data service
-        var cards = _flashcardsDataService.Data.Cards;
+        // No need to manually populate - UI will automatically update via ObservableCollection
+        var cardsCount = _flashcardsDataService.Data.Cards.Count;
 
-        if (cards.Any())
-        {
-            foreach (var card in cards)
-            {
-                Cards.Add(card);
-            }
-
-            InfoText = $"{Cards.Count} cards loaded from data service";
-        }
-        else
-        {
-            InfoText = "No card in collection. Add a few cards to the collection at the beginning.";
-        }
+        InfoText = cardsCount > 0 
+            ? $"{cardsCount} cards loaded from data service"
+            : "No card in collection. Add a few cards to the collection at the beginning.";
 
         IsLoading = false;
     }
@@ -114,7 +72,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         
         foreach (var card in cardsToDelete)
         {
-            if (await _flashcardsDataService.DeleteCardAsync(card.Id))
+            if (card.Id != null && await _flashcardsDataService.DeleteCardAsync(card.Id))
             {
                 deletedCount++;
             }
@@ -127,7 +85,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             _ => "Error occurred while deleting cards"
         };
 
-        await LoadCardsAsync();
+        // No need to call LoadCardsAsync - ObservableCollection will auto-update
         IsLoading = false;
     }
 
