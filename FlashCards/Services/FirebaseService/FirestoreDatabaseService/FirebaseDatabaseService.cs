@@ -265,37 +265,6 @@ public class FirebaseDatabaseService : IDatabaseService
             return null;
         }
     }
-    
-    public async Task<bool> UpdateCategoryCardCountAndDate(string categoryId, int increment)
-    {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(categoryId))
-                return false;
-            
-            var category = await GetCategory(categoryId);
-            if (category == null)
-                return false;
-                
-            var newCount = Math.Max(0, category.CountCards + increment);
-            
-            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
-            
-            var updates = new Dictionary<object, object>
-            {
-                ["countcards"] = newCount,
-                ["lastmodified"] = DateTime.Now
-            };
-            
-            await documentRef.UpdateDataAsync(updates);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Database error updating category card count: {ex.Message}");
-            return false;
-        }
-    }
 
     public async Task<bool?> CreateCard(SingleCard card)
     {
@@ -853,6 +822,43 @@ public class FirebaseDatabaseService : IDatabaseService
         {
             Console.WriteLine($"Database error updating cards category: {ex.Message}");
             return -1; // -1 indicates error
+        }
+    }
+    
+    /// <summary>
+    /// Updates category's CountCards by the specified increment and sets LastModified to current time
+    /// </summary>
+    /// <param name="categoryId">ID of the category to update</param>
+    /// <param name="increment">Number to add to CountCards (can be negative for decrement)</param>
+    /// <returns>True if update was successful, false otherwise</returns>
+    private async Task<bool> UpdateCategoryCardCountAndDate(string categoryId, int increment)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return false;
+            
+            var category = await GetCategory(categoryId);
+            if (category == null)
+                return false;
+                
+            var newCount = Math.Max(0, category.CountCards + increment);
+            
+            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["countcards"] = newCount,
+                ["lastmodified"] = DateTime.Now
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating category card count: {ex.Message}");
+            return false;
         }
     }
 }
