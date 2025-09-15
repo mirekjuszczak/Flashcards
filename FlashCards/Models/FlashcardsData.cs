@@ -57,43 +57,15 @@ public class FlashcardsData
         => Cards.Where(card => card.LearningProgress == progress);
 
     /// <summary>
-    /// Updates CountCards for a specific category based on actual card count
-    /// </summary>
-    public void UpdateCategoryCardCount(string categoryId)
-    {
-        var category = GetCategory(categoryId);
-        if (category != null)
-        {
-            category.CountCards = GetCardsByCategory(categoryId).Count();
-            category.LastModified = DateTime.Now;
-        }
-    }
-
-    /// <summary>
-    /// Updates CountCards for all categories
-    /// </summary>
-    public void UpdateAllCategoryCardCounts()
-    {
-        foreach (var category in Categories)
-        {
-            if (!string.IsNullOrEmpty(category.Id))
-            {
-                UpdateCategoryCardCount(category.Id);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Adds a card and updates category metadata
+    /// Adds a card to the collection
     /// </summary>
     public void AddCard(SingleCard card)
     {
         Cards.Add(card);
-        UpdateCategoryCardCount(card.CategoryId);
     }
 
     /// <summary>
-    /// Removes a card and updates category metadata
+    /// Removes a card from the collection
     /// </summary>
     public bool RemoveCard(string cardId)
     {
@@ -101,26 +73,20 @@ public class FlashcardsData
         if (card != null)
         {
             Cards.Remove(card);
-            UpdateCategoryCardCount(card.CategoryId);
             return true;
         }
         return false;
     }
 
     /// <summary>
-    /// Updates card category and adjusts category counts
+    /// Updates card category
     /// </summary>
     public bool UpdateCardCategory(string cardId, string newCategoryId)
     {
         var card = Cards.FirstOrDefault(c => c.Id == cardId);
         if (card != null)
         {
-            var oldCategoryId = card.CategoryId;
             card.CategoryId = newCategoryId;
-            
-            // Update both old and new category counts
-            UpdateCategoryCardCount(oldCategoryId);
-            UpdateCategoryCardCount(newCategoryId);
             return true;
         }
         return false;

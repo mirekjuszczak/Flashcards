@@ -64,6 +64,14 @@ public interface IDatabaseService
     /// <param name="categoryId">The unique identifier of the category</param>
     /// <returns>True if category exists, false if not exists, null if operation failed</returns>
     Task<bool?> CategoryExists(string categoryId);
+
+    /// <summary>
+    /// Updates category's CountCards by the specified increment and sets LastModified to current time
+    /// </summary>
+    /// <param name="categoryId">ID of the category to update</param>
+    /// <param name="increment">Number to add to CountCards (can be negative for decrement)</param>
+    /// <returns>True if update was successful, false otherwise</returns>
+    Task<bool> UpdateCategoryCardCountAndDate(string categoryId, int increment);
     
     // CARD OPERATIONS
     

@@ -265,6 +265,37 @@ public class FirebaseDatabaseService : IDatabaseService
             return null;
         }
     }
+    
+    public async Task<bool> UpdateCategoryCardCountAndDate(string categoryId, int increment)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return false;
+            
+            var category = await GetCategory(categoryId);
+            if (category == null)
+                return false;
+                
+            var newCount = Math.Max(0, category.CountCards + increment);
+            
+            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["countcards"] = newCount,
+                ["lastmodified"] = DateTime.Now
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating category card count: {ex.Message}");
+            return false;
+        }
+    }
 
     public async Task<bool?> CreateCard(SingleCard card)
     {
@@ -274,6 +305,8 @@ public class FirebaseDatabaseService : IDatabaseService
             if (string.IsNullOrWhiteSpace(card.Phrase) || string.IsNullOrWhiteSpace(card.Translation))
                 return false;
             
+            string targetCategoryId = card.CategoryId;
+            
             // Validate CategoryId if provided - ensure category exists
             if (!string.IsNullOrEmpty(card.CategoryId))
             {
@@ -281,12 +314,19 @@ public class FirebaseDatabaseService : IDatabaseService
                 if (categoryExists != true) // null or false
                 {
                     Console.WriteLine($"Warning: Category {card.CategoryId} does not exist. Card will be created with undefined category.");
-                    card.CategoryId = string.Empty; // Set to undefined category
+                    targetCategoryId = string.Empty; // Set to undefined category
+                    card.CategoryId = string.Empty;
                 }
             }
         
             var collectionReference = _firestore.GetCollection(CardsCollectionName);
             await collectionReference.AddDocumentAsync(card);
+            
+            // Update category CountCards and LastModified if card has a valid category
+            if (!string.IsNullOrEmpty(targetCategoryId))
+            {
+                _ = await UpdateCategoryCardCountAndDate(targetCategoryId, 1);
+            }
         
             return true; // Successfully created
         }

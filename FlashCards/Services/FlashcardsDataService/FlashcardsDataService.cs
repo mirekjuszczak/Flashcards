@@ -41,12 +41,9 @@ public class FlashcardsDataService : IFlashcardsDataService
             
             foreach (var category in categories)
                 Data.Categories.Add(category);
-                
+
             foreach (var card in cards)
                 Data.Cards.Add(card);
-            
-            // Update category card counts based on actual data
-            Data.UpdateAllCategoryCardCounts();
             
             IsLoaded = true;
             return true;
@@ -72,8 +69,12 @@ public class FlashcardsDataService : IFlashcardsDataService
             
             if (success.HasValue && success.Value)
             {
-                // 2. Add to local data (with automatic category count update)
+                // 2. Add to local data
                 Data.AddCard(card);
+                
+                // 3. Synchronize category metadata from Firestore
+                await UpdateCountCardAndDateInCategoryWithDataBase(card);
+                
                 return true;
             }
             
@@ -102,17 +103,27 @@ public class FlashcardsDataService : IFlashcardsDataService
                 var localCard = Data.Cards.FirstOrDefault(c => c.Id == card.Id);
                 if (localCard != null)
                 {
+                    var oldCategoryId = localCard.CategoryId;
+                    
                     // Update properties
                     localCard.Phrase = card.Phrase;
                     localCard.Translation = card.Translation;
                     localCard.Example = card.Example;
                     localCard.LearningProgress = card.LearningProgress;
                     localCard.Favourite = card.Favourite;
+                    localCard.CategoryId = card.CategoryId;
                     
-                    // If category changed, update counts
-                    if (localCard.CategoryId != card.CategoryId)
+                    // If category changed, synchronize both categories
+                    if (oldCategoryId != card.CategoryId)
                     {
-                        Data.UpdateCardCategory(card.Id, card.CategoryId);
+                        // Sync old category if it existed
+                        if (!string.IsNullOrEmpty(oldCategoryId))
+                        {
+                            await UpdateCountCardAndDateInCategoryWithDataBase(new SingleCard { CategoryId = oldCategoryId });
+                        }
+                        
+                        // Sync new category
+                        await UpdateCountCardAndDateInCategoryWithDataBase(card);
                     }
                 }
                 return true;
@@ -159,7 +170,6 @@ public class FlashcardsDataService : IFlashcardsDataService
             if (deletingCounter > 0)
             {
                 Data.Cards.Clear();
-                Data.UpdateAllCategoryCardCounts();
             }
 
             return deletingCounter;
@@ -175,13 +185,29 @@ public class FlashcardsDataService : IFlashcardsDataService
     {
         try
         {
+            // Get old category before update
+            var oldCard = Data.Cards.FirstOrDefault(c => c.Id == cardId);
+            var oldCategoryId = oldCard?.CategoryId;
+            
             // 1. Update in Firestore
             var success = await _databaseService.UpdateCardCategory(cardId, newCategoryId);
             
             if (success)
             {
-                // 2. Update local data (with automatic category count updates)
+                // 2. Update local data
                 Data.UpdateCardCategory(cardId, newCategoryId);
+                
+                // 3. Synchronize both old and new categories
+                if (!string.IsNullOrEmpty(oldCategoryId))
+                {
+                    await UpdateCountCardAndDateInCategoryWithDataBase(new SingleCard { CategoryId = oldCategoryId });
+                }
+                
+                if (!string.IsNullOrEmpty(newCategoryId))
+                {
+                    await UpdateCountCardAndDateInCategoryWithDataBase(new SingleCard { CategoryId = newCategoryId });
+                }
+                
                 return true;
             }
             
@@ -268,7 +294,7 @@ public class FlashcardsDataService : IFlashcardsDataService
                     card.CategoryId = string.Empty;
                 }
                 
-                Data.UpdateAllCategoryCardCounts();
+                // No need to update counts - category is deleted
                 return true;
             }
             
@@ -297,7 +323,7 @@ public class FlashcardsDataService : IFlashcardsDataService
                     card.CategoryId = string.Empty;
                 }
                 
-                Data.UpdateAllCategoryCardCounts();
+                // No need to update counts - all categories are deleted
             }
 
             return deletingCounter;
@@ -358,5 +384,22 @@ public class FlashcardsDataService : IFlashcardsDataService
                 var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
                 return SingleCardDto.FromCardAndCategory(card, category);
             }).ToList();
+    }
+    
+    private async Task UpdateCountCardAndDateInCategoryWithDataBase(SingleCard card)
+    {
+        if (!string.IsNullOrEmpty(card.CategoryId))
+        {
+            var updatedCategory = await _databaseService.GetCategory(card.CategoryId);
+            if (updatedCategory != null)
+            {
+                var localCategory = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
+                if (localCategory != null)
+                {
+                    localCategory.CountCards = updatedCategory.CountCards;
+                    localCategory.LastModified = updatedCategory.LastModified;
+                }
+            }
+        }
     }
 }
