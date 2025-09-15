@@ -74,7 +74,6 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         
         var deletedCount = await _flashcardsDataService.DeleteAllCardsAsync();
-        var cardsToDelete = _flashcardsDataService.Data.Cards.ToList();
 
         InfoText = deletedCount switch
         {
@@ -82,6 +81,8 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             0 => "No cards were deleted",
             _ => "Error occurred while deleting cards"
         };
+
+        await LoadCardsAsync();
         
         IsLoading = false;
     }
