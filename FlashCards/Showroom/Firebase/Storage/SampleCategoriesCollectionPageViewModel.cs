@@ -77,10 +77,7 @@ public partial class SampleCategoriesCollectionPageViewModel : BaseViewModel
         IsLoading = true;
         InfoText = "Adding a category as an example...";
 
-        var ticksString = DateTime.Now.Ticks.ToString();
-        var phraseSufix = ticksString.Substring(ticksString.Length - 3);
-        var newCategoryName = $"{RandomTestsValuesMock.GetRandomCategoryName()} {phraseSufix}";
-
+        var newCategoryName = RandomTestsValuesMock.GetRandomCategoryName();
         var addingResult = await _flashcardsDataService.AddCategoryAsync(newCategoryName);
         
         InfoText = addingResult

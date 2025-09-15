@@ -2,7 +2,7 @@ namespace FlashCards.Showroom.Firebase.Storage;
 
 public static class RandomTestsValuesMock
 {
-    private static readonly Random _random = new Random();
+    private static readonly Random _random = new();
 
     public static int GetRandomNumber(int min, int max)
     {
@@ -11,13 +11,14 @@ public static class RandomTestsValuesMock
     
     public static string GetRandomCategoryName()
     {
-        var number = GetRandomNumber(1, 3);
+        var number = GetRandomNumber(1, 4);
 
         return number switch
         {
             1 => "beginner",
-            2 => "intermediate",
-            3 => "advanced"
+            2 => "pre-intermediate",
+            3 => "intermediate",
+            4 => "advanced"
         };
     }
     

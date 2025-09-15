@@ -94,27 +94,7 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         var ticksString = DateTime.Now.Ticks.ToString();
         var phraseSufix = ticksString.Substring(ticksString.Length - 3);
 
-        // Randomly choose CategoryId - either existing category or test non-existing
-        string categoryId = string.Empty;
-        var random = new Random();
-        var categories = _flashcardsDataService.Data.Categories.ToList();
-        
-        if (categories.Any() && random.Next(0, 3) != 0) // 2/3 chance to use existing category
-        {
-            var randomCategory = categories[random.Next(categories.Count)];
-            categoryId = randomCategory.Id!;
-            InfoText = $"Adding card with existing category: {randomCategory.Name}";
-        }
-        else if (random.Next(0, 2) == 0) // 1/2 chance for non-existing when no existing chosen
-        {
-            categoryId = "TestNoExistingId";
-            InfoText = "Adding card with non-existing category (should be set to undefined)";
-        }
-        else
-        {
-            categoryId = string.Empty; // undefined category
-            InfoText = "Adding card with undefined category";
-        }
+        var categoryId = RandomlyChooseCategoryId();
 
         var sampleCard = new SingleCard
         {
@@ -136,5 +116,24 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 
         await LoadCardsAsync();
         IsLoading = false;
+    }
+
+    private string RandomlyChooseCategoryId()
+    {
+        string categoryId = string.Empty;
+        var random = new Random();
+        var categories = _flashcardsDataService.Data.Categories.ToList();
+        
+        if (categories.Any() && RandomTestsValuesMock.GetRandomNumber(0, 3) != 0) // 2/3 chance to use existing category
+        {
+            var randomCategory = categories[random.Next(categories.Count)];
+            categoryId = randomCategory.Id!;
+        }
+        else if (RandomTestsValuesMock.GetRandomNumber(0, 2) == 0) // 1/2 chance for non-existing when no existing chosen
+        { 
+            InfoText = "Adding card with undefined category";
+        }
+
+        return categoryId;
     }
 }
