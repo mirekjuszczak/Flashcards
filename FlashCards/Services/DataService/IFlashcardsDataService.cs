@@ -1,4 +1,5 @@
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Services.DataService;
@@ -76,4 +77,30 @@ public interface IFlashcardsDataService
     /// >0 - number of deleted cards; -1 - error occurred
     /// </summary>
     Task<int> DeleteAllCategoriesAsync();
+    
+    // DTO Methods for ViewModels
+    /// <summary>
+    /// Gets all cards as DTOs with category information
+    /// </summary>
+    List<SingleCardDto> GetCardsAsDto();
+    
+    /// <summary>
+    /// Gets cards by category as DTOs
+    /// </summary>
+    List<SingleCardDto> GetCardsByCategoryAsDto(string categoryId);
+    
+    /// <summary>
+    /// Gets cards with undefined category as DTOs
+    /// </summary>
+    List<SingleCardDto> GetCardsWithUndefinedCategoryAsDto();
+    
+    /// <summary>
+    /// Gets favorite cards as DTOs
+    /// </summary>
+    List<SingleCardDto> GetFavoriteCardsAsDto();
+    
+    /// <summary>
+    /// Gets cards by learning progress as DTOs
+    /// </summary>
+    List<SingleCardDto> GetCardsByLearningProgressAsDto(LearningProgress progress);
 }

@@ -297,9 +297,23 @@ public class FirebaseDatabaseService : IDatabaseService
         }
     }
 
-    public Task<SingleCard?> GetCard(string cardId)
+    public async Task<SingleCard?> GetCard(string cardId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId))
+                return null;
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            var snapshot = await documentRef.GetDocumentSnapshotAsync<SingleCard>();
+            
+            return snapshot?.Data;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting card: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<List<SingleCard>?> GetCardsCollection()
@@ -332,69 +346,411 @@ public class FirebaseDatabaseService : IDatabaseService
         }
     }
 
-    public Task<List<SingleCard>?> GetCardsCollectionByCategroryId(string categoryId)
+    public async Task<List<SingleCard>?> GetCardsCollectionByCategroryId(string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return new List<SingleCard>(); // Return empty list for invalid input
+                
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var cards = new List<SingleCard>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && card.CategoryId == categoryId)
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            
+            return cards;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting cards by category: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<List<SingleCard>?> GetCardsWithUndefinedCategory()
+    public async Task<List<SingleCard>?> GetCardsWithUndefinedCategory()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var cards = new List<SingleCard>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && string.IsNullOrEmpty(card.CategoryId))
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            
+            return cards;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting cards with undefined category: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<List<SingleCard>?> GetFavoriteCards()
+    public async Task<List<SingleCard>?> GetFavoriteCards()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var cards = new List<SingleCard>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && card.Favourite)
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            
+            return cards;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting favorite cards: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<List<SingleCard>?> GetCardsByLearningProgress(LearningProgress progress)
+    public async Task<List<SingleCard>?> GetCardsByLearningProgress(LearningProgress progress)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var cards = new List<SingleCard>();
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && card.LearningProgress == progress)
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            
+            return cards;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting cards by learning progress: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<bool> UpdateCard(string cardId, SingleCard updatedCard)
+    public async Task<bool> UpdateCard(string cardId, SingleCard updatedCard)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId) || updatedCard == null)
+                return false;
+                
+            // Check if card exists
+            var existingCard = await GetCard(cardId);
+            if (existingCard == null)
+                return false;
+                
+            // Validate CategoryId if provided
+            if (!string.IsNullOrEmpty(updatedCard.CategoryId))
+            {
+                var categoryExists = await CategoryExists(updatedCard.CategoryId);
+                if (categoryExists != true)
+                {
+                    Console.WriteLine($"Warning: Category {updatedCard.CategoryId} does not exist. Setting to undefined category.");
+                    updatedCard.CategoryId = string.Empty;
+                }
+            }
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["phrase"] = updatedCard.Phrase,
+                ["translation"] = updatedCard.Translation,
+                ["example"] = updatedCard.Example ?? string.Empty,
+                ["categoryId"] = updatedCard.CategoryId,
+                ["learningProgress"] = (int)updatedCard.LearningProgress,
+                ["favourite"] = updatedCard.Favourite
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating card: {ex.Message}");
+            return false;
+        }
     }
 
-    public Task<bool> UpdateCardCategory(string cardId, string categoryId)
+    public async Task<bool> UpdateCardCategory(string cardId, string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId))
+                return false;
+                
+            // Check if card exists
+            var existingCard = await GetCard(cardId);
+            if (existingCard == null)
+                return false;
+                
+            // Validate CategoryId if provided
+            if (!string.IsNullOrEmpty(categoryId))
+            {
+                var categoryExists = await CategoryExists(categoryId);
+                if (categoryExists != true)
+                {
+                    Console.WriteLine($"Warning: Category {categoryId} does not exist. Setting to undefined category.");
+                    categoryId = string.Empty;
+                }
+            }
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["categoryId"] = categoryId
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating card category: {ex.Message}");
+            return false;
+        }
     }
 
-    public Task<bool> SetCardCategoryToUndefined(string cardId)
+    public async Task<bool> SetCardCategoryToUndefined(string cardId)
     {
-        throw new NotImplementedException();
+        return await UpdateCardCategory(cardId, string.Empty);
     }
 
-    public Task<bool> UpdateCardLearningProgress(string cardId, LearningProgress progress)
+    public async Task<bool> UpdateCardLearningProgress(string cardId, LearningProgress progress)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId))
+                return false;
+                
+            // Check if card exists
+            var existingCard = await GetCard(cardId);
+            if (existingCard == null)
+                return false;
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["learningProgress"] = (int)progress
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating card learning progress: {ex.Message}");
+            return false;
+        }
     }
 
-    public Task<bool> ToggleCardFavorite(string cardId)
+    public async Task<bool> ToggleCardFavorite(string cardId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId))
+                return false;
+                
+            // Get current card to toggle favorite status
+            var existingCard = await GetCard(cardId);
+            if (existingCard == null)
+                return false;
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["favourite"] = !existingCard.Favourite
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error toggling card favorite: {ex.Message}");
+            return false;
+        }
     }
     
-    public Task<bool> DeleteCard(string cardId)
+    public async Task<bool> DeleteCard(string cardId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(cardId))
+                return false;
+                
+            // Check if card exists
+            var existingCard = await GetCard(cardId);
+            if (existingCard == null)
+                return false;
+                
+            var documentRef = _firestore.GetCollection(CardsCollectionName).GetDocument(cardId);
+            await documentRef.DeleteDocumentAsync();
+            
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting card: {ex.Message}");
+            return false;
+        }
     }
 
-    public Task<int> DeleteAllCardsInCategory(string categoryId)
+    public async Task<int> DeleteAllCardsInCategory(string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return 0;
+                
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var deletingCounter = 0;
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && card.CategoryId == categoryId)
+                    {
+                        await document.Reference.DeleteDocumentAsync();
+                        deletingCounter++;
+                    }
+                }
+            }
+            
+            return deletingCounter;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting cards in category: {ex.Message}");
+            return -1;
+        }
     }
 
-    public Task<List<SingleCard>?> CreateMultipleCards(List<SingleCard> cards)
+    public async Task<List<SingleCard>?> CreateMultipleCards(List<SingleCard> cards)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (cards == null || !cards.Any())
+                return new List<SingleCard>();
+                
+            var createdCards = new List<SingleCard>();
+            var collectionReference = _firestore.GetCollection(CardsCollectionName);
+            
+            foreach (var card in cards)
+            {
+                // Validate each card
+                if (string.IsNullOrWhiteSpace(card.Phrase) || string.IsNullOrWhiteSpace(card.Translation))
+                {
+                    Console.WriteLine($"Skipping invalid card: {card.Phrase} - {card.Translation}");
+                    continue;
+                }
+                
+                // Validate CategoryId if provided
+                if (!string.IsNullOrEmpty(card.CategoryId))
+                {
+                    var categoryExists = await CategoryExists(card.CategoryId);
+                    if (categoryExists != true)
+                    {
+                        Console.WriteLine($"Warning: Category {card.CategoryId} does not exist. Card will be created with undefined category.");
+                        card.CategoryId = string.Empty;
+                    }
+                }
+                
+                var documentReference = await collectionReference.AddDocumentAsync(card);
+                var createdCardSnapshot = await documentReference.GetDocumentSnapshotAsync<SingleCard>();
+                
+                if (createdCardSnapshot?.Data != null)
+                {
+                    createdCards.Add(createdCardSnapshot.Data);
+                }
+            }
+            
+            return createdCards;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error creating multiple cards: {ex.Message}");
+            return null;
+        }
     }
 
-    public Task<int> DeleteMultipleCards(List<string> cardIds)
+    public async Task<int> DeleteMultipleCards(List<string> cardIds)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (cardIds == null || !cardIds.Any())
+                return 0;
+                
+            var deletingCounter = 0;
+            
+            foreach (var cardId in cardIds)
+            {
+                if (string.IsNullOrWhiteSpace(cardId))
+                    continue;
+                    
+                var success = await DeleteCard(cardId);
+                if (success)
+                {
+                    deletingCounter++;
+                }
+            }
+            
+            return deletingCounter;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting multiple cards: {ex.Message}");
+            return -1;
+        }
     }
 
     public async Task<int> DeleteAllCards()

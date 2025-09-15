@@ -1,5 +1,6 @@
 using FlashCards.ViewModels;
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FlashCards.Services.DataService;
@@ -10,7 +11,8 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
 {
     private readonly IFlashcardsDataService _flashcardsDataService;
 
-    public ObservableCollection<SingleCard> Cards => _flashcardsDataService.Data.Cards;
+    // Changed to use SingleCardDto instead of SingleCard
+    public ObservableCollection<SingleCardDto> Cards { get; }
     [ObservableProperty] private bool _isLoading;
     [ObservableProperty] private string _infoText = "Click and get cards from Firestore";
     [ObservableProperty] private string _errorMessage = string.Empty;
@@ -19,6 +21,9 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
     {
         _flashcardsDataService = flashcardsDataService;
         Title = "Cards collection of Firebase";
+        
+        // Initialize Cards collection using DTO method
+        Cards = new ObservableCollection<SingleCardDto>();
 
         LoadCardsCommand = new Command(async () => await LoadCardsAsync());
         DeleteCardsCollectionCommand = new Command(async () => await DeleteCardsCollectionAsync());
@@ -47,7 +52,15 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
             }
         }
         
-        var cardsCount = _flashcardsDataService.Data.Cards.Count;
+        // Update Cards collection with DTOs
+        var cardsDto = _flashcardsDataService.GetCardsAsDto();
+        Cards.Clear();
+        foreach (var card in cardsDto)
+        {
+            Cards.Add(card);
+        }
+        
+        var cardsCount = Cards.Count;
 
         InfoText = cardsCount > 0 
             ? $"{cardsCount} cards loaded from data service"
@@ -81,12 +94,34 @@ public partial class SampleCardsCollectionPageViewModel : BaseViewModel
         var ticksString = DateTime.Now.Ticks.ToString();
         var phraseSufix = ticksString.Substring(ticksString.Length - 3);
 
+        // Randomly choose CategoryId - either existing category or test non-existing
+        string categoryId = string.Empty;
+        var random = new Random();
+        var categories = _flashcardsDataService.Data.Categories.ToList();
+        
+        if (categories.Any() && random.Next(0, 3) != 0) // 2/3 chance to use existing category
+        {
+            var randomCategory = categories[random.Next(categories.Count)];
+            categoryId = randomCategory.Id!;
+            InfoText = $"Adding card with existing category: {randomCategory.Name}";
+        }
+        else if (random.Next(0, 2) == 0) // 1/2 chance for non-existing when no existing chosen
+        {
+            categoryId = "TestNoExistingId";
+            InfoText = "Adding card with non-existing category (should be set to undefined)";
+        }
+        else
+        {
+            categoryId = string.Empty; // undefined category
+            InfoText = "Adding card with undefined category";
+        }
+
         var sampleCard = new SingleCard
         {
             Phrase = $"Hello {phraseSufix}",
             Translation = $"Czesc {phraseSufix}",
             Example = "Hello, how are you?",
-            CategoryId = "undefined", // Use a default category
+            CategoryId = categoryId,
             Favourite = false,
             LearningProgress = LearningProgress.NotStarted
         };

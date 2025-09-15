@@ -1,4 +1,5 @@
 using FlashCards.Models;
+using FlashCards.Models.Dto;
 using FlashCards.Services.DatabaseService;
 
 namespace FlashCards.Services.DataService;
@@ -248,25 +249,26 @@ public class FlashcardsDataService : IFlashcardsDataService
     {
         try
         {
-            // 1. Delete from Firestore
+            // 1. Delete from Firestore (this also updates all related cards)
             var success = await _databaseService.DeleteCategory(categoryId);
             
             if (success)
             {
-                // 2. Remove from local data
+                // 2. Update local data
                 var localCategory = Data.Categories.FirstOrDefault(c => c.Id == categoryId);
                 if (localCategory != null)
                 {
                     Data.Categories.Remove(localCategory);
                 }
                 
-                // 3. Update cards that belonged to this category (set to undefined)
+                // Update all cards that had this category to undefined
                 var cardsInCategory = Data.Cards.Where(c => c.CategoryId == categoryId).ToList();
                 foreach (var card in cardsInCategory)
                 {
-                    card.CategoryId = string.Empty; // or some "undefined" category ID
+                    card.CategoryId = string.Empty;
                 }
                 
+                Data.UpdateAllCategoryCardCounts();
                 return true;
             }
             
@@ -283,24 +285,78 @@ public class FlashcardsDataService : IFlashcardsDataService
     {
         try
         {
-            // TODO Note: Cards that belonged to these categories should be handled separately in FirebaseDatabaseService!!!!!!
             var deletingCounter = await _databaseService.DeleteAllCategories();
 
             if (deletingCounter > 0)
             {
                 Data.Categories.Clear();
                 
-                // TODO Note: Cards that belonged to these categories should be handled separately !!!!!!
-                // This metod UpdateAllCategoryCardCounts to change
+                // Update all cards to have undefined category
+                foreach (var card in Data.Cards)
+                {
+                    card.CategoryId = string.Empty;
+                }
+                
                 Data.UpdateAllCategoryCardCounts();
             }
 
             return deletingCounter;
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine($"Error deleting all cards: {e.Message}");
-            throw;
+            Console.WriteLine($"Error deleting all categories: {ex.Message}");
+            return -1;
         }
+    }
+
+    // DTO Methods for ViewModels
+    public List<SingleCardDto> GetCardsAsDto()
+    {
+        return Data.Cards.Select(card => 
+        {
+            var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
+            return SingleCardDto.FromCardAndCategory(card, category);
+        }).ToList();
+    }
+
+    public List<SingleCardDto> GetCardsByCategoryAsDto(string categoryId)
+    {
+        return Data.Cards
+            .Where(card => card.CategoryId == categoryId)
+            .Select(card => 
+            {
+                var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
+                return SingleCardDto.FromCardAndCategory(card, category);
+            }).ToList();
+    }
+
+    public List<SingleCardDto> GetCardsWithUndefinedCategoryAsDto()
+    {
+        return Data.Cards
+            .Where(card => string.IsNullOrEmpty(card.CategoryId))
+            .Select(card => SingleCardDto.FromCardAndCategory(card, null))
+            .ToList();
+    }
+
+    public List<SingleCardDto> GetFavoriteCardsAsDto()
+    {
+        return Data.Cards
+            .Where(card => card.Favourite)
+            .Select(card => 
+            {
+                var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
+                return SingleCardDto.FromCardAndCategory(card, category);
+            }).ToList();
+    }
+
+    public List<SingleCardDto> GetCardsByLearningProgressAsDto(LearningProgress progress)
+    {
+        return Data.Cards
+            .Where(card => card.LearningProgress == progress)
+            .Select(card => 
+            {
+                var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
+                return SingleCardDto.FromCardAndCategory(card, category);
+            }).ToList();
     }
 }
