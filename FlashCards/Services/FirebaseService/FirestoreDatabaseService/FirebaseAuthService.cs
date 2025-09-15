@@ -1,9 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
 
-namespace FlashCards.Services.FirebaseService;
+namespace FlashCards.Services.FirebaseService.FirestoreDatabaseService;
 
 public class FirebaseAuthService : IUserService
 {

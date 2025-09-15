@@ -2,7 +2,7 @@ using FlashCards.Models;
 using FlashCards.Services.DatabaseService;
 using Plugin.Firebase.Firestore;
 
-namespace FlashCards.Services.FirebaseService;
+namespace FlashCards.Services.FirebaseService.FirestoreDatabaseService;
 
 public class FirebaseDatabaseService : IDatabaseService
 {

@@ -3,7 +3,7 @@ using FlashCards.Models;
 using FlashCards.Models.Dto;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using FlashCards.Services.DataService;
+using FlashCards.Services.FlashcardsDataService;
 
 namespace FlashCards.Showroom.Firebase.Storage;
 

@@ -1,8 +1,7 @@
 using FlashCards.Models;
 using FlashCards.Models.Dto;
-using FlashCards.Services.DatabaseService;
 
-namespace FlashCards.Services.DataService;
+namespace FlashCards.Services.FlashcardsDataService;
 
 /// <summary>
 /// Service that manages FlashcardsData container and synchronizes with Firestore
