@@ -66,9 +66,23 @@ public class FirebaseDatabaseService : IDatabaseService
         }
     }
 
-    public Task<Category?> GetCategory(string categoryId)
+    public async Task<Category?> GetCategory(string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return null;
+                
+            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
+            var snapshot = await documentRef.GetDocumentSnapshotAsync<Category>();
+            
+            return snapshot?.Data;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error getting category: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<Category?> GetCategoryByName(string name)
@@ -134,14 +148,67 @@ public class FirebaseDatabaseService : IDatabaseService
         }
     }
 
-    public Task<bool> UpdateCategory(string categoryId, string newName)
+    public async Task<bool> UpdateCategory(string categoryId, string newName)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId) || string.IsNullOrWhiteSpace(newName))
+                return false;
+                
+            // Check if category exists
+            var existingCategory = await GetCategory(categoryId);
+            if (existingCategory == null)
+                return false;
+                
+            // Check if another category with this name already exists
+            var categoryWithSameName = await GetCategoryByName(newName);
+            if (categoryWithSameName != null && categoryWithSameName.Id != categoryId)
+                return false;
+                
+            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
+            
+            var updates = new Dictionary<object, object>
+            {
+                ["name"] = newName,
+                ["lastmodified"] = DateTime.Now
+            };
+            
+            await documentRef.UpdateDataAsync(updates);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating category: {ex.Message}");
+            return false;
+        }
     }
 
-    public Task<bool> DeleteCategory(string categoryId)
+    public async Task<bool> DeleteCategory(string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return false;
+                
+            // Check if category exists
+            var existingCategory = await GetCategory(categoryId);
+            if (existingCategory == null)
+                return false;
+                
+            // First, update all cards that use this category to have undefined category
+            await UpdateCardsCategory(categoryId, string.Empty);
+            
+            // Then delete the category
+            var documentRef = _firestore.GetCollection(CategoriesCollectionName).GetDocument(categoryId);
+            await documentRef.DeleteDocumentAsync();
+            
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error deleting category: {ex.Message}");
+            return false;
+        }
     }
 
     public async Task<int> DeleteAllCategories()
@@ -155,27 +222,48 @@ public class FirebaseDatabaseService : IDatabaseService
                 
             if (querySnapshot.Documents?.Any() == true)
             {
+                // First, set all cards to undefined category
+                foreach (var document in querySnapshot.Documents)
+                {
+                    var category = document.Data;
+                    if (category?.Id != null)
+                    {
+                        await UpdateCardsCategory(category.Id, string.Empty);
+                    }
+                }
+                
+                // Then delete all categories
                 foreach (var document in querySnapshot.Documents)
                 {
                     await document.Reference.DeleteDocumentAsync();
                     deletingCounter++;
-                    
-                    // TODO Note: Cards that belonged to these categories should be handled separately !!!!!!
                 }
             }
             
-            return deletingCounter; // Return number of deleted categories (0 if no cards)
+            return deletingCounter; // Return number of deleted categories
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Database error deleting all cards: {ex.Message}");
+            Console.WriteLine($"Database error deleting all categories: {ex.Message}");
             return -1; // -1 indicates error according to interface convention
         }
     }
 
-    public Task<bool?> CategoryExists(string categoryId)
+    public async Task<bool?> CategoryExists(string categoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(categoryId))
+                return false;
+                
+            var category = await GetCategory(categoryId);
+            return category != null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error checking if category exists: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<bool?> CreateCard(SingleCard card)
@@ -185,6 +273,17 @@ public class FirebaseDatabaseService : IDatabaseService
             // Validation - return false for invalid input (not exceptions)
             if (string.IsNullOrWhiteSpace(card.Phrase) || string.IsNullOrWhiteSpace(card.Translation))
                 return false;
+            
+            // Validate CategoryId if provided - ensure category exists
+            if (!string.IsNullOrEmpty(card.CategoryId))
+            {
+                var categoryExists = await CategoryExists(card.CategoryId);
+                if (categoryExists != true) // null or false
+                {
+                    Console.WriteLine($"Warning: Category {card.CategoryId} does not exist. Card will be created with undefined category.");
+                    card.CategoryId = string.Empty; // Set to undefined category
+                }
+            }
         
             var collectionReference = _firestore.GetCollection(CardsCollectionName);
             await collectionReference.AddDocumentAsync(card);
@@ -216,7 +315,6 @@ public class FirebaseDatabaseService : IDatabaseService
             {
                 foreach (var document in snapshot.Documents)
                 {
-                    // Convert a document form Firebase to SingleCard
                     var card = document.Data;
                     if (card != null)
                     {
@@ -225,7 +323,7 @@ public class FirebaseDatabaseService : IDatabaseService
                 }
             }
             
-            return cards; // empty list if na cards
+            return cards; // empty list if no cards
         }
         catch (Exception ex)
         {
@@ -326,8 +424,39 @@ public class FirebaseDatabaseService : IDatabaseService
         }
     }
 
-    public Task<int> UpdateCardsCategory(string oldCategoryId, string newCategoryId)
+    public async Task<int> UpdateCardsCategory(string oldCategoryId, string newCategoryId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var collectionRef = _firestore.GetCollection(CardsCollectionName);
+            var snapshot = await collectionRef.GetDocumentsAsync<SingleCard>();
+            
+            var updatedCounter = 0;
+            
+            if (snapshot.Documents?.Any() == true)
+            {
+                foreach (var document in snapshot.Documents)
+                {
+                    var card = document.Data;
+                    if (card != null && card.CategoryId == oldCategoryId)
+                    {
+                        var updates = new Dictionary<object, object>
+                        {
+                            ["categoryId"] = newCategoryId
+                        };
+                        
+                        await document.Reference.UpdateDataAsync(updates);
+                        updatedCounter++;
+                    }
+                }
+            }
+            
+            return updatedCounter; // Return number of updated cards
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error updating cards category: {ex.Message}");
+            return -1; // -1 indicates error
+        }
     }
 }
