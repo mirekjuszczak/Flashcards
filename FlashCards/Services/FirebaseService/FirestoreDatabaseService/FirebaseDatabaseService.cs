@@ -831,6 +831,8 @@ public class FirebaseDatabaseService : IDatabaseService
     /// <param name="categoryId">ID of the category to update</param>
     /// <param name="increment">Number to add to CountCards (can be negative for decrement)</param>
     /// <returns>True if update was successful, false otherwise</returns>
+    /// TODO - The same update of CountCards and LastModified needed in Delete and Update Cards!!!!!
+    /// TODO - Now, it's only in adding card resolved!!!!!
     private async Task<bool> UpdateCategoryCardCountAndDate(string categoryId, int increment)
     {
         try
