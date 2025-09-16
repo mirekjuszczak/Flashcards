@@ -341,7 +341,7 @@ public class FlashcardsDataService : IFlashcardsDataService
         return Data.Cards.Select(card => 
         {
             var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
-            return SingleCardDto.FromCardAndCategory(card, category);
+            return card.FromCardAndCategory(category);
         }).ToList();
     }
 
@@ -352,7 +352,7 @@ public class FlashcardsDataService : IFlashcardsDataService
             .Select(card => 
             {
                 var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
-                return SingleCardDto.FromCardAndCategory(card, category);
+                return card.FromCardAndCategory(category);
             }).ToList();
     }
 
@@ -360,7 +360,7 @@ public class FlashcardsDataService : IFlashcardsDataService
     {
         return Data.Cards
             .Where(card => string.IsNullOrEmpty(card.CategoryId))
-            .Select(card => SingleCardDto.FromCardAndCategory(card, null))
+            .Select(card => card.FromCardAndCategory(null))
             .ToList();
     }
 
@@ -371,7 +371,7 @@ public class FlashcardsDataService : IFlashcardsDataService
             .Select(card => 
             {
                 var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
-                return SingleCardDto.FromCardAndCategory(card, category);
+                return card.FromCardAndCategory(category);
             }).ToList();
     }
 
@@ -382,7 +382,7 @@ public class FlashcardsDataService : IFlashcardsDataService
             .Select(card => 
             {
                 var category = Data.Categories.FirstOrDefault(c => c.Id == card.CategoryId);
-                return SingleCardDto.FromCardAndCategory(card, category);
+                return card.FromCardAndCategory(category);
             }).ToList();
     }
     

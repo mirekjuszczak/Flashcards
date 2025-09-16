@@ -31,7 +31,7 @@ public class FlashcardsData
         => Cards.Select(card => 
         {
             var category = GetCategory(card.CategoryId);
-            return SingleCardDto.FromCardAndCategory(card, category);
+            return card.FromCardAndCategory(category);
         });
 
     /// <summary>
@@ -41,7 +41,7 @@ public class FlashcardsData
         => GetCardsByCategory(categoryId).Select(card =>
         {
             var category = GetCategory(categoryId);
-            return SingleCardDto.FromCardAndCategory(card, category);
+            return card.FromCardAndCategory(category);
         });
 
     /// <summary>
