@@ -7,9 +7,9 @@ This document describes the core models and services used in the FlashCards appl
 
 ## 🚀 RECENT CHANGES & DEVELOPMENT STATUS
 
-### Last Significant Commit: 7cfa7b7b9dd418a761b1d2fac9e5ecfe9e7b8924
-**Date:** September 15, 2025  
-**Title:** "Updating CountCards and LastModified in categories - maybe comments to remove but it works"
+### Last Significant Commit: 42ab1517c4ee11e8a32ed8bb95c620468a175d91
+**Date:** 16 September 2025 at 09:29:39  
+**Title:** "SingleCard and SingleCardDto Extentions added"
 
 #### ✅ COMPLETED FEATURES:
 
@@ -286,4 +286,4 @@ This document describes the core models and services used in the FlashCards appl
 3. **Write Operations:** ViewModels call service methods which update local cache and sync to Firestore
 4. **UI Updates:** ObservableCollections in `FlashcardsData` automatically update bound UI elements
 
-This architecture provides optimal performance through local caching while maintaining data consistency with the cloud database.
+
